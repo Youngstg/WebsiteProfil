@@ -1,0 +1,94 @@
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fcfcfc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(255, 238, 0);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: #e9eff4;
+}
+
+[data-theme='dark'] {
+    --bg-color: #060615;
+    --text-color: #fff;
+}
+[data-theme='light'] {
+    --bg-color: #ef8383; 
+    --text-color: #333; 
+}
+
+.img-container {
+    width: 200px; /* Atur lebar dan tinggi container sesuai kebutuhan */
+    height: 200px;
+    perspective: 1000px; /* Jarak perspektif */
+    top: 10px;
+    left: 2px;
+    position: relative;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Membuat gambar menjadi lingkaran */
+    transform-style: preserve-3d; /* Memastikan transformasi 3D dijaga */
+    transition: transform 0.5s; /* Efek transisi */
+}
+
+.img-container:hover img {
+    transform: rotateY(45deg) rotateX(45deg); /* Rotasi gambar */
+}
+
