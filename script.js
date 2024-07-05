@@ -25,11 +25,10 @@ if (currentTheme) {
 
 const img = document.querySelector('.img-container img');
 
-img.addEventListener('mouseover', function() {
-    this.style.transform = 'rotateY(45deg) rotateX(45deg)';
-});
+const text = document.querySelector('.text p');
+        text.innerHTML = text.innerText.split('').map(
+            (char, i) =>
+            `<span style="transform:rotate(${i * 7.0}deg)">${char}</span>`
+        ).join('');
 
-img.addEventListener('mouseout', function() {
-    this.style.transform = 'rotateY(0) rotateX(0)';
-});
 
