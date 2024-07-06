@@ -1,33 +1,23 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --background-color-light: #ffffff;
+    --text-color-light: #4abef9;
+    --background-color-dark: #333333;
+    --text-color-dark: #ffffff;
+    --switch-slider-color-light: #f1c40f;
+    --switch-slider-color-dark: #ffffff;
 }
 
 body {
-    background-image: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-family: Arial, sans-serif;
-    text-align: center;
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s, color 0.3s;
     margin: 0;
     padding: 0;
-    display: grid;
-    place-items: center;
-    min-height: 100vh;
 }
 
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 10%;
-    background-color: #000000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1;
+body.dark-mode {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
 }
 
 .navbar{
@@ -35,20 +25,32 @@ body {
     justify-content: flex-start;
     align-items: center;
     padding: 10px;
+    height: 50px;
+    background-color: #8dd9ff;
+}
+
+body.dark-mode .navbar{
+    background-color: #ffffff;
+}
+
+body.dark-mode .navbar a{
+    color:#333333;
 }
 
 .navbar a {
-    margin-right: 20px;
+    position: relative;
+    margin-right: 30px;
     text-decoration: none;
-    color: #fff;
+    color: var(--text-color-dark);
 }
-
 .container {
-    z-index: 999;
-    max-width: 100px;
     position: absolute;
-    top: 15px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .switch {
@@ -71,8 +73,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #fcfcfc;
-    transition: .4s;
+    background-color: var(--text-color-light);
+    transition: 0.4s;
     border-radius: 34px;
 }
 
@@ -83,35 +85,25 @@ body {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: rgb(255, 238, 0);
-    transition: .4s;
+    background-color: var(--switch-slider-color-light);
+    transition: 0.4s;
     border-radius: 50%;
+    box-shadow: 0 0 10px var(--switch-slider-color-light);
 }
 
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #5e1b1b;
 }
 
 input:checked + .slider:before {
     transform: translateX(26px);
-    background-color: #e9eff4;
-}
-
-[data-theme='dark'] {
-    height: 100%;
-    --bg-color: linear-gradient(135deg,#000000,#0E0F16,#171C44);
-    --text-color: #fff;
-}
-[data-theme='light'] {
-    height: 100%;
-    --bg-color: linear-gradient(135deg,#EF8383,#C98956,#BBEF26); 
-    --text-color: #333; 
+    background-color: var(--switch-slider-color-dark);
+    box-shadow: 0 0 10px var(--switch-slider-color-dark);
 }
 
 .img-container {
-    width: 400px; /* Atur lebar dan tinggi container sesuai kebutuhan */
+    width: 400px; 
     height: 400px;
-    perspective: 10px; 
     top: 230px;
     right: 250px;
     position: absolute;
@@ -123,37 +115,51 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-.circle{
+.circle {
     position: absolute;
     width: 500px;
     height: 500px;
-    /* background-color: #e9eff4; */
+    /* background-color: #333333; */
     border-radius: 50%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     top: 183px;
     right: 203px;
 }
 
 .text {
+    position: relative;
     width: 100%;
     height: 100%;
-    position: absolute;
-    animation: anim 20s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: consolas;
 }
 
-@keyframes anim{
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
+.text p {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(0deg);
+    animation: anim 20s linear infinite;
+    margin: 0;
+    padding: 0;
 }
 
-.text span{
+.text span {
     position: absolute;
     left: 50%;
-    font-size: 2em;
     transform-origin: 0 250px;
+    font-size: 1.5em;
+}
+
+@keyframes anim {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
