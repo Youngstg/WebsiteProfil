@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-script: 'Dancing Script', 'Pacifico', cursive;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --color-teal-950: #061119;
+  --color-teal-900: #0D2634;
+  --color-teal-800: #12344A;
+  --color-teal-700: #1A4560;
+  --color-teal-600: #235876;
+
+  --color-gold-300: #E8C99B;
+  --color-gold-400: #D4A574;
+  --color-gold-500: #C4956A;
+  --color-gold-600: #B07E52;
+
+  --color-cream-50: #FEFCF9;
+  --color-cream-100: #FBF6EF;
+  --color-cream-200: #F5EDE0;
+
+  --color-text-light: #FCFDFD;
+  --color-text-muted: #9AABB8;
+  --color-text-dark: #2D3436;
+  --color-text-dark-muted: #636E72;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-teal-900);
+    color: var(--color-text-light);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(212, 165, 116, 0.3);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-teal-950);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-teal-700);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-500);
+  }
+}
+
+@layer utilities {
+  .script-heading {
+    font-family: var(--font-script);
+    font-weight: 700;
+  }
+
+  .card-white {
+    background: var(--color-cream-50);
+    border-radius: 2rem;
+    color: var(--color-text-dark);
+  }
+
+  .btn-gold {
+    background-color: var(--color-gold-400);
+    color: var(--color-teal-950);
+    font-weight: 600;
+    border-radius: 9999px;
+    padding: 0.625rem 1.75rem;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-gold:hover {
+    background-color: var(--color-gold-500);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(212, 165, 116, 0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--color-text-light);
+    font-weight: 500;
+    border-radius: 9999px;
+    padding: 0.625rem 1.75rem;
+    font-size: 0.875rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--color-gold-400);
+    color: var(--color-gold-400);
+  }
+
+  .nav-pill {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    color: var(--color-text-light);
+    background: transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .nav-pill:hover {
+    border-color: var(--color-gold-400);
+    color: var(--color-gold-400);
+  }
+
+  .nav-pill-active {
+    background-color: var(--color-gold-400);
+    color: var(--color-teal-950);
+    border-color: var(--color-gold-400);
+    font-weight: 600;
+  }
+
+  .nav-pill-active:hover {
+    color: var(--color-teal-950);
+    background-color: var(--color-gold-500);
+  }
+
+  .diagonal-section {
+    clip-path: polygon(0 0, 100% 4%, 100% 96%, 0 100%);
+  }
+
+  .diagonal-top {
+    clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .section-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .decorative-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(212, 165, 116, 0.15);
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
