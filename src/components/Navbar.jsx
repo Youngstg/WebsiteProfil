@@ -17,29 +17,48 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sectionMap = { home: 'home', experience: 'experience', portfolio: 'portfolio', contact: 'contact' };
-      const sections = Object.values(sectionMap);
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.getBoundingClientRect().top <= 120) {
-          setActiveSection(sections[i]);
-          break;
+      const sections = ['home', 'portfolio', 'experience', 'contact'];
+      
+      let currentSection = 'home';
+      let maxVisibleHeight = 0;
+
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        const rect = el.getBoundingClientRect();
+        const visibleTop = Math.max(0, rect.top);
+        const visibleBottom = Math.min(window.innerHeight, rect.bottom);
+        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+        // If this section occupies more of the screen than the previous ones
+        if (visibleHeight > maxVisibleHeight) {
+          maxVisibleHeight = visibleHeight;
+          currentSection = id;
         }
+      });
+
+      // Override if we hit the absolute bottom of the page and Contact is visible
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10) {
+        currentSection = 'contact';
       }
+
+      setActiveSection(currentSection);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e, href) => {
-    e.preventDefault();
-    setIsMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const getActiveKey = (href) => {
     const map = { '#home': 'home', '#experience': 'experience', '#portfolio': 'portfolio', '#contact': 'contact' };
     return map[href];
+  };
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setIsMobileOpen(false);
+    setActiveSection(getActiveKey(href));
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -51,29 +70,22 @@ export default function Navbar() {
         isScrolled ? 'bg-teal-900/30 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/10' : 'bg-transparent'
       }`}
     >
-      <div className="section-container flex items-center justify-between h-16 md:h-18">
-        {/* Logo */}
-        <a
-          href="#home"
-          onClick={(e) => handleNavClick(e, '#home')}
-          className="text-xl font-bold text-gold-400 script-heading tracking-wide"
-        >
-          Lucky
-        </a>
-
+      <div className="section-container flex items-center justify-end h-16 md:h-18">
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-3">
           {navLinks.map((link) => (
-            <a
+            <motion.a
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className={`nav-pill ${
                 activeSection === getActiveKey(link.href) ? 'nav-pill-active' : ''
               }`}
             >
               {link.name}
-            </a>
+            </motion.a>
           ))}
         </div>
 

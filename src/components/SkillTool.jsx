@@ -21,8 +21,8 @@ export default function SkillTool() {
       </div>
 
       {/* White Card */}
-      <div className="section-container max-w-5xl px-4 md:px-0">
-        <div className="bg-white rounded-[3rem] md:rounded-[5rem] min-h-[450px] flex items-center justify-center w-full px-6 py-20 md:py-28 shadow-xl mb-24">
+      <div className="w-full flex justify-center px-4 md:px-0">
+        <div className="bg-white rounded-[3rem] md:rounded-[4rem] min-h-[350px] flex items-center justify-center w-fit px-8 md:px-20 py-12 md:py-16 shadow-xl mb-16">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 justify-items-center">
             {mainSkills.map((skill, index) => (
               <motion.div

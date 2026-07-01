@@ -4,6 +4,8 @@
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', serif;
   --font-script: 'Dancing Script', 'Pacifico', cursive;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
@@ -74,8 +76,9 @@
 
 @layer utilities {
   .script-heading {
-    font-family: var(--font-script);
+    font-family: var(--font-serif);
     font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .card-white {
@@ -158,7 +161,7 @@
   }
 
   .section-container {
-    max-width: 1200px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1.5rem;
@@ -182,7 +185,24 @@
 
 @media (min-width: 1024px) {
   .section-container {
+    max-width: 1024px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-container {
+    max-width: 1280px;
     padding-left: 4rem;
     padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .section-container {
+    max-width: 1440px;
+    padding-left: 5rem;
+    padding-right: 5rem;
   }
 }

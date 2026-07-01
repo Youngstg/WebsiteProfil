@@ -41,7 +41,7 @@
       "category": "AI & Computer Vision",
       "items": [
         { "name": "OpenCV", "level": 80, "icon": "SiOpencv" },
-        { "name": "Machine Learning", "level": 75, "icon": "SiTensorflow" },
+        { "name": "Deep Learning", "level": 75, "icon": "SiTensorflow" },
         { "name": "Image Processing", "level": 75, "icon": "SiPython" }
       ]
     },
@@ -68,12 +68,12 @@
     },
     {
       "id": 2,
-      "title": "GERAKIN / SIBI Recognition",
-      "description": "Computer vision-based interactive model. Features real-time motion/sign detection using VideoMAE. Won 3rd Place in campus prototype competition.",
+      "title": "SIBI Recognition",
+      "description": "Computer vision-based interactive model for real-time motion/sign detection using VideoMAE. Developed as my final year project (Tugas Akhir).",
       "image": "/images/preview/image.png",
       "liveUrl": "https://huggingface.co/spaces/Luckystg/SIBI_Recognition_VideoMAE-demo",
       "repoUrl": "https://github.com/Youngstg",
-      "tags": ["VideoMAE", "Computer Vision", "Machine Learning"],
+      "tags": ["VideoMAE", "Computer Vision", "Deep Learning"],
       "category": "AI/ML",
       "embedPreview": false
     },
@@ -95,7 +95,7 @@
       "image": "",
       "liveUrl": "https://pcd-pisang.vercel.app",
       "repoUrl": "",
-      "tags": ["Computer Vision", "Machine Learning", "Image Processing"],
+      "tags": ["Computer Vision", "Rule Based", "Image Processing"],
       "category": "AI/ML",
       "embedPreview": true
     }

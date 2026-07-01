@@ -1,5 +1,4 @@
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   SiPython, SiJavascript, SiReact, SiHtml5, SiTailwindcss, SiNodedotjs,
   SiTensorflow, SiPytorch, SiPandas, SiScikitlearn,
@@ -34,10 +33,28 @@ const iconColors = {
   SiOpenjdk: '#ED8B00',
 };
 
-export default function Skills() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.1,
+    }
+  }
+};
 
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 100, damping: 15 }
+  }
+};
+
+export default function Skills() {
   // Flatten all skills for display
   const allSkills = portfolioData.skills.flatMap(cat => cat.items);
 
@@ -46,9 +63,9 @@ export default function Skills() {
       <div className="section-container">
         {/* Section Header */}
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
@@ -58,28 +75,28 @@ export default function Skills() {
 
         {/* White Card with Skills */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
           className="card-white p-8 md:p-12"
         >
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 md:gap-10">
-            {allSkills.map((skill, index) => {
+            {allSkills.map((skill) => {
               const IconComponent = iconMap[skill.icon];
               const color = iconColors[skill.icon] || '#666';
 
               return (
                 <motion.div
                   key={skill.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  variants={itemVariants}
                   className="flex flex-col items-center text-center group cursor-default"
                 >
                   {/* Icon container */}
                   <div className="relative mb-4">
-                    <div
-                      className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                    <motion.div
+                      whileHover={{ scale: 1.1, y: -5, boxShadow: `0px 10px 20px ${color}30` }}
+                      className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center transition-colors duration-300"
                       style={{
                         background: `${color}15`,
                         border: `1.5px solid ${color}30`,
@@ -87,13 +104,13 @@ export default function Skills() {
                     >
                       {IconComponent && (
                         <IconComponent
-                          className="text-2xl md:text-3xl transition-transform duration-300"
+                          className="text-2xl md:text-3xl"
                           style={{ color }}
                         />
                       )}
-                    </div>
+                    </motion.div>
                     {/* Decorative platform line */}
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-10 h-[2px] rounded-full bg-teal-800/10" />
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-10 h-[2px] rounded-full bg-teal-800/10 transition-all duration-300 group-hover:w-14 group-hover:bg-teal-800/30" />
                   </div>
 
                   {/* Label */}
