@@ -98,6 +98,28 @@
       "tags": ["Computer Vision", "Rule Based", "Image Processing"],
       "category": "AI/ML",
       "embedPreview": true
+    },
+    {
+      "id": 5,
+      "title": "Snapz",
+      "description": "Web Application.",
+      "image": "",
+      "liveUrl": "https://snapz-nine.vercel.app",
+      "repoUrl": "",
+      "tags": ["Web App"],
+      "category": "Web/Mobile",
+      "embedPreview": true
+    },
+    {
+      "id": 6,
+      "title": "Digo Chatbot",
+      "description": "AI Chatbot Web Application.",
+      "image": "",
+      "liveUrl": "https://digo-chatbot.vercel.app",
+      "repoUrl": "",
+      "tags": ["Chatbot", "AI", "Web App"],
+      "category": "AI/ML",
+      "embedPreview": true
     }
   ],
   "experience": [
