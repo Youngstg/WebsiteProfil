@@ -195,6 +195,30 @@ Computer vision-based interactive game encouraging physical exercise among child
 
 ---
 
+## Snapz
+**Period:** 2026
+
+### Description
+Web Application.
+
+### Technologies
+- Web App
+
+---
+
+## Digo Chatbot
+**Period:** 2026
+
+### Description
+AI Chatbot Web Application.
+
+### Technologies
+- Chatbot
+- AI
+- Web App
+
+---
+
 # Organizational Experience
 
 ## Specialist Staff
