@@ -5,7 +5,12 @@
     "university": "Institut Teknologi Sumatera",
     "bio": "I am a fresh graduate from Institut Teknologi Sumatera (ITERA) with a strong passion for Cyber Security, Artificial Intelligence, and Software Development. I am deeply interested in building impactful, accessible, and inclusive technology solutions that solve real-world problems.",
     "photo": "/images/Fotosaya.jpg",
-    "roles": ["Software Developer", "Mobile Developer", "Web Developer", "AI Enthusiast"],
+    "roles": [
+      "Software Developer",
+      "Mobile Developer",
+      "Web Developer",
+      "AI Enthusiast"
+    ],
     "socials": {
       "github": "https://github.com/Youngstg",
       "linkedin": "https://linkedin.com/in/luckyimmanuel",
@@ -22,35 +27,91 @@
     {
       "category": "Programming Languages",
       "items": [
-        { "name": "Python", "level": 85, "icon": "SiPython" },
-        { "name": "JavaScript", "level": 80, "icon": "SiJavascript" },
-        { "name": "C++", "level": 75, "icon": "SiCplusplus" },
-        { "name": "PHP", "level": 70, "icon": "SiPhp" }
+        {
+          "name": "Python",
+          "level": 85,
+          "icon": "SiPython"
+        },
+        {
+          "name": "JavaScript",
+          "level": 80,
+          "icon": "SiJavascript"
+        },
+        {
+          "name": "C++",
+          "level": 75,
+          "icon": "SiCplusplus"
+        },
+        {
+          "name": "PHP",
+          "level": 70,
+          "icon": "SiPhp"
+        }
       ]
     },
     {
       "category": "Mobile & Web Development",
       "items": [
-        { "name": "React Native", "level": 85, "icon": "SiReact" },
-        { "name": "React", "level": 80, "icon": "SiReact" },
-        { "name": "Firebase", "level": 75, "icon": "SiFirebase" },
-        { "name": "Laravel", "level": 70, "icon": "SiLaravel" }
+        {
+          "name": "React Native",
+          "level": 85,
+          "icon": "SiReact"
+        },
+        {
+          "name": "React",
+          "level": 80,
+          "icon": "SiReact"
+        },
+        {
+          "name": "Firebase",
+          "level": 75,
+          "icon": "SiFirebase"
+        },
+        {
+          "name": "Laravel",
+          "level": 70,
+          "icon": "SiLaravel"
+        }
       ]
     },
     {
       "category": "AI & Computer Vision",
       "items": [
-        { "name": "OpenCV", "level": 80, "icon": "SiOpencv" },
-        { "name": "Deep Learning", "level": 75, "icon": "SiTensorflow" },
-        { "name": "Image Processing", "level": 75, "icon": "SiPython" }
+        {
+          "name": "OpenCV",
+          "level": 80,
+          "icon": "SiOpencv"
+        },
+        {
+          "name": "Deep Learning",
+          "level": 75,
+          "icon": "SiTensorflow"
+        },
+        {
+          "name": "Image Processing",
+          "level": 75,
+          "icon": "SiPython"
+        }
       ]
     },
     {
       "category": "Networking",
       "items": [
-        { "name": "Cisco", "level": 80, "icon": "SiCisco" },
-        { "name": "VLAN/DHCP", "level": 80, "icon": "SiLinux" },
-        { "name": "SMTP/Postfix", "level": 75, "icon": "SiLinux" }
+        {
+          "name": "Cisco",
+          "level": 80,
+          "icon": "SiCisco"
+        },
+        {
+          "name": "VLAN/DHCP",
+          "level": 80,
+          "icon": "SiLinux"
+        },
+        {
+          "name": "SMTP/Postfix",
+          "level": 75,
+          "icon": "SiLinux"
+        }
       ]
     }
   ],
@@ -62,7 +123,10 @@
       "image": "",
       "liveUrl": "https://www.km-itera.com",
       "repoUrl": "",
-      "tags": ["Web Development", "Optimization"],
+      "tags": [
+        "Web Development",
+        "Optimization"
+      ],
       "category": "Web/Mobile",
       "embedPreview": true
     },
@@ -73,7 +137,11 @@
       "image": "/images/preview/image.png",
       "liveUrl": "https://huggingface.co/spaces/Luckystg/SIBI_Recognition_VideoMAE-demo",
       "repoUrl": "https://github.com/Youngstg",
-      "tags": ["VideoMAE", "Computer Vision", "Deep Learning"],
+      "tags": [
+        "VideoMAE",
+        "Computer Vision",
+        "Deep Learning"
+      ],
       "category": "AI/ML",
       "embedPreview": false
     },
@@ -84,7 +152,11 @@
       "image": "",
       "liveUrl": "https://unfolia.vercel.app",
       "repoUrl": "",
-      "tags": ["Python", "Instagrapi", "Web App"],
+      "tags": [
+        "Python",
+        "Instagrapi",
+        "Web App"
+      ],
       "category": "Web/Mobile",
       "embedPreview": true
     },
@@ -95,7 +167,11 @@
       "image": "",
       "liveUrl": "https://pcd-pisang.vercel.app",
       "repoUrl": "",
-      "tags": ["Computer Vision", "Rule Based", "Image Processing"],
+      "tags": [
+        "Computer Vision",
+        "Rule Based",
+        "Image Processing"
+      ],
       "category": "AI/ML",
       "embedPreview": true
     },
@@ -106,7 +182,9 @@
       "image": "",
       "liveUrl": "https://snapz-nine.vercel.app",
       "repoUrl": "",
-      "tags": ["Web App"],
+      "tags": [
+        "Web App"
+      ],
       "category": "Web/Mobile",
       "embedPreview": true
     },
@@ -117,7 +195,11 @@
       "image": "",
       "liveUrl": "https://digo-chatbot.vercel.app",
       "repoUrl": "",
-      "tags": ["Chatbot", "AI", "Web App"],
+      "tags": [
+        "Chatbot",
+        "AI",
+        "Web App"
+      ],
       "category": "AI/ML",
       "embedPreview": true
     }
