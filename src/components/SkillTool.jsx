@@ -1,48 +1,87 @@
-import { motion } from 'framer-motion';
-import { SiPython, SiReact, SiCplusplus, SiLaravel, SiCisco } from 'react-icons/si';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Macropad3D from './Macropad3D';
+import { MACROPAD_KEYS } from '../data/macropadKeys';
 
-const mainSkills = [
-  { name: 'Python', icon: SiPython, color: 'text-blue-500', desc: 'Programming Language' },
-  { name: 'React', icon: SiReact, color: 'text-cyan-400', desc: 'Frontend Framework' },
-  { name: 'C++', icon: SiCplusplus, color: 'text-blue-700', desc: 'Programming Language' },
-  { name: 'Laravel', icon: SiLaravel, color: 'text-red-500', desc: 'Backend Framework' },
-  { name: 'Cisco', icon: SiCisco, color: 'text-sky-500', desc: 'Networking' },
-];
 
 export default function SkillTool() {
+  const [activeSkill, setActiveSkill] = useState(MACROPAD_KEYS[0]);
+
   return (
-    <section className="relative bg-teal-900 pt-16">
-      {/* Title */}
-      <div className="text-center mb-16">
-        <h2 className="script-heading text-5xl md:text-6xl text-gold-400 mb-3">
-          Skill Tool
-        </h2>
-        <div className="w-16 h-0.5 bg-gold-400/40 mx-auto" />
+    <section id="skills" className="relative bg-teal-900 pt-12 sm:pt-16 pb-20 sm:pb-28 overflow-hidden">
+      {/* Decorative ambient background rings matching original theme */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute w-[700px] h-[700px] border-[30px] border-teal-800/15 rounded-full top-[10%] -left-[200px]" />
+        <div className="absolute w-[600px] h-[600px] border-[25px] border-teal-800/15 rounded-full bottom-[5%] -right-[150px]" />
       </div>
 
-      {/* White Card */}
-      <div className="w-full flex justify-center px-4 md:px-0">
-        <div className="bg-white rounded-[3rem] md:rounded-[4rem] min-h-[350px] flex items-center justify-center w-fit px-8 md:px-20 py-12 md:py-16 shadow-xl mb-16">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 justify-items-center">
-            {mainSkills.map((skill, index) => (
+      <div className="w-full max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-6 sm:mb-10">
+          <motion.h2 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="script-heading text-5xl md:text-6xl text-[#FFCC80] mb-3"
+          >
+            Skill Tool
+          </motion.h2>
+          <div className="w-20 h-0.5 bg-gold-400/50 mx-auto" />
+        </div>
+
+        {/* TikTok-Inspired 3D Macropad Showcase Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-8 w-full">
+          {/* Left Column: Big Bold Typography & Skill Bio (matching TikTok video style) */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-center text-left">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={skill.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex flex-col items-center text-center"
+                key={activeSkill.id}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.25 }}
+                className="space-y-5"
               >
-                {/* Icon Container with dark bg and colorful icon */}
-                <div className="w-28 h-28 md:w-32 md:h-32 bg-[#120B2E] rounded-[2rem] flex items-center justify-center mb-6 relative"
-                     style={{ boxShadow: '0 10px 20px -5px rgba(0,0,0,0.3)' }}>
-                  <skill.icon className={`text-6xl md:text-7xl ${skill.color}`} />
-                  <div className="absolute -bottom-2 w-24 h-2 bg-transparent rounded-[50%] shadow-[0_10px_20px_rgba(0,0,0,0.5)]" />
+                {/* Category Badge */}
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span 
+                    className="px-3.5 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase border shadow-sm"
+                    style={{
+                      backgroundColor: `${activeSkill.color}25`,
+                      color: activeSkill.color,
+                      borderColor: `${activeSkill.color}50`
+                    }}
+                  >
+                    {activeSkill.category}
+                  </span>
                 </div>
-                <h4 className="font-bold text-teal-950 text-xl md:text-2xl">{skill.name}</h4>
-                <p className="text-base md:text-lg text-text-dark-muted mt-2 font-semibold max-w-[150px]">{skill.desc}</p>
+
+                {/* Big Bold Headline */}
+                <h3 className="text-5xl sm:text-6xl xl:text-7xl font-black text-white uppercase tracking-tight font-heading leading-none drop-shadow-md">
+                  {activeSkill.name}
+                </h3>
+
+                {/* Witty Dev Tagline (like in video) */}
+                <p 
+                  className="text-xl sm:text-2xl font-bold italic leading-snug drop-shadow"
+                  style={{ color: activeSkill.color }}
+                >
+                  "{activeSkill.tagline}"
+                </p>
+
+                {/* Detailed Description */}
+                <p className="text-teal-100/90 text-base md:text-lg leading-relaxed font-sans">
+                  {activeSkill.description}
+                </p>
               </motion.div>
-            ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Right Column: Authentic 3D Mechanical Macropad with Expanded Movement Canvas */}
+          <div className="lg:col-span-7 xl:col-span-8 w-full min-w-0 flex flex-col items-center justify-center">
+            <div className="w-full min-w-0 relative flex items-center justify-center">
+              <Macropad3D onSelectSkill={setActiveSkill} activeSkill={activeSkill} />
+            </div>
           </div>
         </div>
       </div>

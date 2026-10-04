@@ -1,0 +1,298 @@
+/**
+ * Macropad Keycap Data Matrix (4 columns x 5 rows = 20 keys)
+ * Mapped to Lucky Immanuel's actual skills, programming languages, and tech stacks.
+ * Replaced VideoMAE with Kotlin as requested.
+ * Colors and logos follow authentic developer branding with high contrast.
+ */
+
+export const MACROPAD_KEYS = [
+  // --- ROW 0: Modern Frontend & Mobile ---
+  {
+    id: 'react',
+    row: 0,
+    col: 0,
+    label: 'React',
+    name: 'React.js',
+    category: 'Frontend',
+    color: '#00D8FE',
+    textColor: '#0D2634',
+    triggerKeys: ['r', 'R'],
+    tagline: 'The library for web and native user interfaces',
+    description: 'Component-driven stateful architecture, hooks, and virtual DOM for lightning-fast modern web applications.',
+    experience: '85%'
+  },
+  {
+    id: 'native',
+    row: 0,
+    col: 1,
+    label: 'Native',
+    name: 'React Native',
+    category: 'Mobile Dev',
+    color: '#38BDF8',
+    textColor: '#0F172A',
+    triggerKeys: ['n', 'N'],
+    tagline: 'Learn once, write anywhere for iOS & Android',
+    description: 'Cross-platform mobile development with native performance, Bluetooth BLE integrations, and accessible UI.',
+    experience: '85%'
+  },
+  {
+    id: 'tailwind',
+    row: 0,
+    col: 2,
+    label: 'Tailwind',
+    name: 'Tailwind CSS',
+    category: 'Styling',
+    color: '#06B6D4',
+    textColor: '#FFFFFF',
+    triggerKeys: ['w', 'W'],
+    tagline: 'Rapidly build modern websites without leaving your HTML',
+    description: 'Utility-first CSS framework for clean responsive layouts, micro-interactions, and custom design tokens.',
+    experience: '90%'
+  },
+  {
+    id: 'cisco',
+    row: 0,
+    col: 3,
+    label: 'Cisco',
+    name: 'Cisco Networking',
+    category: 'Networking',
+    color: '#0284C7',
+    textColor: '#FFFFFF',
+    triggerKeys: ['i', 'I'],
+    tagline: 'Connecting the world with secure, resilient infrastructure',
+    description: 'VLAN, routing protocols (OSPF, BGP), subnetting, packet inspection, and enterprise network design.',
+    experience: '80%'
+  },
+
+  // --- ROW 1: Core Languages ---
+  {
+    id: 'js',
+    row: 1,
+    col: 0,
+    label: 'JS',
+    name: 'JavaScript ES6+',
+    category: 'Language',
+    color: '#F7DF1E',
+    textColor: '#18181B',
+    triggerKeys: ['j', 'J'],
+    tagline: 'The undisputed language of the web',
+    description: 'Async/await, event loop, functional programming, DOM APIs, and robust modern ESNext features.',
+    experience: '80%'
+  },
+  {
+    id: 'python',
+    row: 1,
+    col: 1,
+    label: 'Python',
+    name: 'Python 3',
+    category: 'Language',
+    color: '#3B82F6',
+    textColor: '#FFFFFF',
+    triggerKeys: ['p', 'P'],
+    tagline: 'Versatile, elegant, and powerful for modern backend engineering',
+    description: 'Automation scripts, backend service development, data processing, and robust REST APIs.',
+    experience: '85%'
+  },
+  {
+    id: 'firebase',
+    row: 1,
+    col: 2,
+    label: 'Firebase',
+    name: 'Google Firebase',
+    category: 'Backend & Cloud',
+    color: '#F59E0B',
+    textColor: '#1E1B4B',
+    triggerKeys: ['f', 'F'],
+    tagline: 'Realtime database, authentication & cloud functions',
+    description: 'Firestore realtime synchronization, Firebase Auth, Cloud Storage, and push notifications for mobile apps.',
+    experience: '75%'
+  },
+  {
+    id: 'linux',
+    row: 1,
+    col: 3,
+    label: 'Linux',
+    name: 'Linux / Bash',
+    category: 'DevOps & OS',
+    color: '#EAB308',
+    textColor: '#18181B',
+    triggerKeys: ['x', 'X'],
+    tagline: 'Where real developers get serious work done',
+    description: 'Shell scripting, POSIX system administration, process management, SSH servers, and security hardening.',
+    experience: '80%'
+  },
+
+  // --- ROW 2: Web Foundations & Systems ---
+  {
+    id: 'ts',
+    row: 2,
+    col: 0,
+    label: 'TS',
+    name: 'TypeScript',
+    category: 'Language',
+    color: '#3178C6',
+    textColor: '#FFFFFF',
+    triggerKeys: ['t', 'T'],
+    tagline: 'JavaScript that scales with static type safety',
+    description: 'Strong type definitions, generics, interfaces, and compiler diagnostics that prevent runtime bugs.',
+    experience: '80%'
+  },
+  {
+    id: 'cpp',
+    row: 2,
+    col: 1,
+    label: 'C++',
+    name: 'C++ Systems',
+    category: 'Systems Language',
+    color: '#1D4ED8',
+    textColor: '#FFFFFF',
+    triggerKeys: ['c', 'C'],
+    tagline: 'High-performance computing with memory-level control',
+    description: 'Algorithm optimization, memory management, pointers, and performance-critical numerical algorithms.',
+    experience: '75%'
+  },
+  {
+    id: 'laravel',
+    row: 2,
+    col: 2,
+    label: 'Laravel',
+    name: 'Laravel PHP',
+    category: 'Backend',
+    color: '#EF4444',
+    textColor: '#FFFFFF',
+    triggerKeys: ['l', 'L'],
+    tagline: 'The PHP framework for web artisans',
+    description: 'Eloquent ORM, robust MVC architecture, RESTful API design, authentication, and database migrations.',
+    experience: '70%'
+  },
+  {
+    id: 'docker',
+    row: 2,
+    col: 3,
+    label: 'Docker',
+    name: 'Docker Containers',
+    category: 'DevOps',
+    color: '#0284C7',
+    textColor: '#FFFFFF',
+    triggerKeys: ['d', 'D'],
+    tagline: 'Build, ship, and run any app anywhere consistently',
+    description: 'Containerizing fullstack applications, multi-stage Dockerfiles, Docker Compose, and environment isolation.',
+    experience: '75%'
+  },
+
+  // --- ROW 3: Core Web & Image Processing ---
+  {
+    id: 'html5',
+    row: 3,
+    col: 0,
+    label: 'HTML5',
+    name: 'Semantic HTML5',
+    category: 'Core Web',
+    color: '#EA580C',
+    textColor: '#FFFFFF',
+    triggerKeys: ['5'],
+    tagline: 'The structural skeleton of the accessible open web',
+    description: 'WCAG accessibility standards, semantic landmarks, microdata, and SEO best practices.',
+    experience: '90%'
+  },
+  {
+    id: 'opencv',
+    row: 3,
+    col: 1,
+    label: 'OpenCV',
+    name: 'OpenCV',
+    category: 'Image Processing',
+    color: '#4F46E5',
+    textColor: '#FFFFFF',
+    triggerKeys: ['o', 'O'],
+    tagline: 'Real-time digital image processing & graphics library',
+    description: 'Edge detection, contour analysis, camera frame streaming, color space masking, and geometric transforms.',
+    experience: '80%'
+  },
+  {
+    id: 'php',
+    row: 3,
+    col: 2,
+    label: 'PHP',
+    name: 'PHP 8+',
+    category: 'Language',
+    color: '#6366F1',
+    textColor: '#FFFFFF',
+    triggerKeys: ['h', 'H'],
+    tagline: 'Powers over 75% of the internet servers reliably',
+    description: 'Modern object-oriented PHP, Composer package management, PDO database access, and secure backend APIs.',
+    experience: '70%'
+  },
+  {
+    id: 'git',
+    row: 3,
+    col: 3,
+    label: 'Git',
+    name: 'Git VCS',
+    category: 'Tooling',
+    color: '#EA580C',
+    textColor: '#FFFFFF',
+    triggerKeys: ['g', 'G'],
+    tagline: 'Time travel for source code and branch mastery',
+    description: 'Branching workflows, interactive rebasing, merge conflict resolution, and collaborative version control.',
+    experience: '85%'
+  },
+
+  // --- ROW 4: Web Styling, Mobile & Runtime ---
+  {
+    id: 'css3',
+    row: 4,
+    col: 0,
+    label: 'CSS3',
+    name: 'CSS3 Modern',
+    category: 'Core Web',
+    color: '#7C3AED',
+    textColor: '#FFFFFF',
+    triggerKeys: ['3'],
+    tagline: 'Crafting fluid, elegant layouts & cinematic keyframes',
+    description: 'CSS Grid, Flexbox, custom properties, 3D transforms, glassmorphism, and responsive media queries.',
+    experience: '85%'
+  },
+  {
+    id: 'kotlin',
+    row: 4,
+    col: 1,
+    label: 'Kotlin',
+    name: 'Kotlin Android',
+    category: 'Mobile Dev',
+    color: '#7F52FF',
+    textColor: '#FFFFFF',
+    triggerKeys: ['k', 'K'],
+    tagline: 'Modern, concise & expressive language for native Android',
+    description: 'Android Jetpack, Kotlin Coroutines, MVVM architecture, and building fluid, reactive native mobile apps.',
+    experience: '85%'
+  },
+  {
+    id: 'node',
+    row: 4,
+    col: 2,
+    label: 'Node',
+    name: 'Node.js',
+    category: 'Backend Runtime',
+    color: '#16A34A',
+    textColor: '#FFFFFF',
+    triggerKeys: ['m', 'M'],
+    tagline: 'Asynchronous event-driven JavaScript runtime',
+    description: 'Express.js microservices, REST APIs, JSON Web Tokens, middleware pipelines, and npm packages.',
+    experience: '80%'
+  },
+  {
+    id: 'vite',
+    row: 4,
+    col: 3,
+    label: 'Vite',
+    name: 'Vite Bundler',
+    category: 'Tooling',
+    color: '#8B5CF6',
+    textColor: '#FFFFFF',
+    triggerKeys: ['b', 'B'],
+    tagline: 'Next generation ultra-fast frontend tooling',
+    description: 'Native ES modules dev server, lightning-quick HMR, Rollup optimized production builds, and plugins.',
+    experience: '90%'
+  },
+];

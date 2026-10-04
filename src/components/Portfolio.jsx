@@ -141,7 +141,7 @@ export default function Portfolio() {
   });
 
   return (
-    <section id="portfolio" className="relative flex min-h-screen items-center overflow-hidden py-24 md:py-28">
+    <section id="portfolio" className="relative flex min-h-screen items-center overflow-hidden pt-10 md:pt-14 pb-24 md:pb-28">
       <AnimatePresence mode="popLayout">
         <motion.div
           key={activeProject.id}
