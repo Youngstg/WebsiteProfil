@@ -195,27 +195,80 @@ Computer vision-based interactive game encouraging physical exercise among child
 
 ---
 
-## Snapz
+## KosMatch
 **Period:** 2026
+**Link:** https://kosmatch.us.ci
 
 ### Description
-Web Application.
+Aplikasi pendukung keputusan (DSS) pemilihan kos transparan berbasis geospatial PostGIS. Bandingkan biaya bulanan sebenarnya, waktu perjalanan, fasilitas wajib, dan aturan secara objektif.
 
 ### Technologies
+- Next.js
+- Decision Support System (DSS)
+- PostGIS
+- Geospatial
 - Web App
 
 ---
 
-## Digo Chatbot
+## CuteSnaps
 **Period:** 2026
+**Link:** https://cutesnaps.us.ci
 
 ### Description
-AI Chatbot Web Application.
+Aplikasi web photobooth Y2K interaktif dengan fitur duo online collab real-time WebRTC, filter AI, dan beragam frame estetik langsung dari browser.
 
 ### Technologies
-- Chatbot
-- AI
+- WebRTC
+- Photobooth
+- MediaPipe
+- Realtime Multiplayer
+- Y2K Web App
+
+---
+
+## CareCircle
+**Period:** 2026
+**Link:** https://carecircle.us.ci
+
+### Description
+Platform kolaborasi perawatan keluarga & lansia. Ruang privat terpercaya untuk berbagi tugas pengasuhan, jadwal obat harian, log perkembangan kesehatan lansia, dan dokumen medis penting bersama caregiver.
+
+### Technologies
+- Next.js
+- Healthcare
+- Family Caregiver
 - Web App
+
+---
+
+## DIGO Chatbot
+**Period:** 2026
+**Link:** https://digo.us.ci
+
+### Description
+Asisten AI cerdas berbasis Google Gemini yang siap membantu menjawab pertanyaan pelanggan, konsultasi produk, dan layanan dukungan 24/7.
+
+### Technologies
+- Google Gemini
+- AI Assistant
+- Chatbot
+- Web App
+
+---
+
+## AllAround
+**Period:** 2026
+**Link:** https://allaround-woad.vercel.app
+
+### Description
+Platform web multi-tool serbaguna dengan antarmuka pastel modern: Kompres PDF, Gabung PDF, Ubah Background Gambar, Hitung Kata, Buat QR Code, dan puluhan utilitas produktivitas harian lainnya.
+
+### Technologies
+- Multi-tool
+- Productivity
+- Web App
+- Utilities
 
 ---
 

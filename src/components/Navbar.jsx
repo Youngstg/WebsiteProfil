@@ -80,7 +80,7 @@ export default function Navbar() {
               onClick={(e) => handleNavClick(e, link.href)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`nav-pill ${
+              className={`nav-pill min-h-[44px] min-w-[44px] px-4 ${
                 activeSection === getActiveKey(link.href) ? 'nav-pill-active' : ''
               }`}
             >
@@ -89,13 +89,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle with Minimum 44x44px Touch Target */}
         <button
           onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className="md:hidden p-2 text-text-light hover:text-gold-400 transition-colors rounded-lg"
+          className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-text-light hover:text-gold-400 transition-colors rounded-lg touch-manipulation"
           aria-label="Toggle menu"
         >
-          {isMobileOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+          {isMobileOpen ? <HiX size={26} /> : <HiMenu size={26} />}
         </button>
       </div>
 
@@ -107,9 +107,9 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-teal-900/40 backdrop-blur-xl border-t border-white/10 overflow-hidden"
+            className="md:hidden bg-teal-900/90 backdrop-blur-2xl border-t border-white/10 overflow-hidden shadow-2xl"
           >
-            <div className="section-container py-4 flex flex-col gap-2">
+            <div className="section-container py-4 flex flex-col gap-2.5">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.name}
@@ -118,7 +118,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  className={`nav-pill text-center ${
+                  className={`nav-pill text-center min-h-[44px] w-full flex items-center justify-center text-sm font-semibold ${
                     activeSection === getActiveKey(link.href) ? 'nav-pill-active' : ''
                   }`}
                 >

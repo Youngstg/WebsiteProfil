@@ -24,7 +24,7 @@ export default function ProjectModal({ project, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-2.5 sm:p-4 md:p-8"
           onClick={onClose}
         >
           <div className="absolute inset-0 bg-teal-950/90 backdrop-blur-sm" />
@@ -34,17 +34,17 @@ export default function ProjectModal({ project, onClose }) {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="relative z-10 w-full max-w-5xl max-h-[90vh] bg-teal-900 border border-white/10 rounded-2xl overflow-hidden flex flex-col"
+            className="relative z-10 w-full max-w-5xl max-h-[92vh] bg-teal-900 border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 md:p-5 border-b border-white/10">
+            <div className="flex items-center justify-between p-3.5 sm:p-4 md:p-5 border-b border-white/10 gap-2">
               <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-semibold text-text-light truncate">{project.title}</h3>
-                <p className="text-sm text-text-muted truncate">{project.description}</p>
+                <h3 className="text-base sm:text-lg font-semibold text-text-light truncate">{project.title}</h3>
+                <p className="text-xs sm:text-sm text-text-muted truncate">{project.description}</p>
               </div>
 
-              <div className="flex items-center gap-2 ml-4">
+              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 {project.liveUrl && (
                   <div className="hidden md:flex items-center gap-1 mr-2 p-1 rounded-lg bg-teal-800">
                     {viewportSizes.map(({ name, icon: Icon }) => (
@@ -64,50 +64,50 @@ export default function ProjectModal({ project, onClose }) {
 
                 {project.liveUrl && (
                   <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                    className="p-2 rounded-lg text-text-muted hover:text-gold-400 transition-all" title="Open live site">
+                    className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-text-muted hover:text-gold-400 transition-all touch-manipulation" title="Open live site">
                     <FiExternalLink size={18} />
                   </a>
                 )}
                 {project.repoUrl && (
                   <a href={project.repoUrl} target="_blank" rel="noopener noreferrer"
-                    className="p-2 rounded-lg text-text-muted hover:text-gold-400 transition-all" title="View source code">
+                    className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-text-muted hover:text-gold-400 transition-all touch-manipulation" title="View source code">
                     <FiGithub size={18} />
                   </a>
                 )}
                 <button onClick={onClose}
-                  className="p-2 rounded-lg text-text-muted hover:text-red-400 transition-all ml-1" aria-label="Close">
+                  className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg text-text-muted hover:text-red-400 transition-all touch-manipulation" aria-label="Close">
                   <FiX size={20} />
                 </button>
               </div>
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-hidden p-4 md:p-6 flex items-center justify-center bg-teal-950/50">
+            <div className="flex-1 overflow-hidden p-3 sm:p-4 md:p-6 flex items-center justify-center bg-teal-950/50">
               {project.liveUrl ? (
-                <div className="relative rounded-lg overflow-hidden border border-white/10 transition-all duration-500 h-full"
+                <div className="relative rounded-lg overflow-hidden border border-white/10 transition-all duration-500 h-full w-full"
                   style={{ width: currentViewport.width, maxWidth: '100%' }}>
                   {!iframeLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center bg-teal-800">
                       <div className="flex flex-col items-center gap-3">
                         <div className="w-8 h-8 border-2 border-gold-400/30 border-t-gold-400 rounded-full animate-spin" />
-                        <span className="text-sm text-text-muted">Loading preview...</span>
+                        <span className="text-xs sm:text-sm text-text-muted">Loading preview...</span>
                       </div>
                     </div>
                   )}
                   <iframe src={project.liveUrl} title={`Preview of ${project.title}`}
-                    className="w-full h-full min-h-[400px] md:min-h-[500px] bg-white"
+                    className="w-full h-full min-h-[360px] sm:min-h-[420px] md:min-h-[500px] bg-white border-0"
                     onLoad={() => setIframeLoaded(true)}
                     sandbox="allow-scripts allow-same-origin allow-popups" />
                 </div>
               ) : (
-                <div className="flex flex-col items-center justify-center py-20 text-center">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-700 to-teal-800 flex items-center justify-center mb-6">
-                    <span className="text-3xl font-bold text-gold-400 script-heading">
+                <div className="flex flex-col items-center justify-center py-16 sm:py-20 text-center px-4">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-teal-700 to-teal-800 flex items-center justify-center mb-5">
+                    <span className="text-2xl sm:text-3xl font-bold text-gold-400 script-heading">
                       {project.title.split(' ').map(w => w[0]).join('')}
                     </span>
                   </div>
-                  <h4 className="text-xl font-semibold text-text-light mb-2">{project.title}</h4>
-                  <p className="text-text-muted max-w-md mb-6">{project.description}</p>
+                  <h4 className="text-lg sm:text-xl font-semibold text-text-light mb-2">{project.title}</h4>
+                  <p className="text-text-muted text-xs sm:text-sm max-w-md mb-6">{project.description}</p>
                   <div className="flex flex-wrap justify-center gap-2 mb-6">
                     {project.tags.map(tag => (
                       <span key={tag} className="px-3 py-1.5 text-xs font-mono rounded-full bg-gold-400/10 text-gold-400 border border-gold-400/20">
@@ -117,7 +117,7 @@ export default function ProjectModal({ project, onClose }) {
                   </div>
                   {project.repoUrl && (
                     <a href={project.repoUrl} target="_blank" rel="noopener noreferrer"
-                      className="btn-gold inline-flex items-center gap-2">
+                      className="btn-gold min-h-[44px] inline-flex items-center gap-2 touch-manipulation">
                       <FiGithub size={16} /> View on GitHub
                     </a>
                   )}
@@ -126,9 +126,9 @@ export default function ProjectModal({ project, onClose }) {
             </div>
 
             {project.liveUrl && (
-              <div className="px-4 md:px-6 py-3 border-t border-white/10 flex flex-wrap gap-2">
+              <div className="px-4 md:px-6 py-2.5 sm:py-3 border-t border-white/10 flex flex-wrap gap-2">
                 {project.tags.map(tag => (
-                  <span key={tag} className="px-2.5 py-1 text-xs font-mono rounded-full bg-gold-400/10 text-gold-400">
+                  <span key={tag} className="px-2.5 py-1 text-[11px] sm:text-xs font-mono rounded-full bg-gold-400/10 text-gold-400">
                     {tag}
                   </span>
                 ))}

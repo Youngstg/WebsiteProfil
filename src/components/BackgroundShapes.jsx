@@ -3,8 +3,7 @@ export default function BackgroundShapes() {
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
       {/* Tall wavy line (snake) flowing from top to bottom */}
       <svg
-        className="absolute top-0 w-full"
-        style={{ height: '6000px' }}
+        className="absolute top-0 w-full h-full"
         viewBox="0 0 1000 6000"
         fill="none"
         preserveAspectRatio="none"

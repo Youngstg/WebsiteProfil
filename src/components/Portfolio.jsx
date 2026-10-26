@@ -15,7 +15,14 @@ const categories = ['All', ...new Set(projects.map((project) => project.category
 
 function ProjectVisual({ project, compact = false }) {
   if (project.image) {
-    return <img src={project.image} alt={`Preview ${project.title}`} className="h-full w-full object-cover" />;
+    return (
+      <img 
+        src={project.image} 
+        alt={`Preview ${project.title}`} 
+        loading="lazy" 
+        className="h-full w-full object-cover" 
+      />
+    );
   }
 
   if (project.liveUrl) {
@@ -45,6 +52,14 @@ function ProjectVisual({ project, compact = false }) {
 
 function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
   const activeIndex = visibleProjects.findIndex((project) => project.id === activeProject.id);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const getRelativePosition = (index) => {
     const count = visibleProjects.length;
@@ -55,8 +70,7 @@ function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
   };
 
   return (
-    <div className="relative mx-auto h-[430px] w-full max-w-[520px] [perspective:1000px] md:h-[520px]" aria-label="Choose a project">
-
+    <div className="relative mx-auto h-[350px] sm:h-[420px] md:h-[480px] lg:h-[510px] w-full max-w-[500px] [perspective:1000px] my-4 overflow-visible" aria-label="Choose a project">
       {visibleProjects.map((project, index) => {
         const offset = getRelativePosition(index);
         const distance = Math.abs(offset);
@@ -69,20 +83,21 @@ function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
             onClick={() => onSelect(project)}
             initial={false}
             animate={{
-              x: distance * 14,
-              y: offset * 76,
-              rotateX: offset * -16,
-              scale: 1 - distance * 0.075,
-              opacity: distance > 3 ? 0 : 1 - distance * 0.14,
+              x: isMobile ? distance * 4 : distance * 8,
+              y: offset * 66,
+              rotateX: offset * -14,
+              scale: 1 - distance * 0.07,
+              opacity: distance > 3 ? 0 : 1 - distance * 0.15,
             }}
             transition={{ type: 'spring', stiffness: 190, damping: 24 }}
-            whileHover={{ x: distance * 14 - 8 }}
+            whileHover={{ x: (isMobile ? distance * 4 : distance * 8) - 4 }}
             whileTap={{ scale: 0.97 }}
-            className={`absolute left-1/2 top-1/2 h-[145px] w-[290px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] border text-left shadow-2xl sm:w-[360px] md:h-[170px] md:w-[420px] ${
+            className={`absolute left-1/2 top-1/2 h-[125px] sm:h-[145px] md:h-[165px] lg:h-[175px] w-[min(270px,calc(100vw-3.5rem))] sm:w-[350px] md:w-[390px] lg:w-[420px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] sm:rounded-[1.75rem] border text-left shadow-2xl transition-all touch-manipulation ${
               isActive
-                ? 'border-gold-400 ring-4 ring-gold-400/15'
+                ? 'border-gold-400 ring-4 ring-gold-400/20'
                 : 'border-white/15 hover:border-gold-400/60'
-            }`}
+            } ${distance > 2 ? 'pointer-events-none' : ''}`}
+            tabIndex={isActive ? 0 : -1}
             style={{ zIndex: visibleProjects.length - distance, transformStyle: 'preserve-3d' }}
             aria-label={`Show details for ${project.title}`}
             aria-pressed={isActive}
@@ -90,12 +105,12 @@ function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
             <div className="h-full w-full">
               <ProjectVisual project={project} compact />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-teal-950/90 via-teal-950/40 to-transparent" />
-            <div className="absolute inset-y-0 left-0 flex max-w-[75%] flex-col justify-center p-5 text-white md:p-6">
-              <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-gold-300">{project.category}</p>
-              <h3 className="text-base font-bold drop-shadow-md md:text-lg">{project.title}</h3>
+            <div className="absolute inset-0 bg-gradient-to-r from-teal-950/90 via-teal-950/45 to-transparent" />
+            <div className="absolute inset-y-0 left-0 flex max-w-[78%] flex-col justify-center p-4 sm:p-5 text-white">
+              <p className="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-gold-300">{project.category}</p>
+              <h3 className="text-sm sm:text-base md:text-lg font-bold drop-shadow-md line-clamp-2">{project.title}</h3>
             </div>
-            <span className="absolute right-3 top-3 flex h-8 min-w-8 items-center justify-center rounded-full border border-white/20 bg-teal-950/70 px-2 text-xs font-bold text-white backdrop-blur-sm">
+            <span className="absolute right-2.5 top-2.5 sm:right-3 sm:top-3 flex h-7 sm:h-8 min-w-7 sm:min-w-8 items-center justify-center rounded-full border border-white/20 bg-teal-950/70 px-1.5 sm:px-2 text-[10px] sm:text-xs font-bold text-white backdrop-blur-sm">
               {String(index + 1).padStart(2, '0')}
             </span>
           </motion.button>
@@ -141,41 +156,43 @@ export default function Portfolio() {
   });
 
   return (
-    <section id="portfolio" className="relative flex min-h-screen items-center overflow-hidden pt-10 md:pt-14 pb-24 md:pb-28">
+    <section id="portfolio" className="relative min-h-screen flex flex-col justify-start overflow-hidden pt-8 sm:pt-10 pb-14 sm:pb-20">
+      {/* Background Visual Showcase with Subtle Ambient Blend */}
       <AnimatePresence mode="popLayout">
         <motion.div
           key={activeProject.id}
-          initial={{ opacity: 0, scale: 1.06 }}
-          animate={{ opacity: 0.85, scale: 1 }}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 0.45, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.55 }}
-          className="absolute inset-x-0 bottom-0 top-[310px] overflow-hidden bg-white [mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_100%)] sm:top-[280px] md:top-[290px]"
+          className="absolute inset-0 overflow-hidden pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_35%,transparent_85%)]"
           aria-hidden="true"
         >
           <ProjectVisual project={activeProject} />
         </motion.div>
       </AnimatePresence>
-      <div className="absolute inset-0 bg-gradient-to-r from-teal-950/80 via-teal-900/45 to-teal-800/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-teal-900/75 via-transparent to-teal-900/80" />
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-teal-900/90 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-teal-900/80 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-teal-950/95 via-teal-950/75 to-teal-950/45 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-teal-900 via-transparent to-teal-900/90 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-teal-900 to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-teal-900 to-transparent pointer-events-none" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-6 lg:px-12 xl:px-16">
-        <div className="mb-5 text-center lg:mb-8">
+      <div className="relative z-10 w-full section-container">
+        {/* Section Header */}
+        <div className="mb-5 sm:mb-6 md:mb-8 text-center">
           <p className="mb-1 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.28em] text-gold-400">
             <FiLayers /> Selected works
           </p>
-          <h2 className="script-heading mb-5 text-5xl text-white md:text-6xl">My Opus</h2>
+          <h2 className="script-heading mb-3 sm:mb-4 text-[clamp(2rem,5vw,3.75rem)] text-white">My Opus</h2>
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <button
                 key={category}
                 type="button"
                 onClick={() => changeCategory(category)}
-                className={`rounded-full px-4 py-2 text-xs font-semibold backdrop-blur-md transition-all ${
+                className={`rounded-full px-4 py-2 min-h-[44px] inline-flex items-center justify-center text-xs sm:text-sm font-semibold backdrop-blur-md transition-all touch-manipulation ${
                   activeTab === category
-                    ? 'bg-gold-400 text-teal-950'
-                    : 'border border-white/15 bg-teal-950/30 text-text-muted hover:text-white'
+                    ? 'bg-gold-400 text-teal-950 shadow-md shadow-gold-400/20'
+                    : 'border border-white/15 bg-teal-950/40 text-text-muted hover:text-white hover:border-gold-400/50'
                 }`}
               >
                 {category}
@@ -184,56 +201,73 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div className="grid min-h-[650px] items-center lg:grid-cols-[1.05fr_.95fr] lg:gap-8">
+        {/* Responsive Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
+          {/* Active Project Details */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeProject.id}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.35 }}
-              className="max-w-2xl py-8"
+              className="lg:col-span-6 xl:col-span-6 py-2 sm:py-4 flex flex-col justify-center"
             >
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-gold-400">
+              <p className="mb-2 sm:mb-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.22em] text-gold-400">
                 Project {String(activeIndex + 1).padStart(2, '0')} / {String(filteredProjects.length).padStart(2, '0')} · {activeProject.category}
               </p>
-              <h3 className="mb-6 text-5xl font-bold leading-[0.95] text-white sm:text-6xl xl:text-7xl">
+              <h3 className="mb-3 sm:mb-4 text-[clamp(1.75rem,4.5vw,3.5rem)] font-bold leading-tight text-white tracking-tight break-words">
                 {activeProject.title}
               </h3>
-              <p className="mb-7 max-w-xl text-base leading-8 text-white/70 md:text-lg">
+              <p className="mb-5 sm:mb-6 max-w-xl text-sm sm:text-base md:text-lg leading-relaxed text-white/80">
                 {activeProject.description}
               </p>
-              <div className="mb-9 flex flex-wrap gap-2">
+              <div className="mb-6 sm:mb-8 flex flex-wrap gap-2">
                 {activeProject.tags.map((tag) => (
-                  <span key={tag} className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-gold-300 backdrop-blur-sm">
+                  <span key={tag} className="rounded-full border border-white/15 bg-white/5 px-2.5 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-semibold text-gold-300 backdrop-blur-sm">
                     {tag}
                   </span>
                 ))}
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 {activeProject.liveUrl && (
-                  <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-gold inline-flex items-center gap-2">
+                  <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-gold min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm shadow-lg shadow-gold-400/20 touch-manipulation">
                     View live project <FiArrowUpRight />
                   </a>
                 )}
                 {activeProject.repoUrl && (
-                  <a href={activeProject.repoUrl} target="_blank" rel="noopener noreferrer" className="btn-outline inline-flex items-center gap-2">
+                  <a href={activeProject.repoUrl} target="_blank" rel="noopener noreferrer" className="btn-outline min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm touch-manipulation">
                     <FiGithub /> Source code
                   </a>
                 )}
                 {!activeProject.repoUrl && activeProject.liveUrl && (
-                  <span className="inline-flex items-center gap-2 text-xs text-text-muted"><FiExternalLink /> Opens in a new tab</span>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-text-muted"><FiExternalLink /> Opens in a new tab</span>
                 )}
               </div>
             </motion.div>
           </AnimatePresence>
 
-          <div>
+          {/* 3D Project Deck & Navigation */}
+          <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-center justify-center w-full min-w-0">
             <ProjectDeck projects={filteredProjects} activeProject={activeProject} onSelect={selectProject} />
-            <div className="flex items-center justify-center gap-3">
-              <button type="button" onClick={() => moveProject(-1)} className="rounded-full border border-white/15 bg-teal-950/60 p-3 text-white backdrop-blur-sm transition-colors hover:border-gold-400 hover:text-gold-400" aria-label="Previous project"><FiArrowUp /></button>
-              <span className="text-xs uppercase tracking-widest text-text-muted">Select a project</span>
-              <button type="button" onClick={() => moveProject(1)} className="rounded-full border border-white/15 bg-teal-950/60 p-3 text-white backdrop-blur-sm transition-colors hover:border-gold-400 hover:text-gold-400" aria-label="Next project"><FiArrowDown /></button>
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <button 
+                type="button" 
+                onClick={() => moveProject(-1)} 
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full border border-white/15 bg-teal-950/60 text-white backdrop-blur-sm transition-all hover:border-gold-400 hover:text-gold-400 active:scale-95 touch-manipulation" 
+                aria-label="Previous project"
+              >
+                <FiArrowUp size={18} />
+              </button>
+              <span className="text-[11px] sm:text-xs uppercase tracking-widest text-text-muted select-none">Select a project</span>
+              <button 
+                type="button" 
+                onClick={() => moveProject(1)} 
+                className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full border border-white/15 bg-teal-950/60 text-white backdrop-blur-sm transition-all hover:border-gold-400 hover:text-gold-400 active:scale-95 touch-manipulation" 
+                aria-label="Next project"
+              >
+                <FiArrowDown size={18} />
+              </button>
             </div>
           </div>
         </div>

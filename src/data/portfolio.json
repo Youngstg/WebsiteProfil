@@ -18,7 +18,7 @@
       "email": "immanuelsgt@gmail.com"
     },
     "stats": {
-      "projects": "5+",
+      "projects": "8+",
       "skills": "15+",
       "experience": "4+"
     }
@@ -147,42 +147,47 @@
     },
     {
       "id": 3,
-      "title": "Unfolia (IG Unfollower Checker)",
-      "description": "Web application to securely check your Instagram unfollowers. Provides password login and direct session import via Instagrapi with a clean user interface.",
-      "image": "",
-      "liveUrl": "https://unfolia.vercel.app",
+      "title": "KosMatch",
+      "description": "Aplikasi pendukung keputusan (DSS) pemilihan kos transparan berbasis geospatial PostGIS. Bandingkan biaya bulanan sebenarnya, waktu perjalanan, fasilitas wajib, dan aturan secara objektif.",
+      "image": "/images/preview/kosmatch.png",
+      "liveUrl": "https://kosmatch.us.ci",
       "repoUrl": "",
       "tags": [
-        "Python",
-        "Instagrapi",
+        "Next.js",
+        "Decision Support System",
+        "PostGIS",
         "Web App"
+      ],
+      "category": "Web/Mobile",
+      "embedPreview": false
+    },
+    {
+      "id": 4,
+      "title": "CuteSnaps",
+      "description": "Aplikasi web photobooth Y2K interaktif dengan fitur duo online collab real-time WebRTC, filter AI, dan beragam frame estetik langsung dari browser.",
+      "image": "",
+      "liveUrl": "https://cutesnaps.us.ci",
+      "repoUrl": "",
+      "tags": [
+        "WebRTC",
+        "Photobooth",
+        "MediaPipe",
+        "Realtime Collab"
       ],
       "category": "Web/Mobile",
       "embedPreview": true
     },
     {
-      "id": 4,
-      "title": "PCD Pisang",
-      "description": "Digital Image Processing (PCD) web application for detecting and analyzing banana ripeness using Machine Learning and Computer Vision.",
-      "image": "",
-      "liveUrl": "https://pcd-pisang.vercel.app",
-      "repoUrl": "",
-      "tags": [
-        "Computer Vision",
-        "Rule Based",
-        "Image Processing"
-      ],
-      "category": "AI/ML",
-      "embedPreview": true
-    },
-    {
       "id": 5,
-      "title": "Snapz",
-      "description": "Web Application.",
+      "title": "CareCircle",
+      "description": "Platform kolaborasi perawatan keluarga & lansia. Ruang privat terpercaya untuk berbagi tugas pengasuhan, jadwal obat harian, log perkembangan kesehatan, dan dokumen medis penting.",
       "image": "",
-      "liveUrl": "https://snapz-nine.vercel.app",
+      "liveUrl": "https://carecircle.us.ci",
       "repoUrl": "",
       "tags": [
+        "Next.js",
+        "Healthcare",
+        "Family Caregiver",
         "Web App"
       ],
       "category": "Web/Mobile",
@@ -190,17 +195,34 @@
     },
     {
       "id": 6,
-      "title": "Digo Chatbot",
-      "description": "AI Chatbot Web Application.",
+      "title": "DIGO Chatbot",
+      "description": "Asisten AI cerdas berbasis Google Gemini yang siap membantu menjawab pertanyaan pelanggan, konsultasi produk, dan layanan dukungan 24/7.",
       "image": "",
-      "liveUrl": "https://digo-chatbot.vercel.app",
+      "liveUrl": "https://digo.us.ci",
       "repoUrl": "",
       "tags": [
+        "Google Gemini",
+        "AI Assistant",
         "Chatbot",
-        "AI",
         "Web App"
       ],
       "category": "AI/ML",
+      "embedPreview": true
+    },
+    {
+      "id": 7,
+      "title": "AllAround",
+      "description": "Platform web multi-tool serbaguna dengan antarmuka pastel modern: Kompres PDF, Gabung PDF, Ubah Background Gambar, Hitung Kata, Buat QR Code, dan puluhan utilitas produktivitas.",
+      "image": "",
+      "liveUrl": "https://allaround-woad.vercel.app",
+      "repoUrl": "",
+      "tags": [
+        "Multi-tool",
+        "Productivity",
+        "Web App",
+        "Utilities"
+      ],
+      "category": "Web/Mobile",
       "embedPreview": true
     }
   ],
