@@ -272,6 +272,38 @@ Platform web multi-tool serbaguna dengan antarmuka pastel modern: Kompres PDF, G
 
 ---
 
+## Unfolia
+**Period:** 2026
+**Link:** https://unfolia.l.cd
+
+### Description
+Aplikasi web tracking unfollowers Instagram otomatis. Pantau akun yang berhenti mengikuti atau tidak follow balik, simpan riwayat perubahan followers, dan visualisasi grafik statistik secara real-time.
+
+### Technologies
+- Python
+- Flask
+- Instagram API
+- Analytics
+- Web App
+
+---
+
+## EDA - Breast Cancer Classification
+**Period:** 2026
+**Link:** https://github.com/Youngstg/EDA-Breast-Cancer
+
+### Description
+Exploratory Data Analysis dan pemodelan prediktif komprehensif pada dataset kanker payudara. Analisis korelasi fitur, visualisasi distribusi, deteksi outlier, dan evaluasi akurasi model Machine Learning.
+
+### Technologies
+- Jupyter Notebook
+- Python
+- Machine Learning
+- Seaborn & Matplotlib
+- Scikit-Learn
+
+---
+
 # Organizational Experience
 
 ## Specialist Staff

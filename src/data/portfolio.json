@@ -224,6 +224,44 @@
       ],
       "category": "Web/Mobile",
       "embedPreview": true
+    },
+    {
+      "id": 8,
+      "title": "Unfolia",
+      "description": "Aplikasi web tracking unfollowers Instagram otomatis. Pantau akun yang berhenti mengikuti atau tidak follow balik, simpan riwayat perubahan followers, dan visualisasi grafik statistik secara real-time.",
+      "image": "",
+      "liveUrl": "https://unfolia.l.cd",
+      "repoUrl": "https://github.com/Youngstg/UnfollowerChecker",
+      "tags": [
+        "Python",
+        "Flask",
+        "Instagram API",
+        "Analytics",
+        "Web App"
+      ],
+      "category": "Web/Mobile",
+      "embedPreview": true
+    },
+    {
+      "id": 9,
+      "title": "EDA - Breast Cancer Classification",
+      "description": "Exploratory Data Analysis dan pemodelan prediktif komprehensif pada dataset kanker payudara. Analisis korelasi fitur, visualisasi distribusi, deteksi outlier, dan evaluasi model Machine Learning.",
+      "image": "",
+      "liveUrl": "",
+      "notebookUrl": "/notebooks/eda-breast-cancer.html",
+      "ipynbUrl": "/notebooks/eda-breast-cancer.ipynb",
+      "colabUrl": "https://colab.research.google.com/github/Youngstg/EDA-Breast-Cancer/blob/main/EDA_Breast_Cancer_Portfolio.ipynb",
+      "repoUrl": "https://github.com/Youngstg/EDA-Breast-Cancer",
+      "tags": [
+        "Jupyter Notebook",
+        "EDA",
+        "Machine Learning",
+        "Seaborn",
+        "Scikit-Learn"
+      ],
+      "category": "AI/ML",
+      "isNotebook": true,
+      "embedPreview": true
     }
   ],
   "experience": [

@@ -4,11 +4,15 @@ import {
   FiArrowDown,
   FiArrowUp,
   FiArrowUpRight,
-  FiExternalLink,
   FiGithub,
   FiLayers,
+  FiBookOpen,
+  FiDownload,
+  FiMaximize2,
 } from 'react-icons/fi';
+import { SiGooglecolab, SiJupyter } from 'react-icons/si';
 import portfolioData from '../data/portfolio.json';
+import ProjectModal from './ProjectModal';
 
 const { projects } = portfolioData;
 const categories = ['All', ...new Set(projects.map((project) => project.category))];
@@ -25,11 +29,12 @@ function ProjectVisual({ project, compact = false }) {
     );
   }
 
-  if (project.liveUrl) {
+  const previewUrl = project.notebookUrl || project.liveUrl;
+  if (previewUrl) {
     return (
       <div className="relative h-full w-full overflow-hidden bg-white">
         <iframe
-          src={project.liveUrl}
+          src={previewUrl}
           title={`Preview ${project.title}`}
           tabIndex="-1"
           loading="lazy"
@@ -107,7 +112,10 @@ function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-teal-950/90 via-teal-950/45 to-transparent" />
             <div className="absolute inset-y-0 left-0 flex max-w-[78%] flex-col justify-center p-4 sm:p-5 text-white">
-              <p className="mb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-gold-300">{project.category}</p>
+              <p className="mb-1 flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em] text-gold-300">
+                {project.isNotebook && <SiJupyter className="text-amber-400" />}
+                {project.category}
+              </p>
               <h3 className="text-sm sm:text-base md:text-lg font-bold drop-shadow-md line-clamp-2">{project.title}</h3>
             </div>
             <span className="absolute right-2.5 top-2.5 sm:right-3 sm:top-3 flex h-7 sm:h-8 min-w-7 sm:min-w-8 items-center justify-center rounded-full border border-white/20 bg-teal-950/70 px-1.5 sm:px-2 text-[10px] sm:text-xs font-bold text-white backdrop-blur-sm">
@@ -123,6 +131,7 @@ function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState('All');
   const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
+  const [modalProject, setModalProject] = useState(null);
 
   const filteredProjects = activeTab === 'All'
     ? projects
@@ -213,8 +222,13 @@ export default function Portfolio() {
               transition={{ duration: 0.35 }}
               className="lg:col-span-6 xl:col-span-6 py-2 sm:py-4 flex flex-col justify-center"
             >
-              <p className="mb-2 sm:mb-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.22em] text-gold-400">
-                Project {String(activeIndex + 1).padStart(2, '0')} / {String(filteredProjects.length).padStart(2, '0')} · {activeProject.category}
+              <p className="mb-2 sm:mb-3 flex flex-wrap items-center gap-2 text-[11px] sm:text-xs font-bold uppercase tracking-[0.22em] text-gold-400">
+                <span>Project {String(activeIndex + 1).padStart(2, '0')} / {String(filteredProjects.length).padStart(2, '0')} · {activeProject.category}</span>
+                {activeProject.isNotebook && (
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] tracking-normal font-semibold">
+                    <SiJupyter size={12} /> Jupyter Notebook
+                  </span>
+                )}
               </p>
               <h3 className="mb-3 sm:mb-4 text-[clamp(1.75rem,4.5vw,3.5rem)] font-bold leading-tight text-white tracking-tight break-words">
                 {activeProject.title}
@@ -229,19 +243,80 @@ export default function Portfolio() {
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap items-center gap-3">
-                {activeProject.liveUrl && (
-                  <a href={activeProject.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-gold min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm shadow-lg shadow-gold-400/20 touch-manipulation">
-                    View live project <FiArrowUpRight />
-                  </a>
-                )}
-                {activeProject.repoUrl && (
-                  <a href={activeProject.repoUrl} target="_blank" rel="noopener noreferrer" className="btn-outline min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm touch-manipulation">
-                    <FiGithub /> Source code
-                  </a>
-                )}
-                {!activeProject.repoUrl && activeProject.liveUrl && (
-                  <span className="inline-flex items-center gap-1.5 text-xs text-text-muted"><FiExternalLink /> Opens in a new tab</span>
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                {activeProject.isNotebook || activeProject.notebookUrl ? (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => setModalProject(activeProject)}
+                      className="btn-gold min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm shadow-lg shadow-gold-400/20 touch-manipulation cursor-pointer"
+                    >
+                      <FiBookOpen size={16} /> Baca Notebook Interaktif
+                    </button>
+                    {activeProject.colabUrl && (
+                      <a
+                        href={activeProject.colabUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-outline min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm touch-manipulation hover:border-amber-400 hover:text-amber-300"
+                        title="Jalankan di Google Colab"
+                      >
+                        <SiGooglecolab size={16} className="text-amber-400" /> Run in Colab
+                      </a>
+                    )}
+                    {activeProject.repoUrl && (
+                      <a
+                        href={activeProject.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-outline min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm touch-manipulation"
+                      >
+                        <FiGithub size={16} /> Source Code
+                      </a>
+                    )}
+                    {activeProject.ipynbUrl && (
+                      <a
+                        href={activeProject.ipynbUrl}
+                        download
+                        className="btn-outline min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm touch-manipulation text-text-muted hover:text-gold-300"
+                        title="Download file .ipynb"
+                      >
+                        <FiDownload size={15} /> .ipynb
+                      </a>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {activeProject.liveUrl && (
+                      <button
+                        type="button"
+                        onClick={() => setModalProject(activeProject)}
+                        className="btn-gold min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm shadow-lg shadow-gold-400/20 touch-manipulation cursor-pointer"
+                      >
+                        Preview di Web <FiMaximize2 size={15} />
+                      </button>
+                    )}
+                    {activeProject.liveUrl && (
+                      <a
+                        href={activeProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-outline min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm touch-manipulation"
+                      >
+                        Kunjungi Web <FiArrowUpRight size={16} />
+                      </a>
+                    )}
+                    {activeProject.repoUrl && (
+                      <a
+                        href={activeProject.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-outline min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm touch-manipulation"
+                      >
+                        <FiGithub size={16} /> Source Code
+                      </a>
+                    )}
+                  </>
                 )}
               </div>
             </motion.div>
@@ -272,6 +347,9 @@ export default function Portfolio() {
           </div>
         </div>
       </div>
+
+      {/* Interactive Project & Notebook Viewer Modal */}
+      <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />
     </section>
   );
 }
