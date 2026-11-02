@@ -4,6 +4,7 @@ import { HiMenu, HiX } from 'react-icons/hi';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
+  { name: 'Skill', href: '#skills' },
   { name: 'Opus', href: '#portfolio' },
   { name: 'Experience', href: '#experience' },
   { name: 'Contact', href: '#contact' },
@@ -17,7 +18,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      const sections = ['home', 'portfolio', 'experience', 'contact'];
+      const sections = ['home', 'skills', 'portfolio', 'experience', 'contact'];
       
       let currentSection = 'home';
       let maxVisibleHeight = 0;
@@ -50,7 +51,7 @@ export default function Navbar() {
   }, []);
 
   const getActiveKey = (href) => {
-    const map = { '#home': 'home', '#experience': 'experience', '#portfolio': 'portfolio', '#contact': 'contact' };
+    const map = { '#home': 'home', '#skills': 'skills', '#experience': 'experience', '#portfolio': 'portfolio', '#contact': 'contact' };
     return map[href];
   };
 
