@@ -110,7 +110,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-        className="relative w-full flex items-center justify-center pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-6 sm:pb-8 lg:pb-10 z-20 shrink-0 mt-0"
+        className="relative w-full flex items-center justify-center pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8 z-20 mt-0"
       >
         <div className="absolute inset-0 bg-white" style={{ clipPath: 'polygon(0 20%, 100% 0, 100% 100%, 0 100%)' }} />
         
@@ -121,15 +121,15 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
               animate={{ opacity: 1, scale: 1, rotate: -6 }}
               transition={{ type: 'spring', stiffness: 50, damping: 15, delay: 0.6 }}
-              className="absolute -top-14 sm:-top-16 md:-top-20 lg:-top-24 xl:-top-28 -left-1 sm:-left-3 md:-left-6 lg:left-auto script-heading text-[clamp(2.75rem,6.5vw,7.5rem)] text-white select-none pointer-events-none drop-shadow-lg"
+              className="absolute -top-15 sm:-top-18 md:-top-22 lg:-top-26 -left-1 sm:-left-3 md:-left-6 lg:left-auto script-heading text-[clamp(2.75rem,6.5vw,7rem)] text-white select-none pointer-events-none"
             >
               Portofolio
             </motion.h2>
           </div>
         </div>
 
-        <div className="relative z-20 max-w-4xl xl:max-w-5xl px-5 sm:px-8 lg:px-12 text-center mt-3 sm:mt-4 md:mt-2">
-          <p className="text-teal-950 font-bold text-[clamp(0.875rem,1.8vw,1.25rem)] leading-relaxed">
+        <div className="relative z-20 max-w-4xl px-5 sm:px-8 text-center mt-3 sm:mt-4 md:mt-2">
+          <p className="text-teal-950 font-bold text-[clamp(0.875rem,2vw,1.15rem)] leading-relaxed">
             {profile.bio}
           </p>
         </div>
