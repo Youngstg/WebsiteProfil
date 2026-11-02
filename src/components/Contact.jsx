@@ -53,7 +53,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-12 sm:py-16 md:py-20">
+    <section id="contact" className="relative py-14 sm:py-18 lg:py-24">
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -61,16 +61,16 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10 sm:mb-14"
+          className="text-center mb-10 sm:mb-14 lg:mb-18"
         >
-          <h2 className="script-heading text-[clamp(2rem,5vw,3.75rem)] text-gold-400 mb-2 sm:mb-3">Contact</h2>
-          <p className="text-text-muted max-w-md mx-auto text-xs sm:text-sm px-4">
+          <h2 className="script-heading text-[clamp(2.5rem,5.5vw,4.5rem)] text-gold-400 mb-2 sm:mb-3">Contact</h2>
+          <p className="text-text-muted max-w-lg mx-auto text-xs sm:text-sm lg:text-base px-4">
             Tertarik untuk berkolaborasi? Jangan ragu untuk menghubungi saya.
           </p>
-          <div className="w-16 h-0.5 bg-gold-400/40 mx-auto mt-4" />
+          <div className="w-16 sm:w-24 h-0.5 bg-gold-400/40 mx-auto mt-4" />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl lg:max-w-5xl mx-auto w-full">
           {/* Contact Form */}
           <motion.div
             initial="hidden"
@@ -79,35 +79,35 @@ export default function Contact() {
             variants={containerVariants}
             className="w-full"
           >
-            <form onSubmit={handleSubmit} className="card-white p-5 sm:p-6 md:p-8">
-              <div className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="card-white p-6 sm:p-8 lg:p-10 shadow-xl">
+              <div className="flex flex-col gap-4 sm:gap-5">
                 <motion.div variants={leftItemVariants}>
-                  <label htmlFor="contact-name" className="text-xs sm:text-sm font-medium text-text-dark mb-1.5 sm:mb-2 block">Name</label>
+                  <label htmlFor="contact-name" className="text-xs sm:text-sm font-semibold text-text-dark mb-1.5 sm:mb-2 block">Name</label>
                   <input
                     id="contact-name" type="text" required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full min-h-[44px] px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-teal-900/5 border border-teal-800/15 text-text-dark placeholder-text-dark-muted text-xs sm:text-sm focus:outline-none focus:border-gold-400/50 focus:ring-1 focus:ring-gold-400/20 transition-all"
+                    className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-teal-900/5 border border-teal-800/15 text-text-dark placeholder-text-dark-muted text-xs sm:text-sm lg:text-base focus:outline-none focus:border-gold-400/50 focus:ring-1 focus:ring-gold-400/20 transition-all"
                     placeholder="Your name"
                   />
                 </motion.div>
                 <motion.div variants={leftItemVariants}>
-                  <label htmlFor="contact-email" className="text-xs sm:text-sm font-medium text-text-dark mb-1.5 sm:mb-2 block">Email</label>
+                  <label htmlFor="contact-email" className="text-xs sm:text-sm font-semibold text-text-dark mb-1.5 sm:mb-2 block">Email</label>
                   <input
                     id="contact-email" type="email" required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full min-h-[44px] px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-teal-900/5 border border-teal-800/15 text-text-dark placeholder-text-dark-muted text-xs sm:text-sm focus:outline-none focus:border-gold-400/50 focus:ring-1 focus:ring-gold-400/20 transition-all"
+                    className="w-full min-h-[48px] px-4 py-3 rounded-xl bg-teal-900/5 border border-teal-800/15 text-text-dark placeholder-text-dark-muted text-xs sm:text-sm lg:text-base focus:outline-none focus:border-gold-400/50 focus:ring-1 focus:ring-gold-400/20 transition-all"
                     placeholder="your@email.com"
                   />
                 </motion.div>
                 <motion.div variants={leftItemVariants}>
-                  <label htmlFor="contact-message" className="text-xs sm:text-sm font-medium text-text-dark mb-1.5 sm:mb-2 block">Message</label>
+                  <label htmlFor="contact-message" className="text-xs sm:text-sm font-semibold text-text-dark mb-1.5 sm:mb-2 block">Message</label>
                   <textarea
                     id="contact-message" required rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-teal-900/5 border border-teal-800/15 text-text-dark placeholder-text-dark-muted text-xs sm:text-sm focus:outline-none focus:border-gold-400/50 focus:ring-1 focus:ring-gold-400/20 transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-teal-900/5 border border-teal-800/15 text-text-dark placeholder-text-dark-muted text-xs sm:text-sm lg:text-base focus:outline-none focus:border-gold-400/50 focus:ring-1 focus:ring-gold-400/20 transition-all resize-none"
                     placeholder="Write your message..."
                   />
                 </motion.div>
@@ -116,10 +116,10 @@ export default function Contact() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit" 
-                    className="btn-gold w-full min-h-[44px] flex items-center justify-center gap-2 py-3 mt-1 sm:mt-2 text-xs sm:text-sm touch-manipulation"
+                    className="btn-gold w-full min-h-[48px] flex items-center justify-center gap-2 py-3 lg:py-3.5 mt-1 sm:mt-2 text-sm sm:text-base touch-manipulation cursor-pointer"
                   >
                     Send Message
-                    <FiSend size={15} />
+                    <FiSend size={16} />
                   </motion.button>
                 </motion.div>
               </div>

@@ -75,7 +75,7 @@ function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
   };
 
   return (
-    <div className="relative mx-auto h-[350px] sm:h-[420px] md:h-[480px] lg:h-[510px] w-full max-w-[500px] [perspective:1000px] my-4 overflow-visible" aria-label="Choose a project">
+    <div className="relative mx-auto h-[360px] sm:h-[420px] md:h-[480px] lg:h-[530px] xl:h-[590px] 2xl:h-[640px] w-full max-w-[500px] xl:max-w-[560px] 2xl:max-w-[620px] [perspective:1000px] my-4 overflow-visible" aria-label="Choose a project">
       {visibleProjects.map((project, index) => {
         const offset = getRelativePosition(index);
         const distance = Math.abs(offset);
@@ -89,7 +89,7 @@ function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
             initial={false}
             animate={{
               x: isMobile ? distance * 4 : distance * 8,
-              y: offset * 66,
+              y: offset * (isMobile ? 66 : 74),
               rotateX: offset * -14,
               scale: 1 - distance * 0.07,
               opacity: distance > 3 ? 0 : 1 - distance * 0.15,
@@ -97,7 +97,7 @@ function ProjectDeck({ projects: visibleProjects, activeProject, onSelect }) {
             transition={{ type: 'spring', stiffness: 190, damping: 24 }}
             whileHover={{ x: (isMobile ? distance * 4 : distance * 8) - 4 }}
             whileTap={{ scale: 0.97 }}
-            className={`absolute left-1/2 top-1/2 h-[125px] sm:h-[145px] md:h-[165px] lg:h-[175px] w-[min(270px,calc(100vw-3.5rem))] sm:w-[350px] md:w-[390px] lg:w-[420px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] sm:rounded-[1.75rem] border text-left shadow-2xl transition-all touch-manipulation ${
+            className={`absolute left-1/2 top-1/2 h-[125px] sm:h-[145px] md:h-[165px] lg:h-[185px] xl:h-[200px] 2xl:h-[215px] w-[min(270px,calc(100vw-3.5rem))] sm:w-[350px] md:w-[390px] lg:w-[440px] xl:w-[480px] 2xl:w-[520px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.5rem] sm:rounded-[1.75rem] border text-left shadow-2xl transition-all touch-manipulation ${
               isActive
                 ? 'border-gold-400 ring-4 ring-gold-400/20'
                 : 'border-white/15 hover:border-gold-400/60'
@@ -165,7 +165,7 @@ export default function Portfolio() {
   });
 
   return (
-    <section id="portfolio" className="relative min-h-screen flex flex-col justify-start overflow-hidden pt-8 sm:pt-10 pb-14 sm:pb-20">
+    <section id="portfolio" className="relative min-h-[90vh] lg:min-h-screen flex flex-col justify-center overflow-hidden py-14 sm:py-18 lg:py-24">
       {/* Background Visual Showcase with Subtle Ambient Blend */}
       <AnimatePresence mode="popLayout">
         <motion.div
@@ -185,20 +185,20 @@ export default function Portfolio() {
       <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-teal-900 to-transparent pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-teal-900 to-transparent pointer-events-none" />
 
-      <div className="relative z-10 w-full section-container">
+      <div className="relative z-10 w-full section-container my-auto">
         {/* Section Header */}
-        <div className="mb-5 sm:mb-6 md:mb-8 text-center">
-          <p className="mb-1 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.28em] text-gold-400">
+        <div className="mb-6 sm:mb-8 md:mb-12 text-center">
+          <p className="mb-1.5 flex items-center justify-center gap-2 text-xs lg:text-sm font-bold uppercase tracking-[0.28em] text-gold-400">
             <FiLayers /> Selected works
           </p>
-          <h2 className="script-heading mb-3 sm:mb-4 text-[clamp(2rem,5vw,3.75rem)] text-white">My Opus</h2>
-          <div className="flex flex-wrap justify-center gap-2">
+          <h2 className="script-heading mb-3 sm:mb-4 text-[clamp(2.5rem,5.5vw,4.5rem)] text-white">My Opus</h2>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5">
             {categories.map((category) => (
               <button
                 key={category}
                 type="button"
                 onClick={() => changeCategory(category)}
-                className={`rounded-full px-4 py-2 min-h-[44px] inline-flex items-center justify-center text-xs sm:text-sm font-semibold backdrop-blur-md transition-all touch-manipulation ${
+                className={`rounded-full px-4 sm:px-5 py-2 sm:py-2.5 min-h-[44px] inline-flex items-center justify-center text-xs sm:text-sm lg:text-base font-semibold backdrop-blur-md transition-all touch-manipulation ${
                   activeTab === category
                     ? 'bg-gold-400 text-teal-950 shadow-md shadow-gold-400/20'
                     : 'border border-white/15 bg-teal-950/40 text-text-muted hover:text-white hover:border-gold-400/50'
@@ -211,7 +211,7 @@ export default function Portfolio() {
         </div>
 
         {/* Responsive Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
           {/* Active Project Details */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -230,10 +230,10 @@ export default function Portfolio() {
                   </span>
                 )}
               </p>
-              <h3 className="mb-3 sm:mb-4 text-[clamp(1.75rem,4.5vw,3.5rem)] font-bold leading-tight text-white tracking-tight break-words">
+              <h3 className="mb-3 sm:mb-4 text-[clamp(2rem,4.5vw,4.25rem)] font-bold leading-tight text-white tracking-tight break-words">
                 {activeProject.title}
               </h3>
-              <p className="mb-5 sm:mb-6 max-w-xl text-sm sm:text-base md:text-lg leading-relaxed text-white/80">
+              <p className="mb-5 sm:mb-6 max-w-xl text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-white/80">
                 {activeProject.description}
               </p>
               <div className="mb-6 sm:mb-8 flex flex-wrap gap-2">

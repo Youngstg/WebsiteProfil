@@ -67,18 +67,18 @@ function TimelineItem({ item, index }) {
       {/* Card */}
       <motion.div 
         whileHover={{ y: -5, boxShadow: "0px 10px 20px rgba(0,0,0,0.05)" }}
-        className="card-white p-4 sm:p-5 md:p-6 mb-5 sm:mb-6 flex-1 min-w-0 transition-shadow"
+        className="card-white p-5 sm:p-6 lg:p-7 mb-5 sm:mb-6 lg:mb-8 flex-1 min-w-0 transition-shadow"
       >
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 mb-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 mb-2 lg:mb-3">
           <div className="min-w-0">
-            <h3 className="text-base sm:text-lg font-semibold text-text-dark group-hover:text-teal-800 transition-colors break-words">{item.title}</h3>
-            <p className="text-xs sm:text-sm font-medium text-teal-800 break-words">{item.organization}</p>
+            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-text-dark group-hover:text-teal-800 transition-colors break-words">{item.title}</h3>
+            <p className="text-xs sm:text-sm lg:text-base font-semibold text-teal-800 break-words">{item.organization}</p>
           </div>
-          <span className="text-[11px] sm:text-xs font-mono text-text-dark-muted px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-teal-900/5 border border-teal-800/10 self-start sm:self-auto shrink-0 whitespace-nowrap">
+          <span className="text-[11px] sm:text-xs lg:text-sm font-mono text-text-dark-muted px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-teal-900/5 border border-teal-800/10 self-start sm:self-auto shrink-0 whitespace-nowrap">
             {item.period}
           </span>
         </div>
-        <p className="text-text-dark-muted text-xs sm:text-sm leading-relaxed">{item.description}</p>
+        <p className="text-text-dark-muted text-xs sm:text-sm lg:text-base leading-relaxed">{item.description}</p>
       </motion.div>
     </motion.div>
   );
@@ -86,7 +86,7 @@ function TimelineItem({ item, index }) {
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-12 sm:py-16 md:py-20">
+    <section id="experience" className="relative py-14 sm:py-18 lg:py-24">
       <div className="section-container">
         {/* Section Header */}
         <motion.div
@@ -94,10 +94,10 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10 sm:mb-14"
+          className="text-center mb-10 sm:mb-14 lg:mb-18"
         >
-          <h2 className="script-heading text-[clamp(2rem,5vw,3.75rem)] text-gold-400 mb-2 sm:mb-3">Experience</h2>
-          <div className="w-16 h-0.5 bg-gold-400/40 mx-auto" />
+          <h2 className="script-heading text-[clamp(2.5rem,5.5vw,4.5rem)] text-gold-400 mb-2 sm:mb-3">Experience</h2>
+          <div className="w-16 sm:w-24 h-0.5 bg-gold-400/40 mx-auto" />
         </motion.div>
 
         {/* Timeline */}
@@ -106,7 +106,7 @@ export default function Experience() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
           variants={containerVariants}
-          className="max-w-3xl mx-auto w-full"
+          className="max-w-4xl lg:max-w-5xl mx-auto w-full"
         >
           {experience.map((item, index) => (
             <TimelineItem key={item.id} item={item} index={index} />

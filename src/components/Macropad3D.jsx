@@ -785,7 +785,7 @@ export default function Macropad3D({ onSelectSkill, activeSkill }) {
       {/* 3D Canvas Viewport - Responsive Height & Touch Scrolling Safe */}
       <div 
         ref={containerRef} 
-        className="w-full min-w-0 h-[320px] sm:h-[380px] md:h-[420px] lg:h-[460px] xl:h-[490px] flex items-center justify-center relative touch-pan-y cursor-grab active:cursor-grabbing"
+        className="w-full min-w-0 h-[340px] sm:h-[400px] md:h-[460px] lg:h-[520px] xl:h-[580px] 2xl:h-[620px] flex items-center justify-center relative touch-pan-y cursor-grab active:cursor-grabbing"
         title="Click mechanical keycaps or press keys on your keyboard!"
       />
     </div>
