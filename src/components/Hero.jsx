@@ -172,12 +172,12 @@ export default function Hero() {
                 aria-hidden="true"
               />
 
-              {/* Character Image raised cleanly above bottom gradient line */}
-              <div className="relative z-10 w-full flex justify-center items-end pb-6 lg:pb-8">
+              {/* Character Image raised by 2px above bottom gradient line */}
+              <div className="relative z-10 w-full flex justify-center items-end">
                 <img
                   src="/images/image.webp"
                   alt="Lucky Immanuel Sitanggang"
-                  className="w-auto h-auto max-h-[410px] xl:max-h-[460px] object-contain object-bottom drop-shadow-[0_15px_35px_rgba(212,175,55,0.22)]"
+                  className="w-auto h-auto max-h-[460px] xl:max-h-[520px] object-contain object-bottom mb-[2px] drop-shadow-[0_15px_35px_rgba(212,175,55,0.22)]"
                 />
               </div>
             </div>
