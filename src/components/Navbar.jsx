@@ -19,35 +19,44 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-      const sectionIds = ['hero', 'about', 'skills', 'projects', 'experience', 'contact'];
-      
-      let currentSection = 'hero';
-      let maxVisibleHeight = 0;
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
 
-      sectionIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-
-        const rect = el.getBoundingClientRect();
-        const visibleTop = Math.max(0, rect.top);
-        const visibleBottom = Math.min(window.innerHeight, rect.bottom);
-        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-
-        if (visibleHeight > maxVisibleHeight) {
-          maxVisibleHeight = visibleHeight;
-          currentSection = id;
-        }
-      });
-
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 20) {
-        currentSection = 'contact';
+      // 1. Bottom of page threshold (activate 'contact' when near footer)
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      if (windowHeight + scrollY >= docHeight - 80) {
+        setActiveSection('contact');
+        return;
       }
 
-      setActiveSection(currentSection);
+      // 2. Top of page threshold (activate 'hero' when at top)
+      if (scrollY < 100) {
+        setActiveSection('hero');
+        return;
+      }
+
+      // 3. Scanning line positioned 180px below top viewport (under fixed navbar)
+      const targetY = scrollY + 180;
+      const sectionIds = ['hero', 'about', 'skills', 'projects', 'experience', 'contact'];
+
+      let current = 'hero';
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.offsetTop;
+        const height = el.offsetHeight;
+        if (targetY >= top && targetY < top + height) {
+          current = id;
+          break;
+        }
+      }
+
+      setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -57,7 +66,13 @@ export default function Navbar() {
     setActiveSection(id);
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const navOffset = 76;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -73,7 +88,7 @@ export default function Navbar() {
         {/* Left balance spacer for centered desktop capsule */}
         <div className="hidden md:block w-24 lg:w-28" />
 
-        {/* Desktop Nav Menu (Centered Capsule Pill) */}
+        {/* Desktop Nav Menu (Centered Capsule Pill with animated sliding indicator) */}
         <nav className="hidden md:flex items-center gap-1 bg-obsidian-900/40 backdrop-blur-md p-1.5 rounded-full border border-gold-600/25 shadow-inner mx-auto">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
@@ -82,13 +97,20 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href, link.id)}
-                className={`px-4 py-2 text-xs font-semibold rounded-full transition-all duration-200 min-h-[36px] inline-flex items-center justify-center ${
+                className={`relative px-4 py-2 text-xs font-semibold rounded-full min-h-[36px] inline-flex items-center justify-center transition-colors duration-200 ${
                   isActive
-                    ? 'text-gold-300 bg-gold-600/20 shadow-sm border border-gold-500/30 font-bold'
-                    : 'text-slate-300 hover:text-gold-300 hover:bg-gold-500/10'
+                    ? 'text-gold-300 font-bold'
+                    : 'text-slate-300 hover:text-gold-300'
                 }`}
               >
-                {link.name}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNavPill"
+                    className="absolute inset-0 bg-gold-600/25 border border-gold-400/40 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.25)]"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{link.name}</span>
               </a>
             );
           })}
