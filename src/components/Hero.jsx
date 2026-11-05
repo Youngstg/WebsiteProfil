@@ -22,7 +22,7 @@ const typewriterRoles = [
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState(typewriterRoles[0]);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
@@ -33,22 +33,22 @@ export default function Hero() {
       if (displayText.length > 0) {
         timeout = setTimeout(() => {
           setDisplayText(currentRole.substring(0, displayText.length - 1));
-        }, 40);
+        }, 32);
       } else {
         timeout = setTimeout(() => {
           setIsDeleting(false);
           setRoleIndex((prev) => (prev + 1) % typewriterRoles.length);
-        }, 300);
+        }, 380);
       }
     } else {
       if (displayText.length < currentRole.length) {
         timeout = setTimeout(() => {
           setDisplayText(currentRole.substring(0, displayText.length + 1));
-        }, 75);
+        }, 65);
       } else {
         timeout = setTimeout(() => {
           setIsDeleting(true);
-        }, 2200);
+        }, 2400);
       }
     }
 
@@ -85,12 +85,12 @@ export default function Hero() {
                   <h1 className="font-heading text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
                     Hi, I'm <span className="gold-gradient-text">LUCKY</span> ✦
                   </h1>
-                  <div className="text-base sm:text-xl lg:text-2xl font-medium text-slate-300 flex items-center gap-2 flex-wrap">
+                  <div className="text-base sm:text-xl lg:text-2xl font-medium text-slate-300 min-h-[1.75em] flex items-center gap-2 flex-wrap">
                     <span>I'm a</span>
-                    <span className="text-gold-300 font-semibold underline decoration-gold-500/50 underline-offset-4">
-                      {displayText || 'Software Developer'}
+                    <span className="text-gold-300 font-semibold underline decoration-gold-500/50 underline-offset-4 min-w-[2px] inline-block tracking-normal">
+                      {displayText}
                     </span>
-                    <span className="cursor-blink text-gold-400 font-bold text-xl sm:text-2xl">|</span>
+                    <span className="cursor-blink text-gold-400 font-bold text-xl sm:text-2xl select-none" aria-hidden="true">|</span>
                   </div>
                 </div>
               </div>
