@@ -119,13 +119,15 @@
     {
       "id": 1,
       "title": "KM ITERA Website",
-      "description": "Official website for KM ITERA. Optimized for better user experience and performance as part of campus digital transformation initiatives.",
-      "image": "",
+      "description": "Official institutional portal for KM ITERA. Centralized governance, archival workflows, organizational directory, and event broadcast channels.",
+      "image": "/images/preview/km-itera.png",
       "liveUrl": "https://www.km-itera.com",
       "repoUrl": "",
       "tags": [
-        "Web Development",
-        "Optimization"
+        "Laravel",
+        "Tailwind CSS",
+        "MySQL",
+        "Campus Portal"
       ],
       "category": "Web/Mobile",
       "embedPreview": true
@@ -134,7 +136,7 @@
       "id": 2,
       "title": "SIBI Recognition",
       "description": "Computer vision-based interactive model for real-time motion/sign detection using VideoMAE. Developed as my final year project (Tugas Akhir).",
-      "image": "/images/preview/image.png",
+      "image": "/images/preview/sibi.png",
       "liveUrl": "https://huggingface.co/spaces/Luckystg/SIBI_Recognition_VideoMAE-demo",
       "repoUrl": "https://github.com/Youngstg",
       "tags": [
@@ -165,7 +167,7 @@
       "id": 4,
       "title": "CuteSnaps",
       "description": "Aplikasi web photobooth Y2K interaktif dengan fitur duo online collab real-time WebRTC, filter AI, dan beragam frame estetik langsung dari browser.",
-      "image": "",
+      "image": "/images/preview/cutesnaps.png",
       "liveUrl": "https://cutesnaps.us.ci",
       "repoUrl": "",
       "tags": [
@@ -181,7 +183,7 @@
       "id": 5,
       "title": "CareCircle",
       "description": "Platform kolaborasi perawatan keluarga & lansia. Ruang privat terpercaya untuk berbagi tugas pengasuhan, jadwal obat harian, log perkembangan kesehatan, dan dokumen medis penting.",
-      "image": "",
+      "image": "/images/preview/carecircle.png",
       "liveUrl": "https://carecircle.us.ci",
       "repoUrl": "",
       "tags": [
@@ -197,7 +199,7 @@
       "id": 6,
       "title": "DIGO Chatbot",
       "description": "Asisten AI cerdas berbasis Google Gemini yang siap membantu menjawab pertanyaan pelanggan, konsultasi produk, dan layanan dukungan 24/7.",
-      "image": "",
+      "image": "/images/preview/digo.png",
       "liveUrl": "https://digo.us.ci",
       "repoUrl": "",
       "tags": [
@@ -213,7 +215,7 @@
       "id": 7,
       "title": "AllAround",
       "description": "Platform web multi-tool serbaguna dengan antarmuka pastel modern: Kompres PDF, Gabung PDF, Ubah Background Gambar, Hitung Kata, Buat QR Code, dan puluhan utilitas produktivitas.",
-      "image": "",
+      "image": "/images/preview/allaround.png",
       "liveUrl": "https://allaround-woad.vercel.app",
       "repoUrl": "",
       "tags": [
@@ -229,7 +231,7 @@
       "id": 8,
       "title": "Unfolia",
       "description": "Aplikasi web tracking unfollowers Instagram otomatis. Pantau akun yang berhenti mengikuti atau tidak follow balik, simpan riwayat perubahan followers, dan visualisasi grafik statistik secara real-time.",
-      "image": "",
+      "image": "/images/preview/unfolia.png",
       "liveUrl": "https://unfolia.l.cd",
       "repoUrl": "https://github.com/Youngstg/UnfollowerChecker",
       "tags": [
@@ -246,7 +248,7 @@
       "id": 9,
       "title": "EDA - Breast Cancer Classification",
       "description": "Exploratory Data Analysis dan pemodelan prediktif komprehensif pada dataset kanker payudara. Analisis korelasi fitur, visualisasi distribusi, deteksi outlier, dan evaluasi model Machine Learning.",
-      "image": "",
+      "image": "/images/preview/eda-breast-cancer.png",
       "liveUrl": "",
       "notebookUrl": "/notebooks/eda-breast-cancer.html",
       "ipynbUrl": "/notebooks/eda-breast-cancer.ipynb",

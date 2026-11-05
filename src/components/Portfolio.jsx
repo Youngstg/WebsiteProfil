@@ -71,12 +71,12 @@ export default function Portfolio() {
     return true;
   });
 
-  // Find flagship project (SIBI Recognition) and second flagship (KosMatch)
+  // Find flagship projects: KM ITERA (Largest div), SIBI Recognition, and KosMatch
+  const kmIteraProject = projects.find(p => p.title.toLowerCase().includes('km itera')) || projects[0];
   const sibiProject = projects.find(p => p.title.toLowerCase().includes('sibi')) || projects[1];
-  const kosmatchProject = projects.find(p => p.title.toLowerCase().includes('kosmatch')) || projects[2];
 
-  // Grid projects excluding SIBI and KosMatch if 'All' is active, or showing according to filter
-  const gridProjects = filteredProjects.filter(p => p.id !== sibiProject?.id && p.id !== kosmatchProject?.id);
+  // Grid projects excluding the two top showcase flagships
+  const gridProjects = filteredProjects.filter(p => p.id !== kmIteraProject?.id && p.id !== sibiProject?.id);
 
   const handleOpenProject = (project) => {
     setModalProject(project);
@@ -127,40 +127,41 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* Bento Top Row: Flagship Showcase (Shown when 'All' or 'AI & Vision' is selected) */}
-        {(activeTab === 'All' || activeTab === 'AI & Vision') && sibiProject && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
-            {/* Flagship Bento Card: SIBI Recognition (lg:col-span-8) */}
-            <div className="lg:col-span-8 gold-glass rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between group border border-gold-600/30 hover:border-gold-400/50 transition-all duration-300">
+        {/* Bento Top Row: Flagship Showcase with Previews */}
+        {(activeTab === 'All' || activeTab === 'Mobile & Web') && kmIteraProject && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+            {/* Flagship Bento Card: KM ITERA Website (lg:col-span-8 - Paling Besar) */}
+            <div className="lg:col-span-8 gold-glass rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between group border border-gold-600/35 hover:border-gold-400/60 transition-all duration-300">
               <div className="absolute -right-12 -top-12 w-64 h-64 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
 
               <div>
+                {/* Header Actions */}
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-xs font-mono text-gold-300 font-semibold">
-                      Flagship • AI &amp; CV
+                      Flagship • Campus Portal
                     </span>
                     <span className="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-xs font-mono text-gold-400 flex items-center gap-1">
                       <SparklesIcon className="text-[11px]" />
-                      <span>Hugging Face Space Live</span>
+                      <span>Live Production Website</span>
                     </span>
                   </div>
 
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => handleOpenProject(sibiProject)}
+                      onClick={() => handleOpenProject(kmIteraProject)}
                       className="w-9 h-9 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md"
                       title="Quick Preview"
                     >
                       <FiMaximize2 size={13} />
                     </button>
-                    {sibiProject.liveUrl && (
+                    {kmIteraProject.liveUrl && (
                       <a
-                        href={sibiProject.liveUrl}
+                        href={kmIteraProject.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-9 h-9 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md"
-                        title="Buka Hugging Face Space"
+                        title="Buka Website KM ITERA"
                       >
                         <FiArrowUpRight size={15} />
                       </a>
@@ -168,44 +169,63 @@ export default function Portfolio() {
                   </div>
                 </div>
 
+                {/* Screenshot Preview Image for KM ITERA */}
+                <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden mb-6 border border-gold-600/30 bg-obsidian-950 group/img shadow-2xl">
+                  <img
+                    src={kmIteraProject.image}
+                    alt={kmIteraProject.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/img:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/20 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-gold-300">
+                    <span className="flex items-center gap-1.5 bg-obsidian-900/90 px-3 py-1 rounded-full border border-gold-600/30 backdrop-blur-md">
+                      <SparklesIcon className="text-gold-400" />
+                      <span>www.km-itera.com</span>
+                    </span>
+                    <span className="hidden sm:inline bg-obsidian-900/90 px-3 py-1 rounded-full border border-gold-600/30 text-[11px] text-slate-300">
+                      Institut Teknologi Sumatera
+                    </span>
+                  </div>
+                </div>
+
                 <div className="flex items-start gap-4 mb-3.5">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-500/20 to-amber-600/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl shadow-gold-glow flex-shrink-0">
-                    <FiCpuIcon />
+                    <FiGlobe />
                   </div>
                   <div>
                     <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-300 transition-colors">
-                      {sibiProject.title}
+                      {kmIteraProject.title}
                     </h3>
                     <p className="text-xs text-gold-400/90 font-mono mt-0.5">
-                      VideoMAE Spatial-Temporal Transformer Research
+                      Campus Digital Transformation &amp; Governance Portal
                     </p>
                   </div>
                 </div>
 
                 <p className="text-slate-300 text-sm leading-relaxed mb-6 font-sans">
-                  Comprehensive deep learning architecture utilizing pre-trained VideoMAE for Indonesian Sign Language (SIBI) video classification. Engineered spatial-temporal attention mechanisms capable of recognizing complex, dynamic gestures with high latency efficiency and minimal frame preprocessing overhead.
+                  Official website and institutional digital ecosystem for KM ITERA. Built with modern architecture, optimized responsiveness, centralized governance, archival workflows, and event broadcast channels serving the academic community.
                 </p>
 
-                {/* Metrics Badges in SIBI */}
+                {/* Metrics Badges in KM ITERA */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                   <div className="bg-obsidian-900/80 border border-gold-600/20 rounded-2xl p-3.5">
-                    <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">98.4%</div>
-                    <div className="text-[11px] text-slate-400 uppercase tracking-wide">Model Accuracy</div>
+                    <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">10,000+</div>
+                    <div className="text-[11px] text-slate-400 uppercase tracking-wide">Campus Community</div>
                   </div>
                   <div className="bg-obsidian-900/80 border border-gold-600/20 rounded-2xl p-3.5">
-                    <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">26 Classes</div>
-                    <div className="text-[11px] text-slate-400 uppercase tracking-wide">SIBI Dynamic Gestures</div>
+                    <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">99.9%</div>
+                    <div className="text-[11px] text-slate-400 uppercase tracking-wide">Uptime Reliability</div>
                   </div>
                   <div className="bg-obsidian-900/80 border border-gold-600/20 rounded-2xl p-3.5 col-span-2 sm:col-span-1">
-                    <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">&lt;45 ms</div>
-                    <div className="text-[11px] text-slate-400 uppercase tracking-wide">Inference Latency</div>
+                    <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">Laravel</div>
+                    <div className="text-[11px] text-slate-400 uppercase tracking-wide">Core Framework</div>
                   </div>
                 </div>
               </div>
 
               <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex flex-wrap gap-2">
-                  {sibiProject.tags.map((tag) => (
+                  {kmIteraProject.tags.map((tag) => (
                     <span
                       key={tag}
                       className="px-2.5 py-1 rounded-lg text-xs bg-obsidian-900 border border-slate-700 text-slate-300 font-mono"
@@ -215,34 +235,34 @@ export default function Portfolio() {
                   ))}
                 </div>
                 <span className="text-xs text-gold-400/80 font-mono flex items-center gap-1.5">
-                  <SiPython /> Research Prototype
+                  <FiGlobe /> Production Ecosystem
                 </span>
               </div>
             </div>
 
-            {/* Bento Card 2: KosMatch (lg:col-span-4) */}
-            {kosmatchProject && (
-              <div className="lg:col-span-4 gold-glass rounded-3xl p-6 sm:p-8 flex flex-col justify-between group border border-gold-600/30 hover:border-gold-400/50 transition-all duration-300">
+            {/* Secondary Bento Card: SIBI Recognition (lg:col-span-4) */}
+            {sibiProject && (
+              <div className="lg:col-span-4 gold-glass rounded-3xl p-6 sm:p-7 flex flex-col justify-between group border border-gold-600/30 hover:border-gold-400/50 transition-all duration-300">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-xs font-mono text-gold-300 font-medium">
-                      Geospatial DSS
+                      AI &amp; Computer Vision
                     </span>
                     <div className="flex items-center gap-1.5">
                       <button
-                        onClick={() => handleOpenProject(kosmatchProject)}
+                        onClick={() => handleOpenProject(sibiProject)}
                         className="w-9 h-9 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md"
-                        title="Preview KosMatch"
+                        title="Preview SIBI"
                       >
                         <FiMaximize2 size={13} />
                       </button>
-                      {kosmatchProject.liveUrl && (
+                      {sibiProject.liveUrl && (
                         <a
-                          href={kosmatchProject.liveUrl}
+                          href={sibiProject.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="w-9 h-9 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md"
-                          title="Buka Website"
+                          title="Buka Hugging Face Space"
                         >
                           <FiArrowUpRight size={15} />
                         </a>
@@ -250,37 +270,46 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <div className="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl shadow-gold-glow">
-                    <FiMapPin />
+                  {/* Screenshot Preview Image for SIBI */}
+                  <div className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-gold-600/30 bg-obsidian-950 group/img shadow-md">
+                    <img
+                      src={sibiProject.image}
+                      alt={sibiProject.title}
+                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/img:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-transparent to-transparent pointer-events-none" />
                   </div>
 
-                  <div>
-                    <h3 className="font-heading text-xl font-bold text-white group-hover:text-gold-300 transition-colors">
-                      {kosmatchProject.title}
-                    </h3>
-                    <p className="text-xs text-gold-400 font-mono mt-0.5">
-                      Spatial Boarding House DSS
-                    </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-xl shadow-gold-glow flex-shrink-0">
+                      <FiCpuIcon />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-xl font-bold text-white group-hover:text-gold-300 transition-colors">
+                        {sibiProject.title}
+                      </h3>
+                      <p className="text-xs text-gold-400 font-mono">VideoMAE Transformer Research</p>
+                    </div>
                   </div>
 
                   <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans">
-                    Decision support system combining PostGIS spatial distance metrics with TOPSIS multi-criteria optimization to rank accommodation near ITERA with interactive geospatial mapping.
+                    Deep learning architecture recognizing 26 dynamic SIBI gestures with high accuracy and low latency.
                   </p>
 
-                  <div className="p-3.5 bg-obsidian-900/80 rounded-2xl border border-slate-800 space-y-2">
+                  <div className="p-3 bg-obsidian-900/80 rounded-2xl border border-slate-800 space-y-1.5">
                     <div className="flex justify-between text-xs">
-                      <span className="text-slate-400">Algorithm</span>
-                      <span className="text-gold-300 font-mono font-semibold">TOPSIS Method</span>
+                      <span className="text-slate-400">Accuracy</span>
+                      <span className="text-gold-300 font-mono font-bold">98.4%</span>
                     </div>
                     <div className="flex justify-between text-xs">
-                      <span className="text-slate-400">Spatial DB</span>
-                      <span className="text-gold-300 font-mono font-semibold">PostGIS / PostgreSQL</span>
+                      <span className="text-slate-400">Classes</span>
+                      <span className="text-gold-300 font-mono font-bold">26 Gestures</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5 mt-4">
-                  {kosmatchProject.tags.map((tag) => (
+                  {sibiProject.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
                       className="px-2 py-0.5 rounded text-[11px] bg-obsidian-900 border border-slate-700 text-slate-300 font-mono"
@@ -294,7 +323,7 @@ export default function Portfolio() {
           </div>
         )}
 
-        {/* Bento Showcase: Grid Cards */}
+        {/* Bento Showcase: Grid Cards with Live Screenshot Previews */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {gridProjects.map((project) => {
             const Icon = projectIcons[project.title] || FiGlobe;
@@ -303,7 +332,7 @@ export default function Portfolio() {
             return (
               <div
                 key={project.id}
-                className="gold-glass rounded-2xl p-6 flex flex-col justify-between group border border-gold-600/20 hover:border-gold-400/45 transition-all duration-300 hover:-translate-y-1.5"
+                className="gold-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between group border border-gold-600/20 hover:border-gold-400/45 transition-all duration-300 hover:-translate-y-1.5"
               >
                 <div className="space-y-3.5">
                   <div className="flex items-center justify-between">
@@ -332,22 +361,34 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <div className="w-11 h-11 rounded-xl bg-gold-500/10 border border-gold-500/25 flex items-center justify-center text-gold-400 text-xl shadow-sm">
-                    <Icon />
-                  </div>
+                  {/* Screenshot Preview Banner for EVERY project card */}
+                  {project.image && (
+                    <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-gold-600/25 bg-obsidian-950 group/img">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover/img:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950/70 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  )}
 
-                  <div>
-                    <h4 className="font-heading font-bold text-base sm:text-lg text-white group-hover:text-gold-300 transition-colors">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-lg bg-gold-500/10 border border-gold-500/25 flex items-center justify-center text-gold-400 text-base shadow-sm shrink-0">
+                      <Icon />
+                    </div>
+                    <h4 className="font-heading font-bold text-base sm:text-lg text-white group-hover:text-gold-300 transition-colors line-clamp-1">
                       {project.title}
                     </h4>
                   </div>
 
-                  <p className="text-xs text-slate-400 leading-relaxed font-sans line-clamp-3">
+                  <p className="text-xs text-slate-400 leading-relaxed font-sans line-clamp-2">
                     {project.description}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-800/80 flex flex-wrap gap-1.5 mt-4">
+                <div className="pt-3.5 border-t border-slate-800/80 flex flex-wrap gap-1.5 mt-4">
                   {project.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}

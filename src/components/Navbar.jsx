@@ -63,36 +63,18 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || isMobileOpen
-          ? 'bg-obsidian-900/90 backdrop-blur-md border-b border-gold-600/20 shadow-xl'
-          : 'bg-obsidian-900/70 backdrop-blur-sm border-b border-gold-600/10'
+          ? 'bg-obsidian-900/95 backdrop-blur-md border-b border-gold-600/20 shadow-xl'
+          : 'bg-obsidian-900/80 backdrop-blur-md border-b border-gold-600/10'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo / Monogram */}
-        <a
-          href="#hero"
-          onClick={(e) => handleNavClick(e, '#hero', 'hero')}
-          className="flex items-center gap-3 group min-h-[44px] min-w-[44px]"
-        >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 via-gold-600 to-amber-700 p-[1.5px] shadow-gold-glow flex-shrink-0">
-            <div className="w-full h-full bg-obsidian-900 rounded-[10px] flex items-center justify-center font-heading font-bold text-lg text-gold-300 group-hover:bg-transparent group-hover:text-black transition-colors duration-300">
-              LS
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-heading font-bold text-base tracking-wider text-slate-100 group-hover:text-gold-300 transition-colors">
-              LUCKY
-            </span>
-            <span className="text-[10px] tracking-widest uppercase text-gold-500 font-semibold">
-              Engineer
-            </span>
-          </div>
-        </a>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
+        {/* Left balance spacer for centered desktop capsule */}
+        <div className="hidden md:block w-24 lg:w-28" />
 
         {/* Desktop Nav Menu (Centered Capsule Pill) */}
-        <nav className="hidden md:flex items-center gap-1 bg-obsidian-800/80 p-1.5 rounded-full border border-gold-600/25 shadow-inner">
+        <nav className="hidden md:flex items-center gap-1 bg-obsidian-800/80 p-1.5 rounded-full border border-gold-600/25 shadow-inner mx-auto">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -113,7 +95,7 @@ export default function Navbar() {
         </nav>
 
         {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-auto md:ml-0">
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact', 'contact')}

@@ -1,9 +1,18 @@
 import { FiBookOpen, FiBriefcase, FiAward, FiCheckCircle } from 'react-icons/fi';
 
 const certificates = [
-  { name: 'Cisco CCNA: Enterprise Networking & Routing', year: '2024' },
-  { name: 'Deep Learning with PyTorch & Vision Models', year: '2024' },
-  { name: 'Google Cloud Computing Foundations', year: '2023' },
+  {
+    name: 'TOEFL (Test of English as a Foreign Language)',
+    issuer: 'English Language Proficiency Assessment',
+    status: 'Certified',
+    image: '/images/certificates/toefl.jpg',
+  },
+  {
+    name: 'CCP (Cloud Certified Practitioner)',
+    issuer: 'Cloud Computing Infrastructure & Architecture',
+    status: 'Certified',
+    image: '/images/certificates/ccp.jpg',
+  },
 ];
 
 export default function Experience() {
@@ -56,18 +65,49 @@ export default function Experience() {
 
             {/* Certificates & Training */}
             <div className="gold-glass rounded-3xl p-6 space-y-4">
-              <h5 className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
-                <FiCheckCircle className="text-gold-400" />
-                <span>Certificates &amp; Credentials</span>
+              <h5 className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <FiCheckCircle className="text-gold-400" />
+                  <span>Certificates &amp; Credentials</span>
+                </span>
+                <span className="text-[11px] font-mono text-gold-400">2 Verified</span>
               </h5>
-              <div className="space-y-2.5 text-xs">
+              <div className="space-y-4">
                 {certificates.map((cert) => (
                   <div
                     key={cert.name}
-                    className="flex items-center justify-between p-3 rounded-xl bg-obsidian-900/80 border border-gold-600/15"
+                    className="p-4 rounded-2xl bg-obsidian-900/80 border border-gold-600/20 space-y-2 group hover:border-gold-500/40 transition-colors"
                   >
-                    <span className="text-slate-300 font-medium pr-2">{cert.name}</span>
-                    <span className="text-gold-400 font-mono font-semibold shrink-0">{cert.year}</span>
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <h6 className="font-heading font-bold text-sm text-white group-hover:text-gold-300 transition-colors">
+                          {cert.name}
+                        </h6>
+                        <p className="text-xs text-slate-400 mt-0.5">{cert.issuer}</p>
+                      </div>
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-gold-500/15 text-gold-300 border border-gold-500/30 shrink-0">
+                        {cert.status}
+                      </span>
+                    </div>
+
+                    {/* Certificate Image Preview Area (Ready when image file is uploaded) */}
+                    <div className="relative w-full rounded-xl overflow-hidden border border-gold-600/15 bg-obsidian-950/80 p-1 flex items-center justify-center min-h-[70px]">
+                      <img
+                        src={cert.image}
+                        alt={cert.name}
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          if (e.currentTarget.nextElementSibling) {
+                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                          }
+                        }}
+                        className="w-full h-auto max-h-48 object-contain rounded-lg"
+                      />
+                      <div className="text-center py-3 text-slate-500 text-xs flex flex-col items-center justify-center gap-1 w-full">
+                        <FiAward className="text-gold-400/60 text-lg" />
+                        <span className="text-[11px] text-slate-400 font-mono">Sertifikat Resmi {cert.name.split(' ')[0]}</span>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

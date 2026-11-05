@@ -167,7 +167,7 @@ export default function Hero() {
             </div>
 
             {/* Key Metric Micro-Counters */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-5 sm:pt-6 border-t border-slate-800/80 max-w-lg">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-5 sm:pt-6 max-w-lg">
               <div className="bg-obsidian-900/60 p-3 rounded-xl border border-gold-600/15 text-center sm:text-left">
                 <span className="block text-xl sm:text-3xl font-extrabold text-gold-300 font-heading">3.77</span>
                 <span className="text-[10px] sm:text-xs text-slate-400 uppercase tracking-wide">ITERA GPA</span>
@@ -217,9 +217,8 @@ export default function Hero() {
         className="mt-12 sm:mt-14 w-full relative overflow-hidden backdrop-blur-md border-y border-gold-500/30 shadow-2xl"
         style={{
           background:
-            'linear-gradient(90deg, rgba(9, 11, 16, 0.98) 0%, rgba(35, 27, 10, 0.92) 20%, rgba(212, 175, 55, 0.22) 50%, rgba(35, 27, 10, 0.92) 80%, rgba(9, 11, 16, 0.98) 100%)',
-          boxShadow:
-            'rgba(212, 175, 55, 0.25) 0px 0px 35px -5px, rgba(254, 240, 138, 0.15) 0px 1px 0px inset, rgba(254, 240, 138, 0.1) 0px -1px 0px inset',
+            'linear-gradient(90deg, #06070a 0%, #090B10 25%, #18140a 50%, rgba(184, 144, 32, 0.45) 75%, #d4af37 100%)',
+          boxShadow: '0 0 35px rgba(212, 175, 55, 0.3)',
         }}
       >
         <div className="max-w-7xl mx-auto px-4 py-3.5 sm:py-4">

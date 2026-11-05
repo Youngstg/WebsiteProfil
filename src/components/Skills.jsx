@@ -49,7 +49,7 @@ const skillCategories = [
 
 export default function Skills() {
   const [activeSkill, setActiveSkill] = useState(MACROPAD_KEYS[0]);
-  const [showMacropad, setShowMacropad] = useState(false);
+  const [showMacropad, setShowMacropad] = useState(true);
 
   return (
     <section id="skills" className="py-14 sm:py-20 relative overflow-hidden">
@@ -118,63 +118,46 @@ export default function Skills() {
           })}
         </div>
 
-        {/* Interactive 3D Macropad Toggle / Showcase */}
-        <div className="mt-12 sm:mt-16 text-center">
-          <button
-            onClick={() => setShowMacropad(!showMacropad)}
-            className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-obsidian-850 hover:bg-obsidian-800 border border-gold-600/30 hover:border-gold-500/50 text-gold-300 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md"
-          >
-            <FiTerminal className="text-gold-400" />
-            <span>{showMacropad ? 'Tutup 3D Macropad' : 'Buka Interactive 3D Mechanical Macropad'}</span>
-          </button>
+        {/* Interactive 3D Macropad Showcase */}
+        {showMacropad && (
+          <div className="mt-14 sm:mt-16 flex flex-col items-center">
+            {/* Active Skill Pill above 3D Macropad */}
+            <div className="mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-obsidian-900/90 border border-gold-600/30 shadow-gold-glow">
+              <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: activeSkill.color }} />
+              <span className="text-xs font-bold text-white uppercase tracking-wider">{activeSkill.name}</span>
+              <span className="text-slate-400 text-xs">•</span>
+              <span className="text-xs font-mono" style={{ color: activeSkill.color }}>"{activeSkill.tagline}"</span>
+            </div>
 
-          {showMacropad && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              className="mt-8 gold-glass rounded-3xl p-6 sm:p-8"
+            {/* 3D Canvas (Gambar Macropad) */}
+            <div className="w-full max-w-xl aspect-square sm:aspect-[4/3] flex items-center justify-center relative">
+              <Macropad3D onSelectSkill={setActiveSkill} activeSkill={activeSkill} />
+            </div>
+
+            {/* Button Below Gambar with NO white line above, and left-right plain (only button centered) */}
+            <div className="mt-6 flex justify-center w-full">
+              <button
+                onClick={() => setShowMacropad(false)}
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-obsidian-850 hover:bg-obsidian-800 border border-gold-600/30 hover:border-gold-500/50 text-gold-300 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md"
+              >
+                <FiTerminal className="text-gold-400" />
+                <span>Tutup 3D Macropad</span>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {!showMacropad && (
+          <div className="mt-12 text-center flex justify-center w-full">
+            <button
+              onClick={() => setShowMacropad(true)}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-obsidian-850 hover:bg-obsidian-800 border border-gold-600/30 hover:border-gold-500/50 text-gold-300 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                {/* Left: Active Skill Info */}
-                <div className="lg:col-span-5 text-left space-y-4">
-                  <span
-                    className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase border"
-                    style={{
-                      backgroundColor: `${activeSkill.color}20`,
-                      color: activeSkill.color,
-                      borderColor: `${activeSkill.color}50`,
-                    }}
-                  >
-                    {activeSkill.category}
-                  </span>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold text-white uppercase font-heading">
-                    {activeSkill.name}
-                  </h3>
-                  <p
-                    className="text-base sm:text-lg font-bold italic"
-                    style={{ color: activeSkill.color }}
-                  >
-                    "{activeSkill.tagline}"
-                  </p>
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                    {activeSkill.description}
-                  </p>
-                  <p className="text-[11px] text-gold-400/80 font-mono">
-                    ✦ Klik tombol fisik pada macropad untuk mendengar bunyi mechanical switch
-                  </p>
-                </div>
-
-                {/* Right: 3D Canvas */}
-                <div className="lg:col-span-7 flex justify-center w-full">
-                  <div className="w-full max-w-lg aspect-square sm:aspect-[4/3] flex items-center justify-center">
-                    <Macropad3D onSelectSkill={setActiveSkill} activeSkill={activeSkill} />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </div>
+              <FiTerminal className="text-gold-400" />
+              <span>Buka Interactive 3D Mechanical Macropad</span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
