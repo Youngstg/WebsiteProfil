@@ -82,10 +82,10 @@ function createKeycapTexture(key) {
 
   // 2. Realistic lighting gradient across the flat top mechanical plastic surface
   const grad = ctx.createLinearGradient(0, 0, 0, 512);
-  grad.addColorStop(0, 'rgba(255, 255, 255, 0.20)');
-  grad.addColorStop(0.35, 'rgba(255, 255, 255, 0.05)');
-  grad.addColorStop(0.7, 'rgba(0, 0, 0, 0.04)');
-  grad.addColorStop(1, 'rgba(0, 0, 0, 0.22)');
+  grad.addColorStop(0, 'rgba(255, 255, 255, 0.06)');
+  grad.addColorStop(0.4, 'rgba(255, 255, 255, 0.01)');
+  grad.addColorStop(0.7, 'rgba(0, 0, 0, 0.02)');
+  grad.addColorStop(1, 'rgba(0, 0, 0, 0.08)');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 512, 512);
 
@@ -185,7 +185,6 @@ function createRealSculptedKeycapGeometry() {
 
   const wallRings = 5;
   const bevelRings = 4;
-  const dishRings = 4;
 
   // 1. Tapered Slanted Walls (from Base y=0 to Shoulder y=hShoulder, 16° slant)
   for (let ring = 0; ring <= wallRings; ring++) {
@@ -233,42 +232,38 @@ function createRealSculptedKeycapGeometry() {
   }
   const wallIndicesCount = indices.length;
 
-  // 3. Flat Top Planar Surface (Planar face at y=hTotal, no concave dish!)
-  const dishStartIndex = vertices.length / 3;
+  // 3. Flat Top Planar Surface (Planar face at y=hTotal, strictly decoupled from bevel vertices)
   const topIndicesStart = indices.length;
-  const rimRingIndex = totalWallBevelRings * rimSteps;
+  const topFaceStartIndex = vertices.length / 3;
+  const topR = 0.05;
 
-  for (let ring = 1; ring <= dishRings; ring++) {
-    const frac = ring / (dishRings + 1);
-    const scale = 1 - frac;
-    const curW = topW * scale;
-    const curD = topD * scale;
-    const curR = 0.05 * scale;
-    const curY = hTotal; // Flat top plane
-
-    for (let s = 0; s < rimSteps; s++) {
-      const t = s / rimSteps;
-      const pt = getRoundedRectPoint(t, curW, curD, curR);
-      vertices.push(pt.x, curY, pt.z);
-      uvs.push((pt.x / topW) + 0.5, 1 - ((pt.z / topD) + 0.5));
-    }
+  // Concentric ring 1: Outer perimeter of the flat top face
+  for (let s = 0; s < rimSteps; s++) {
+    const t = s / rimSteps;
+    const pt = getRoundedRectPoint(t, topW, topD, topR);
+    vertices.push(pt.x, hTotal, pt.z);
+    uvs.push((pt.x / topW) + 0.5, 1 - ((pt.z / topD) + 0.5));
   }
 
-  const firstDishRingIdx = dishStartIndex;
+  // Concentric ring 2: Inner ring for balanced planar tessellation
+  const innerRingStartIndex = vertices.length / 3;
+  const innerScale = 0.5;
+  for (let s = 0; s < rimSteps; s++) {
+    const t = s / rimSteps;
+    const pt = getRoundedRectPoint(t, topW * innerScale, topD * innerScale, topR * innerScale);
+    vertices.push(pt.x, hTotal, pt.z);
+    uvs.push((pt.x / topW) + 0.5, 1 - ((pt.z / topD) + 0.5));
+  }
+
+  // Quads connecting outer perimeter to inner ring
   for (let s = 0; s < rimSteps; s++) {
     const nextS = (s + 1) % rimSteps;
-    indices.push(rimRingIndex + s, firstDishRingIdx + s, rimRingIndex + nextS);
-    indices.push(rimRingIndex + nextS, firstDishRingIdx + s, firstDishRingIdx + nextS);
-  }
-
-  for (let ring = 0; ring < dishRings - 1; ring++) {
-    const r1 = dishStartIndex + ring * rimSteps;
-    const r2 = dishStartIndex + (ring + 1) * rimSteps;
-    for (let s = 0; s < rimSteps; s++) {
-      const nextS = (s + 1) % rimSteps;
-      indices.push(r1 + s, r2 + s, r1 + nextS);
-      indices.push(r1 + nextS, r2 + s, r2 + nextS);
-    }
+    const o1 = topFaceStartIndex + s;
+    const o2 = topFaceStartIndex + nextS;
+    const i1 = innerRingStartIndex + s;
+    const i2 = innerRingStartIndex + nextS;
+    indices.push(o1, i1, o2);
+    indices.push(o2, i1, i2);
   }
 
   // Center vertex on flat top plane
@@ -276,10 +271,10 @@ function createRealSculptedKeycapGeometry() {
   vertices.push(0, hTotal, 0);
   uvs.push(0.5, 0.5);
 
-  const lastDishRingIdx = dishStartIndex + (dishRings - 1) * rimSteps;
+  // Triangles connecting inner ring to center
   for (let s = 0; s < rimSteps; s++) {
     const nextS = (s + 1) % rimSteps;
-    indices.push(centerVertexIdx, lastDishRingIdx + nextS, lastDishRingIdx + s);
+    indices.push(centerVertexIdx, innerRingStartIndex + nextS, innerRingStartIndex + s);
   }
 
   const topIndicesCount = indices.length - topIndicesStart;
@@ -388,8 +383,8 @@ export default function Macropad3D({ onSelectSkill, activeSkill }) {
     goldRimLight.position.set(-6, 5, -4);
     scene.add(goldRimLight);
 
-    const softFill = new THREE.DirectionalLight(0xffffff, 0.6);
-    softFill.position.set(0, -2, 5);
+    const softFill = new THREE.DirectionalLight(0xffffff, 0.45);
+    softFill.position.set(0, 4, 6);
     scene.add(softFill);
 
     // 3. Board Group (Classic Isometric Angle matching TikTok reference)
