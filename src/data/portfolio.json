@@ -4,7 +4,7 @@
     "title": "Software Developer • Mobile & Web Dev • AI Enthusiast",
     "university": "Institut Teknologi Sumatera",
     "bio": "I am a fresh graduate from Institut Teknologi Sumatera (ITERA) with a strong passion for Artificial Intelligence and Software Development. I am deeply interested in building impactful, accessible, and inclusive technology solutions that solve real-world problems.",
-    "photo": "/images/Fotosaya.jpg",
+    "photo": "/images/Fotosaya.webp",
     "roles": [
       "Software Developer",
       "Mobile Developer",
@@ -120,7 +120,7 @@
       "id": 1,
       "title": "KM ITERA Website",
       "description": "Official institutional portal for KM ITERA. Centralized governance, archival workflows, organizational directory, and event broadcast channels.",
-      "image": "/images/preview/km-itera.png",
+      "image": "/images/preview/km-itera.webp",
       "liveUrl": "https://www.km-itera.com",
       "repoUrl": "",
       "tags": [
@@ -136,7 +136,7 @@
       "id": 2,
       "title": "SIBI Recognition",
       "description": "Computer vision-based interactive model for real-time motion/sign detection using VideoMAE. Developed as my final year project (Tugas Akhir).",
-      "image": "/images/preview/sibi.png",
+      "image": "/images/preview/sibi.webp",
       "liveUrl": "https://huggingface.co/spaces/Luckystg/SIBI_Recognition_VideoMAE-demo",
       "repoUrl": "https://github.com/Youngstg",
       "tags": [
@@ -151,7 +151,7 @@
       "id": 3,
       "title": "KosMatch",
       "description": "Aplikasi pendukung keputusan (DSS) pemilihan kos transparan berbasis geospatial PostGIS. Bandingkan biaya bulanan sebenarnya, waktu perjalanan, fasilitas wajib, dan aturan secara objektif.",
-      "image": "/images/preview/kosmatch.png",
+      "image": "/images/preview/kosmatch.webp",
       "liveUrl": "https://kosmatch.us.ci",
       "repoUrl": "",
       "tags": [
@@ -167,7 +167,7 @@
       "id": 4,
       "title": "CuteSnaps",
       "description": "Aplikasi web photobooth Y2K interaktif dengan fitur duo online collab real-time WebRTC, filter AI, dan beragam frame estetik langsung dari browser.",
-      "image": "/images/preview/cutesnaps.png",
+      "image": "/images/preview/cutesnaps.webp",
       "liveUrl": "https://cutesnaps.us.ci",
       "repoUrl": "",
       "tags": [
@@ -183,7 +183,7 @@
       "id": 5,
       "title": "CareCircle",
       "description": "Platform kolaborasi perawatan keluarga & lansia. Ruang privat terpercaya untuk berbagi tugas pengasuhan, jadwal obat harian, log perkembangan kesehatan, dan dokumen medis penting.",
-      "image": "/images/preview/carecircle.png",
+      "image": "/images/preview/carecircle.webp",
       "liveUrl": "https://carecircle.us.ci",
       "repoUrl": "",
       "tags": [
@@ -199,7 +199,7 @@
       "id": 6,
       "title": "DIGO Chatbot",
       "description": "Asisten AI cerdas berbasis Google Gemini yang siap membantu menjawab pertanyaan pelanggan, konsultasi produk, dan layanan dukungan 24/7.",
-      "image": "/images/preview/digo.png",
+      "image": "/images/preview/digo.webp",
       "liveUrl": "https://digo.us.ci",
       "repoUrl": "",
       "tags": [
@@ -215,7 +215,7 @@
       "id": 7,
       "title": "AllAround",
       "description": "Platform web multi-tool serbaguna dengan antarmuka pastel modern: Kompres PDF, Gabung PDF, Ubah Background Gambar, Hitung Kata, Buat QR Code, dan puluhan utilitas produktivitas.",
-      "image": "/images/preview/allaround.png",
+      "image": "/images/preview/allaround.webp",
       "liveUrl": "https://allaround-woad.vercel.app",
       "repoUrl": "",
       "tags": [
@@ -231,7 +231,7 @@
       "id": 8,
       "title": "Unfolia",
       "description": "Aplikasi web tracking unfollowers Instagram otomatis. Pantau akun yang berhenti mengikuti atau tidak follow balik, simpan riwayat perubahan followers, dan visualisasi grafik statistik secara real-time.",
-      "image": "/images/preview/unfolia.png",
+      "image": "/images/preview/unfolia.webp",
       "liveUrl": "https://unfolia.l.cd",
       "repoUrl": "https://github.com/Youngstg/UnfollowerChecker",
       "tags": [
@@ -248,7 +248,7 @@
       "id": 9,
       "title": "EDA - Breast Cancer Classification",
       "description": "Exploratory Data Analysis dan pemodelan prediktif komprehensif pada dataset kanker payudara. Analisis korelasi fitur, visualisasi distribusi, deteksi outlier, dan evaluasi model Machine Learning.",
-      "image": "/images/preview/eda-breast-cancer.png",
+      "image": "/images/preview/eda-breast-cancer.webp",
       "liveUrl": "",
       "notebookUrl": "/notebooks/eda-breast-cancer.html",
       "ipynbUrl": "/notebooks/eda-breast-cancer.ipynb",

@@ -4,13 +4,13 @@ const certificates = [
   {
     name: 'TOEFL (Test of English as a Foreign Language)',
     issuer: 'Institut Teknologi Sumatera Language Center (Score: 513)',
-    image: '/images/certificates/toefl.png',
+    image: '/images/certificates/toefl.webp',
     pdfUrl: '/images/certificates/TOEFL_Lucky%20Immanuel%20Sitanggang.pdf',
   },
   {
     name: 'AWS Certified Cloud Practitioner (CCP)',
     issuer: 'Amazon Web Services (AWS)',
-    image: '/images/certificates/ccp.png',
+    image: '/images/certificates/ccp.webp',
     pdfUrl: '/images/certificates/AWS%20Certified%20Cloud%20Practitioner%20certificate.pdf',
   },
 ];
