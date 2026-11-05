@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import TopNotificationBanner from './components/TopNotificationBanner';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -35,7 +34,6 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-obsidian-950 text-slate-100 overflow-x-hidden w-full max-w-[100vw] ambient-glow-bg flex flex-col justify-between selection:bg-gold-500 selection:text-black">
       <BackgroundShapes />
-      <TopNotificationBanner />
       <Navbar />
       <main className="relative z-10 overflow-x-hidden w-full flex-grow">
         <Hero />

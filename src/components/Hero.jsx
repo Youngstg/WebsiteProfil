@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FiDownload, FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
+import { FiDownload, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import { SiPython, SiReact, SiFirebase, SiLaravel, SiCisco } from 'react-icons/si';
 import portfolioData from '../data/portfolio.json';
 
@@ -183,63 +183,28 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Desktop Gold Cyber Holographic Dev Avatar / Orb Display */}
+          {/* Right Column: Desktop Hero Portrait Showcase (Full Image Box) */}
           <div className="hidden lg:flex lg:col-span-5 justify-center w-full">
-            <div className="relative w-full max-w-md sm:max-w-sm">
-              {/* Ambient Halo */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-gold-500/25 via-amber-600/20 to-transparent rounded-3xl blur-2xl transform rotate-3" />
+            <div className="relative w-full max-w-sm">
+              {/* Golden Ambient Halo */}
+              <div 
+                className="absolute inset-0 bg-gradient-to-tr from-gold-500/25 via-amber-600/20 to-transparent rounded-3xl blur-2xl transform rotate-2 pointer-events-none" 
+                aria-hidden="true"
+              />
 
-              {/* Card Wrapper */}
-              <div className="relative rounded-3xl gold-glass p-5 sm:p-6 overflow-hidden border border-gold-600/30 shadow-2xl">
-                {/* Inner Decorative Visual */}
-                <div className="relative w-full aspect-square rounded-2xl bg-gradient-to-b from-obsidian-800 via-obsidian-900 to-obsidian-950 flex flex-col items-center justify-center border border-gold-600/25 overflow-hidden group">
-                  {/* Golden Geometric Gyro Background */}
-                  <div className="absolute inset-0 opacity-25 pointer-events-none flex items-center justify-center">
-                    <div
-                      className="w-56 sm:w-64 h-56 sm:h-64 border border-dashed border-gold-400 rounded-full animate-spin"
-                      style={{ animationDuration: '32s' }}
-                    />
-                    <div className="absolute w-40 sm:w-44 h-40 sm:h-44 border border-gold-400/40 rounded-full" />
-                  </div>
-
-                  {/* Central Avatar Halo & Photo */}
-                  <div className="relative z-10 w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-amber-600 via-gold-400 to-yellow-200 p-[2.5px] shadow-gold-glow animate-float">
-                    <div className="w-full h-full rounded-full bg-obsidian-900 overflow-hidden relative border-2 border-obsidian-950">
-                      <img
-                        src="/images/Fotosaya.jpg"
-                        alt="Lucky Immanuel Sitanggang"
-                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Floating Status Badges */}
-                  <div className="mt-5 z-10 text-center px-2">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-300 text-xs font-semibold">
-                      <span className="w-2 h-2 rounded-full bg-gold-400" />
-                      <span>AI &amp; Mobile Specialist</span>
-                    </div>
-                    <p className="text-xs text-slate-400 mt-1.5 font-mono">Informatics Engineering '26</p>
-                  </div>
-
-                  {/* Floating Tech Mini Pills */}
-                  <div className="absolute top-3.5 left-3.5 bg-obsidian-900/90 border border-gold-500/30 px-2.5 py-1 rounded-lg text-[11px] text-gold-300 flex items-center gap-1.5 shadow-md">
-                    <SiPython className="text-gold-400" />
-                    <span>Python / DL</span>
-                  </div>
-                  <div className="absolute bottom-3.5 right-3.5 bg-obsidian-900/90 border border-gold-500/30 px-2.5 py-1 rounded-lg text-[11px] text-gold-300 flex items-center gap-1.5 shadow-md">
-                    <SiReact className="text-cyan-400" />
-                    <span>React Native</span>
-                  </div>
-                </div>
-
-                {/* Footer description inside hero showcase */}
-                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-                  <span className="flex items-center gap-1">
-                    <FiMapPin className="text-gold-500" />
-                    <span>Lampung / Sumatera, ID</span>
-                  </span>
-                  <span className="text-gold-400 font-mono font-semibold">GPA: 3.77 / 4.00</span>
+              {/* Card Container - Full Picture Showcase */}
+              <div className="relative rounded-3xl gold-glass p-2.5 sm:p-3 overflow-hidden border border-gold-600/35 shadow-2xl shadow-gold-950/50 group">
+                <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-obsidian-950 border border-gold-600/20">
+                  <img
+                    src="/images/Fotosaya.jpg"
+                    alt="Lucky Immanuel Sitanggang"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  {/* Subtle Luxury Gradient Sheen */}
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-t from-obsidian-950/40 via-transparent to-transparent pointer-events-none opacity-50 group-hover:opacity-20 transition-opacity duration-500" 
+                    aria-hidden="true"
+                  />
                 </div>
               </div>
             </div>
