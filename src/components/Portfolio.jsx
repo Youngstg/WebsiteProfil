@@ -127,22 +127,21 @@ export default function Portfolio() {
           </div>
         </div>
 
-        {/* Bento Top Row: Flagship Showcase with Subtle Screenshot Backgrounds */}
+        {/* Bento Top Row: Flagship Showcase with Visible Screenshot Backgrounds */}
         {(activeTab === 'All' || activeTab === 'Mobile & Web') && kmIteraProject && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
             {/* Flagship Bento Card: KM ITERA Website (lg:col-span-8 - Paling Besar) */}
-            <div className="lg:col-span-8 gold-glass rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between group border border-gold-600/35 hover:border-gold-400/60 transition-all duration-300">
-              {/* Screenshot Preview as Subtle Background */}
+            <div className="lg:col-span-8 bg-obsidian-950/90 rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between group border border-gold-600/35 hover:border-gold-400/60 shadow-2xl transition-all duration-300">
+              {/* Screenshot Preview as Visible Background */}
               {kmIteraProject.image && (
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-3xl">
                   <img
                     src={kmIteraProject.image}
                     alt=""
                     aria-hidden="true"
-                    loading="lazy"
-                    className="w-full h-full object-cover object-top opacity-15 group-hover:opacity-25 transition-opacity duration-700 group-hover:scale-105 transition-transform"
+                    className="w-full h-full object-cover object-top opacity-45 group-hover:opacity-65 transition-all duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/85 to-obsidian-950/65" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/80 to-obsidian-950/30" />
                 </div>
               )}
 
@@ -155,10 +154,10 @@ export default function Portfolio() {
                   {/* Header Actions */}
                   <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-xs font-mono text-gold-300 font-semibold">
+                      <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-xs font-mono text-gold-300 font-semibold backdrop-blur-md">
                         Flagship • Campus Portal
                       </span>
-                      <span className="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-xs font-mono text-gold-400 flex items-center gap-1">
+                      <span className="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-xs font-mono text-gold-400 flex items-center gap-1 backdrop-blur-md">
                         <SparklesIcon className="text-[11px]" />
                         <span>Live Production Website</span>
                       </span>
@@ -167,7 +166,7 @@ export default function Portfolio() {
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleOpenProject(kmIteraProject)}
-                        className="w-9 h-9 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md"
+                        className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md backdrop-blur-md"
                         title="Quick Preview"
                       >
                         <FiMaximize2 size={13} />
@@ -177,7 +176,7 @@ export default function Portfolio() {
                           href={kmIteraProject.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-9 h-9 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md"
+                          className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md backdrop-blur-md"
                           title="Buka Website KM ITERA"
                         >
                           <FiArrowUpRight size={15} />
@@ -188,11 +187,11 @@ export default function Portfolio() {
 
                   {/* Title & Icon Lockup */}
                   <div className="flex items-start gap-4 mb-3.5">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-500/20 to-amber-600/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl shadow-gold-glow flex-shrink-0">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-500/20 to-amber-600/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-2xl shadow-gold-glow flex-shrink-0 backdrop-blur-md">
                       <FiGlobe />
                     </div>
                     <div>
-                      <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-300 transition-colors">
+                      <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-300 transition-colors drop-shadow-md">
                         {kmIteraProject.title}
                       </h3>
                       <p className="text-xs text-gold-400/90 font-mono mt-0.5">
@@ -201,21 +200,21 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <p className="text-slate-300 text-sm leading-relaxed mb-6 font-sans">
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6 font-sans drop-shadow-sm">
                     Official website and institutional digital ecosystem for KM ITERA. Built with modern architecture, optimized responsiveness, centralized governance, archival workflows, and event broadcast channels serving the academic community.
                   </p>
 
                   {/* Metrics Badges in KM ITERA */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-                    <div className="bg-obsidian-900/80 border border-gold-600/20 rounded-2xl p-3.5 backdrop-blur-sm">
+                    <div className="bg-obsidian-900/85 border border-gold-600/20 rounded-2xl p-3.5 backdrop-blur-md">
                       <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">10,000+</div>
                       <div className="text-[11px] text-slate-400 uppercase tracking-wide">Campus Community</div>
                     </div>
-                    <div className="bg-obsidian-900/80 border border-gold-600/20 rounded-2xl p-3.5 backdrop-blur-sm">
+                    <div className="bg-obsidian-900/85 border border-gold-600/20 rounded-2xl p-3.5 backdrop-blur-md">
                       <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">99.9%</div>
                       <div className="text-[11px] text-slate-400 uppercase tracking-wide">Uptime Reliability</div>
                     </div>
-                    <div className="bg-obsidian-900/80 border border-gold-600/20 rounded-2xl p-3.5 col-span-2 sm:col-span-1 backdrop-blur-sm">
+                    <div className="bg-obsidian-900/85 border border-gold-600/20 rounded-2xl p-3.5 col-span-2 sm:col-span-1 backdrop-blur-md">
                       <div className="text-xl sm:text-2xl font-bold font-heading text-gold-300">Laravel</div>
                       <div className="text-[11px] text-slate-400 uppercase tracking-wide">Core Framework</div>
                     </div>
@@ -242,31 +241,30 @@ export default function Portfolio() {
 
             {/* Secondary Bento Card: SIBI Recognition (lg:col-span-4) */}
             {sibiProject && (
-              <div className="lg:col-span-4 gold-glass rounded-3xl p-6 sm:p-7 flex flex-col justify-between group border border-gold-600/30 hover:border-gold-400/50 transition-all duration-300 relative overflow-hidden">
-                {/* Screenshot Preview as Subtle Background */}
+              <div className="lg:col-span-4 bg-obsidian-950/90 rounded-3xl p-6 sm:p-7 flex flex-col justify-between group border border-gold-600/30 hover:border-gold-400/50 shadow-2xl transition-all duration-300 relative overflow-hidden">
+                {/* Screenshot Preview as Visible Background */}
                 {sibiProject.image && (
                   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-3xl">
                     <img
                       src={sibiProject.image}
                       alt=""
                       aria-hidden="true"
-                      loading="lazy"
-                      className="w-full h-full object-cover object-top opacity-15 group-hover:opacity-25 transition-opacity duration-700 group-hover:scale-105 transition-transform"
+                      className="w-full h-full object-cover object-top opacity-45 group-hover:opacity-65 transition-all duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/85 to-obsidian-950/65" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/80 to-obsidian-950/30" />
                   </div>
                 )}
 
                 <div className="relative z-10 flex flex-col justify-between h-full space-y-4">
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-xs font-mono text-gold-300 font-medium">
+                      <span className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-xs font-mono text-gold-300 font-medium backdrop-blur-md">
                         AI &amp; Computer Vision
                       </span>
                       <div className="flex items-center gap-1.5">
                         <button
                           onClick={() => handleOpenProject(sibiProject)}
-                          className="w-9 h-9 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md"
+                          className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md backdrop-blur-md"
                           title="Preview SIBI"
                         >
                           <FiMaximize2 size={13} />
@@ -276,7 +274,7 @@ export default function Portfolio() {
                             href={sibiProject.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-9 h-9 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md"
+                            className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md backdrop-blur-md"
                             title="Buka Hugging Face Space"
                           >
                             <FiArrowUpRight size={15} />
@@ -286,22 +284,22 @@ export default function Portfolio() {
                     </div>
 
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-xl shadow-gold-glow flex-shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-xl shadow-gold-glow flex-shrink-0 backdrop-blur-md">
                         <FiCpuIcon />
                       </div>
                       <div>
-                        <h3 className="font-heading text-xl font-bold text-white group-hover:text-gold-300 transition-colors">
+                        <h3 className="font-heading text-xl font-bold text-white group-hover:text-gold-300 transition-colors drop-shadow-md">
                           {sibiProject.title}
                         </h3>
                         <p className="text-xs text-gold-400 font-mono">VideoMAE Transformer Research</p>
                       </div>
                     </div>
 
-                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans mb-4">
+                    <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-sans mb-4 drop-shadow-sm">
                       Deep learning architecture utilizing pre-trained VideoMAE for Indonesian Sign Language video classification with high accuracy and low latency.
                     </p>
 
-                    <div className="p-3 bg-obsidian-900/80 rounded-2xl border border-slate-800 space-y-1.5 backdrop-blur-sm">
+                    <div className="p-3 bg-obsidian-900/85 rounded-2xl border border-slate-800 space-y-1.5 backdrop-blur-md">
                       <div className="flex justify-between text-xs">
                         <span className="text-slate-400">Accuracy</span>
                         <span className="text-gold-300 font-mono font-bold">97.2%</span>
@@ -329,7 +327,7 @@ export default function Portfolio() {
           </div>
         )}
 
-        {/* Bento Showcase: Grid Cards with Subtle Screenshot Backgrounds */}
+        {/* Bento Showcase: Grid Cards with Visible Screenshot Backgrounds */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {gridProjects.map((project) => {
             const Icon = projectIcons[project.title] || FiGlobe;
@@ -338,19 +336,18 @@ export default function Portfolio() {
             return (
               <div
                 key={project.id}
-                className="gold-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between group border border-gold-600/20 hover:border-gold-400/45 transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden"
+                className="bg-obsidian-950/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between group border border-gold-600/25 hover:border-gold-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1.5 relative overflow-hidden"
               >
-                {/* Screenshot Preview as Subtle Background */}
+                {/* Screenshot Preview as Visible Background */}
                 {project.image && (
                   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-2xl">
                     <img
                       src={project.image}
                       alt=""
                       aria-hidden="true"
-                      loading="lazy"
-                      className="w-full h-full object-cover object-top opacity-15 group-hover:opacity-25 transition-opacity duration-500 group-hover:scale-105 transition-transform"
+                      className="w-full h-full object-cover object-top opacity-40 group-hover:opacity-60 transition-all duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/90 to-obsidian-950/70" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/80 to-obsidian-950/30" />
                   </div>
                 )}
 
@@ -358,13 +355,13 @@ export default function Portfolio() {
                 <div className="relative z-10 flex flex-col justify-between h-full space-y-3.5">
                   <div className="space-y-3.5">
                     <div className="flex items-center justify-between">
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-amber-500/20 border border-amber-500/40 text-gold-300">
+                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-amber-500/20 border border-amber-500/40 text-gold-300 backdrop-blur-md">
                         {isNotebook ? 'Jupyter ML' : project.category}
                       </span>
                       <div className="flex items-center gap-1.5">
                         <button
                           onClick={() => handleOpenProject(project)}
-                          className="w-7 h-7 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors"
+                          className="w-7 h-7 rounded-full bg-obsidian-900/90 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors backdrop-blur-md"
                           title="Lihat Detail / Preview"
                         >
                           <FiMaximize2 size={11} />
@@ -374,7 +371,7 @@ export default function Portfolio() {
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-7 h-7 rounded-full bg-obsidian-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors"
+                            className="w-7 h-7 rounded-full bg-obsidian-900/90 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors backdrop-blur-md"
                             title="Buka Website"
                           >
                             <FiArrowUpRight size={12} />
@@ -383,17 +380,17 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <div className="w-11 h-11 rounded-xl bg-gold-500/10 border border-gold-500/25 flex items-center justify-center text-gold-400 text-xl shadow-sm">
+                    <div className="w-11 h-11 rounded-xl bg-gold-500/10 border border-gold-500/25 flex items-center justify-center text-gold-400 text-xl shadow-sm backdrop-blur-md">
                       <Icon />
                     </div>
 
                     <div>
-                      <h4 className="font-heading font-bold text-base sm:text-lg text-white group-hover:text-gold-300 transition-colors">
+                      <h4 className="font-heading font-bold text-base sm:text-lg text-white group-hover:text-gold-300 transition-colors drop-shadow-md">
                         {project.title}
                       </h4>
                     </div>
 
-                    <p className="text-xs text-slate-400 leading-relaxed font-sans line-clamp-3">
+                    <p className="text-xs text-slate-300 leading-relaxed font-sans line-clamp-3 drop-shadow-sm">
                       {project.description}
                     </p>
                   </div>
