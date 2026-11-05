@@ -129,7 +129,10 @@ export default function Hero() {
             <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
               {/* CV Download Button */}
               <a
-                href="mailto:immanuelsgt@gmail.com?subject=Lucky%20CV%20Request"
+                href="/images/certificates/CV_Lucky_Immanuel_Sitanggang.pdf"
+                download="CV_Lucky_Immanuel_Sitanggang.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="gold-gradient-btn inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 rounded-full text-obsidian-950 font-bold text-xs sm:text-sm tracking-wide shadow-gold-glow min-h-[44px]"
               >
                 <FiDownload className="text-sm sm:text-base" />

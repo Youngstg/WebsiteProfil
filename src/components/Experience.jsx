@@ -1,17 +1,19 @@
-import { FiBookOpen, FiBriefcase, FiAward, FiCheckCircle } from 'react-icons/fi';
+import { FiBookOpen, FiBriefcase, FiAward, FiCheckCircle, FiArrowUpRight, FiDownload } from 'react-icons/fi';
 
 const certificates = [
   {
     name: 'TOEFL (Test of English as a Foreign Language)',
     issuer: 'English Language Proficiency Assessment',
-    status: 'Certified',
-    image: '/images/certificates/toefl.jpg',
+    status: 'Verified',
+    image: '/images/certificates/toefl.png',
+    pdfUrl: '/images/certificates/TOEFL_Lucky%20Immanuel%20Sitanggang.pdf',
   },
   {
-    name: 'CCP (Cloud Certified Practitioner)',
-    issuer: 'Cloud Computing Infrastructure & Architecture',
-    status: 'Certified',
-    image: '/images/certificates/ccp.jpg',
+    name: 'AWS Certified Cloud Practitioner (CCP)',
+    issuer: 'Amazon Web Services (AWS)',
+    status: 'Verified',
+    image: '/images/certificates/ccp.png',
+    pdfUrl: '/images/certificates/AWS%20Certified%20Cloud%20Practitioner%20certificate.pdf',
   },
 ];
 
@@ -90,26 +92,62 @@ export default function Experience() {
                       </span>
                     </div>
 
-                    {/* Certificate Image Preview Area (Ready when image file is uploaded) */}
-                    <div className="relative w-full rounded-xl overflow-hidden border border-gold-600/15 bg-obsidian-950/80 p-1 flex items-center justify-center min-h-[70px]">
-                      <img
-                        src={cert.image}
-                        alt={cert.name}
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                          if (e.currentTarget.nextElementSibling) {
-                            e.currentTarget.nextElementSibling.style.display = 'flex';
-                          }
-                        }}
-                        className="w-full h-auto max-h-48 object-contain rounded-lg"
-                      />
-                      <div className="text-center py-3 text-slate-500 text-xs flex flex-col items-center justify-center gap-1 w-full">
-                        <FiAward className="text-gold-400/60 text-lg" />
-                        <span className="text-[11px] text-slate-400 font-mono">Sertifikat Resmi {cert.name.split(' ')[0]}</span>
+                    {/* Certificate Image Preview Area */}
+                    <div className="relative w-full rounded-xl overflow-hidden border border-gold-600/25 bg-obsidian-950 p-2 group/cert">
+                      <a
+                        href={cert.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative w-full aspect-[16/11] rounded-lg overflow-hidden bg-obsidian-900 flex items-center justify-center cursor-pointer block group/img"
+                        title="Klik untuk membuka dokumen PDF"
+                      >
+                        <img
+                          src={cert.image}
+                          alt={cert.name}
+                          loading="lazy"
+                          className="w-full h-full object-contain object-center transition-transform duration-500 group-hover/img:scale-105"
+                        />
+                      </a>
+                      <div className="mt-2.5 pt-2 border-t border-gold-600/15 flex items-center justify-between text-[11px] font-mono">
+                        <span className="text-slate-400">PDF Credential</span>
+                        <a
+                          href={cert.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gold-400 hover:text-gold-300 font-semibold inline-flex items-center gap-1 hover:underline"
+                        >
+                          <span>Buka PDF Dokumen</span>
+                          <FiArrowUpRight size={12} />
+                        </a>
                       </div>
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Verified CV Download Card */}
+              <div className="p-4 rounded-2xl bg-gradient-to-r from-obsidian-900 via-obsidian-900 to-gold-950/40 border border-gold-500/30 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gold-500/15 border border-gold-500/40 flex items-center justify-center text-gold-400 text-lg shrink-0">
+                    <FiDownload />
+                  </div>
+                  <div>
+                    <h6 className="font-heading font-bold text-xs sm:text-sm text-white">
+                      Curriculum Vitae (CV)
+                    </h6>
+                    <p className="text-[11px] text-slate-400">Lucky Immanuel Sitanggang • PDF Document</p>
+                  </div>
+                </div>
+                <a
+                  href="/images/certificates/CV_Lucky_Immanuel_Sitanggang.pdf"
+                  download="CV_Lucky_Immanuel_Sitanggang.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1.5 rounded-full bg-gold-500 text-obsidian-950 text-xs font-bold hover:bg-gold-400 transition-colors inline-flex items-center gap-1 shrink-0 shadow-gold-glow"
+                >
+                  <span>Download</span>
+                  <FiArrowUpRight size={12} />
+                </a>
               </div>
             </div>
           </div>
