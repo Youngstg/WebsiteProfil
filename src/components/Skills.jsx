@@ -49,7 +49,7 @@ const skillCategories = [
 
 export default function Skills() {
   const [activeSkill, setActiveSkill] = useState(MACROPAD_KEYS[0]);
-  const [showMacropad, setShowMacropad] = useState(true);
+  const [showMacropad, setShowMacropad] = useState(false);
 
   return (
     <section id="skills" className="py-14 sm:py-20 relative overflow-hidden">
@@ -139,15 +139,19 @@ export default function Skills() {
             </div>
 
             {/* 3D Canvas (Gambar Macropad) */}
-            <div className="w-full max-w-xl aspect-square sm:aspect-[4/3] flex items-center justify-center relative">
+            <div className="w-full max-w-xl aspect-square sm:aspect-[4/3] flex items-center justify-center relative overflow-hidden">
               <Macropad3D onSelectSkill={setActiveSkill} activeSkill={activeSkill} />
             </div>
 
-            {/* Button Below Gambar with NO white line above, and left-right plain (only button centered) */}
-            <div className="mt-6 flex justify-center w-full">
+            {/* Button Below Gambar with relative z-30 ensuring clicks are never intercepted */}
+            <div className="mt-6 flex justify-center w-full relative z-30">
               <button
-                onClick={() => setShowMacropad(false)}
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-obsidian-850 hover:bg-obsidian-800 border border-gold-600/30 hover:border-gold-500/50 text-gold-300 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowMacropad(false);
+                }}
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-obsidian-850 hover:bg-obsidian-800 border border-gold-600/30 hover:border-gold-500/50 text-gold-300 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 relative z-30"
               >
                 <FiTerminal className="text-gold-400" />
                 <span>Tutup 3D Macropad</span>
@@ -157,10 +161,11 @@ export default function Skills() {
         )}
 
         {!showMacropad && (
-          <div className="mt-12 text-center flex justify-center w-full">
+          <div className="mt-12 text-center flex justify-center w-full relative z-30">
             <button
+              type="button"
               onClick={() => setShowMacropad(true)}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-obsidian-850 hover:bg-obsidian-800 border border-gold-600/30 hover:border-gold-500/50 text-gold-300 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-obsidian-850 hover:bg-obsidian-800 border border-gold-600/30 hover:border-gold-500/50 text-gold-300 text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 relative z-30"
             >
               <FiTerminal className="text-gold-400" />
               <span>Buka Interactive 3D Mechanical Macropad</span>
