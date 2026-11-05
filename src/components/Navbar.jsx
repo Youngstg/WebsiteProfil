@@ -25,34 +25,32 @@ export default function Navbar() {
       // 1. Bottom of page threshold (activate 'contact' when near footer)
       const windowHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
-      if (windowHeight + scrollY >= docHeight - 80) {
+      if (windowHeight + scrollY >= docHeight - 60) {
         setActiveSection('contact');
         return;
       }
 
       // 2. Top of page threshold (activate 'hero' when at top)
-      if (scrollY < 100) {
+      if (scrollY < 80) {
         setActiveSection('hero');
         return;
       }
 
-      // 3. Scanning line positioned 180px below top viewport (under fixed navbar)
-      const targetY = scrollY + 180;
+      // 3. Instant viewport-relative detection using getBoundingClientRect()
+      // Scanning threshold line at 140px from top of viewport (just under the 76px navbar)
+      const threshold = 140;
       const sectionIds = ['hero', 'about', 'skills', 'projects', 'experience', 'contact'];
 
-      let current = 'hero';
-      for (const id of sectionIds) {
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const id = sectionIds[i];
         const el = document.getElementById(id);
         if (!el) continue;
-        const top = el.offsetTop;
-        const height = el.offsetHeight;
-        if (targetY >= top && targetY < top + height) {
-          current = id;
-          break;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= threshold && rect.bottom > threshold) {
+          setActiveSection(id);
+          return;
         }
       }
-
-      setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -88,7 +86,7 @@ export default function Navbar() {
         {/* Left balance spacer for centered desktop capsule */}
         <div className="hidden md:block w-24 lg:w-28" />
 
-        {/* Desktop Nav Menu (Centered Capsule Pill with animated sliding indicator) */}
+        {/* Desktop Nav Menu (Centered Capsule Pill with animated jelly sliding indicator) */}
         <nav className="hidden md:flex items-center gap-1 bg-obsidian-900/40 backdrop-blur-md p-1.5 rounded-full border border-gold-600/25 shadow-inner mx-auto">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
@@ -97,7 +95,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href, link.id)}
-                className={`relative px-4 py-2 text-xs font-semibold rounded-full min-h-[36px] inline-flex items-center justify-center transition-colors duration-200 ${
+                className={`relative px-4 py-2 text-xs font-semibold rounded-full min-h-[36px] inline-flex items-center justify-center transition-colors duration-200 outline-none focus:outline-none focus-visible:outline-none ring-0 select-none ${
                   isActive
                     ? 'text-gold-300 font-bold'
                     : 'text-slate-300 hover:text-gold-300'
@@ -106,8 +104,13 @@ export default function Navbar() {
                 {isActive && (
                   <motion.div
                     layoutId="activeNavPill"
-                    className="absolute inset-0 bg-gold-600/25 border border-gold-400/40 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.25)]"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 bg-gradient-to-r from-gold-500/25 via-amber-400/35 to-gold-500/25 border border-gold-400/60 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] backdrop-blur-sm pointer-events-none"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 440,
+                      damping: 24,
+                      mass: 0.65,
+                    }}
                   />
                 )}
                 <span className="relative z-10">{link.name}</span>
@@ -130,7 +133,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-slate-300 hover:text-gold-400 bg-obsidian-850 rounded-xl border border-gold-600/20 transition-colors"
+            className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-slate-300 hover:text-gold-400 bg-obsidian-850 rounded-xl border border-gold-600/20 transition-colors outline-none focus:outline-none"
             aria-label="Toggle Navigation Menu"
           >
             {isMobileOpen ? <HiX size={24} /> : <HiMenu size={24} />}
@@ -156,7 +159,7 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href, link.id)}
-                    className={`px-4 py-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-colors min-h-[44px] flex items-center justify-between border ${
+                    className={`px-4 py-3 rounded-xl text-xs font-bold tracking-wider uppercase transition-colors min-h-[44px] flex items-center justify-between border outline-none focus:outline-none ${
                       isActive
                         ? 'bg-gold-500/15 text-gold-300 border-gold-500/40'
                         : 'bg-obsidian-850 text-slate-300 border-gold-600/15 hover:text-gold-300 hover:border-gold-500/30'
