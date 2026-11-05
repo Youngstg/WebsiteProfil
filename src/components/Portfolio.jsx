@@ -306,7 +306,7 @@ export default function Portfolio() {
                       </div>
                       <div className="flex justify-between text-xs">
                         <span className="text-slate-400">Classes</span>
-                        <span className="text-gold-300 font-mono font-bold">26 Gestures</span>
+                        <span className="text-gold-300 font-mono font-bold">10 Gestures</span>
                       </div>
                     </div>
                   </div>
