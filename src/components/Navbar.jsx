@@ -65,8 +65,8 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || isMobileOpen
-          ? 'bg-obsidian-900/95 backdrop-blur-md border-b border-gold-600/20 shadow-xl'
-          : 'bg-obsidian-900/80 backdrop-blur-md border-b border-gold-600/10'
+          ? 'bg-obsidian-950/60 backdrop-blur-xl border-b border-gold-600/20 shadow-lg shadow-black/30'
+          : 'bg-obsidian-950/35 backdrop-blur-md border-b border-gold-600/10'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
@@ -74,7 +74,7 @@ export default function Navbar() {
         <div className="hidden md:block w-24 lg:w-28" />
 
         {/* Desktop Nav Menu (Centered Capsule Pill) */}
-        <nav className="hidden md:flex items-center gap-1 bg-obsidian-800/80 p-1.5 rounded-full border border-gold-600/25 shadow-inner mx-auto">
+        <nav className="hidden md:flex items-center gap-1 bg-obsidian-900/40 backdrop-blur-md p-1.5 rounded-full border border-gold-600/25 shadow-inner mx-auto">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -124,7 +124,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden bg-obsidian-900/95 backdrop-blur-2xl border-t border-gold-600/20 overflow-hidden shadow-2xl"
+            className="md:hidden bg-obsidian-950/85 backdrop-blur-2xl border-t border-gold-600/20 overflow-hidden shadow-2xl"
           >
             <div className="px-4 py-4 flex flex-col gap-2">
               {navLinks.map((link) => {

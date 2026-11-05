@@ -40,7 +40,7 @@ const skillCategories = [
     icon: FiServer,
     items: [
       { name: 'Cisco Packet Tracer / CCNA', level: 80 },
-      { name: 'VLAN / Routing / DHCP', level: 80 },
+      { name: 'VPS Deployment', level: 80 },
       { name: 'Linux (Ubuntu) & Postfix', level: 75 },
       { name: 'Git & GitHub Actions', level: 85 },
     ],

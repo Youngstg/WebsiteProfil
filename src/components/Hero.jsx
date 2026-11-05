@@ -92,18 +92,7 @@ export default function Hero() {
                     alt="Lucky Immanuel Sitanggang"
                     className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 rounded-xl"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/20 to-transparent pointer-events-none" />
-                  
-                  {/* Floating Online Indicator Badge */}
-                  <div className="absolute top-2 left-2 bg-obsidian-900/90 backdrop-blur-md border border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1.5 shadow-md z-10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                    <span className="text-[9px] font-semibold text-emerald-300 tracking-wide">ITERA</span>
-                  </div>
-
-                  {/* Floating Gold Mini Badge */}
-                  <div className="absolute bottom-2 inset-x-2 bg-obsidian-900/85 backdrop-blur-md border border-gold-600/30 rounded-lg py-1 px-1.5 text-center z-10 shadow-lg">
-                    <span className="block text-[10px] font-bold text-gold-300 font-mono leading-none">AI &amp; Dev</span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950/40 via-transparent to-transparent pointer-events-none" />
                 </div>
               </div>
             </div>
