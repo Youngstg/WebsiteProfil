@@ -84,13 +84,13 @@ export default function Hero() {
               </div>
 
               {/* Mobile Luxury Arched Portrait Card (Visible on Mobile / Compact screens - Exactly as Stitch Mobile screen) */}
-              <div className="lg:hidden relative flex-shrink-0 group">
-                <div className="absolute -inset-1 bg-gradient-to-tr from-gold-500/30 via-amber-500/20 to-transparent rounded-3xl blur-lg pointer-events-none group-hover:scale-105 transition-transform duration-500" />
-                <div className="relative w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden border border-amber-500/40 shadow-gold-glow bg-obsidian-900/90 p-1 flex flex-col justify-end">
+              <div className="lg:hidden relative flex-shrink-0">
+                <div className="absolute -inset-1 bg-gradient-to-tr from-gold-500/30 via-amber-500/20 to-transparent rounded-3xl blur-lg pointer-events-none" />
+                <div className="relative w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden border border-amber-500/40 shadow-gold-glow bg-gradient-to-b from-obsidian-900/90 to-obsidian-950 p-1 flex flex-col justify-end">
                   <img
                     src="/images/image.webp"
                     alt="Lucky Immanuel Sitanggang"
-                    className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 rounded-xl"
+                    className="w-full h-full object-cover object-top rounded-xl"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-obsidian-950/40 via-transparent to-transparent pointer-events-none" />
                 </div>
@@ -173,11 +173,11 @@ export default function Hero() {
               />
 
               {/* Character Image touching bottom gradient line */}
-              <div className="relative z-10 w-full flex justify-center items-end group">
+              <div className="relative z-10 w-full flex justify-center items-end">
                 <img
                   src="/images/image.webp"
                   alt="Lucky Immanuel Sitanggang"
-                  className="w-auto h-auto max-h-[460px] xl:max-h-[520px] object-contain object-bottom -mb-px drop-shadow-[0_15px_35px_rgba(212,175,55,0.22)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  className="w-auto h-auto max-h-[460px] xl:max-h-[520px] object-contain object-bottom -mb-px drop-shadow-[0_15px_35px_rgba(212,175,55,0.22)]"
                 />
               </div>
             </div>
