@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local design binaries & tools
+FigCraft/
+FigCraft.lnk
+*.figcraft
+figcraft_render.png
+create_figcraft_design.mjs

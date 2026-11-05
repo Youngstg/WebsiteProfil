@@ -1,112 +1,114 @@
-import { motion } from 'framer-motion';
-import { FiUser, FiTarget, FiAward } from 'react-icons/fi';
+import { FiCompass, FiTarget, FiUserCheck } from 'react-icons/fi';
 import portfolioData from '../data/portfolio.json';
 
 const { profile } = portfolioData;
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring', stiffness: 70, damping: 20 }
-  }
-};
+function LightbulbIcon(props) {
+  return (
+    <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" {...props}>
+      <path d="M9 18h6"/>
+      <path d="M10 22h4"/>
+      <path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"/>
+    </svg>
+  );
+}
 
 export default function About() {
   return (
-    <section id="about" className="relative py-24 md:py-32">
-      <div className="section-container">
+    <section id="about" className="py-14 sm:py-20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.8 }}
-          variants={itemVariants}
-          className="text-center mb-16"
-        >
-          <h2 className="script-heading text-5xl md:text-6xl text-gold-400 mb-3">About Me</h2>
-          <div className="w-16 h-0.5 bg-gold-400/40 mx-auto" />
-        </motion.div>
+        <div className="text-center mb-12">
+          <span className="text-xs uppercase tracking-widest text-gold-500 font-semibold">
+            GET TO KNOW ME
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-1">
+            About <span className="gold-gradient-text">Lucky</span> ✦
+          </h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-3" />
+        </div>
 
-        {/* White Card */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-          className="card-white p-8 md:p-12"
-        >
-          <div className="grid md:grid-cols-2 gap-10 items-start">
-            {/* Bio */}
-            <motion.div variants={itemVariants}>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-teal-900/10 flex items-center justify-center text-teal-800">
-                  <FiUser size={20} />
-                </div>
-                <h3 className="text-xl font-bold text-text-dark">Who am I?</h3>
+        {/* 3 Column / Split Layout matching Stitch */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* Card 1: Experience & Background Summary */}
+          <div className="md:col-span-4 gold-glass rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-300 mb-5 text-xl shadow-gold-glow">
+                <FiUserCheck className="text-2xl" />
               </div>
-              <p className="text-text-dark-muted leading-relaxed mb-6">
-                {profile.bio}
+              <h3 className="font-heading text-xl font-bold text-white mb-2.5">
+                Engineering Mindset
+              </h3>
+              <p className="text-slate-400 text-sm leading-relaxed mb-6 font-sans">
+                Specialized in Informatics Engineering at ITERA with consistent academic excellence (3.77 GPA). Experienced across full-stack mobile applications, AI computer vision architectures, and network systems engineering.
               </p>
-              <p className="text-text-dark-muted leading-relaxed">
-                Saat ini saya sedang menempuh pendidikan di{' '}
-                <span className="text-teal-800 font-semibold">{profile.university}</span>,
-                di mana saya terus mengembangkan skill dan pengetahuan saya.
-              </p>
-            </motion.div>
+            </div>
 
-            {/* Info Cards */}
-            <motion.div variants={containerVariants} className="flex flex-col gap-5">
-              <motion.div variants={itemVariants} className="bg-teal-900/5 rounded-2xl p-5 border border-teal-800/10 transition-colors hover:bg-teal-900/10">
-                <div className="flex items-center gap-3 mb-2">
-                  <FiTarget className="text-gold-500" size={18} />
-                  <h4 className="font-semibold text-text-dark">My Focus</h4>
-                </div>
-                <p className="text-text-dark-muted text-sm leading-relaxed">
-                  Fokus utama saya adalah pada <span className="text-teal-800 font-medium">Cyber Security</span> dan{' '}
-                  <span className="text-teal-800 font-medium">Artificial Intelligence</span>.
-                </p>
-              </motion.div>
-
-              <motion.div variants={itemVariants} className="bg-teal-900/5 rounded-2xl p-5 border border-teal-800/10 transition-colors hover:bg-teal-900/10">
-                <div className="flex items-center gap-3 mb-2">
-                  <FiAward className="text-gold-500" size={18} />
-                  <h4 className="font-semibold text-text-dark">Passion</h4>
-                </div>
-                <p className="text-text-dark-muted text-sm leading-relaxed">
-                  Selain coding, saya aktif dalam komunitas IT dan senang berbagi pengetahuan melalui workshop dan mentoring.
-                </p>
-              </motion.div>
-
-              {/* Stats */}
-              <motion.div variants={containerVariants} className="grid grid-cols-3 gap-3">
-                {Object.entries(profile.stats).map(([key, value]) => (
-                  <motion.div 
-                    key={key} 
-                    variants={itemVariants}
-                    whileHover={{ y: -5, boxShadow: "0px 10px 15px rgba(0,0,0,0.05)" }}
-                    className="bg-teal-900 rounded-xl p-4 text-center cursor-default transition-shadow"
-                  >
-                    <div className="text-2xl font-bold text-gold-400 mb-1">{value}</div>
-                    <div className="text-xs text-text-muted uppercase tracking-wider capitalize">{key}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
+            {/* Stats Mini Matrix */}
+            <div className="grid grid-cols-2 gap-3 pt-4 border-t border-gold-600/20">
+              <div className="bg-obsidian-900/80 p-3.5 rounded-2xl border border-gold-600/15">
+                <div className="text-2xl font-bold text-gold-300 font-heading">3.77</div>
+                <div className="text-[11px] text-slate-400 uppercase tracking-wide">Grad GPA</div>
+              </div>
+              <div className="bg-obsidian-900/80 p-3.5 rounded-2xl border border-gold-600/15">
+                <div className="text-2xl font-bold text-gold-300 font-heading">4+</div>
+                <div className="text-[11px] text-slate-400 uppercase tracking-wide">Roles Held</div>
+              </div>
+            </div>
           </div>
-        </motion.div>
+
+          {/* Card 2: Center Feature (Luxury Gold Emblem Concept) */}
+          <div className="md:col-span-4 gold-glass rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center text-center relative overflow-hidden group">
+            <div className="absolute -right-12 -top-12 w-40 h-40 bg-gold-500/15 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -left-12 -bottom-12 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
+
+            {/* Golden Geometric Icon Feature */}
+            <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-gold-600 via-amber-400 to-yellow-200 p-[2px] mb-5 shadow-gold-glow group-hover:scale-105 transition-transform duration-300">
+              <div className="w-full h-full bg-obsidian-900 rounded-full flex items-center justify-center text-3xl text-gold-300">
+                <FiCompass />
+              </div>
+            </div>
+
+            <h3 className="font-heading text-xl font-bold text-white mb-1">
+              Human-Centered AI &amp; Tech
+            </h3>
+            <p className="text-xs text-gold-400 font-mono mb-4">
+              {profile.university}
+            </p>
+            <p className="text-slate-300 text-sm leading-relaxed max-w-xs font-sans italic">
+              "Building technology is not merely about writing lines of code; it is about bridging capability gaps and creating inclusive tools that empower every individual."
+            </p>
+          </div>
+
+          {/* Card 3: Philosophy & Mission */}
+          <div className="md:col-span-4 space-y-5 flex flex-col justify-between">
+            {/* Philosophy Card */}
+            <div className="gold-glass rounded-3xl p-6 border border-gold-600/25 flex-1 flex flex-col justify-center">
+              <div className="flex items-center gap-2.5 mb-2.5 text-gold-300">
+                <LightbulbIcon className="text-lg text-gold-400" />
+                <h4 className="font-heading font-bold text-base text-white">
+                  My Philosophy
+                </h4>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
+                Combining rigorous theoretical computer science with agile development paradigms to build intuitive, fault-tolerant, and performant user applications.
+              </p>
+            </div>
+
+            {/* Mission Card */}
+            <div className="gold-glass rounded-3xl p-6 border border-gold-600/25 flex-1 flex flex-col justify-center">
+              <div className="flex items-center gap-2.5 mb-2.5 text-gold-400">
+                <FiTarget className="text-lg text-gold-400" />
+                <h4 className="font-heading font-bold text-base text-white">
+                  The Mission
+                </h4>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
+                Empowering communities through inclusive assistive systems, intelligent automation, and rock-solid software infrastructure that addresses tangible real-world problems.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

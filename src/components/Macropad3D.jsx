@@ -164,7 +164,7 @@ function createRealSculptedKeycapGeometry() {
     const hw = w / 2 - r;
     const hd = d / 2 - r;
 
-    let cx = 0, cz = 0, angle = 0;
+    let cx, cz, angle;
     if (corner === 0) {
       cx = hw; cz = -hd;
       angle = -Math.PI / 2 + ct * (Math.PI / 2);
@@ -360,8 +360,9 @@ export default function Macropad3D({ onSelectSkill, activeSkill }) {
       if (!w || !h) return;
       const aspect = w / h;
       camera.aspect = aspect;
-      // Guarantee horizontal FOV >= 48 degrees across any screen width or aspect ratio
-      const targetHFov = 48;
+      // Guarantee horizontal FOV so board fits nicely across mobile & desktop
+      const isMobileScreen = w < 640;
+      const targetHFov = isMobileScreen ? 44 : 48;
       if (aspect < 1.15) {
         const hFovRad = (targetHFov * Math.PI) / 180;
         camera.fov = (2 * Math.atan(Math.tan(hFovRad / 2) / aspect) * 180) / Math.PI;
@@ -440,11 +441,18 @@ export default function Macropad3D({ onSelectSkill, activeSkill }) {
       return shape;
     };
 
-    // Authentic Navy Blue Case Material matching portfolio theme #0D2634
+    // Luxury Obsidian Metallic Case Material matching gold portfolio theme #090B10
     const caseMat = new THREE.MeshStandardMaterial({
-      color: 0x0D2634, // Primary Theme Navy Blue #0D2634
-      roughness: 0.38,
-      metalness: 0.45,
+      color: 0x090b10, // Obsidian Dark #090B10
+      roughness: 0.32,
+      metalness: 0.65,
+    });
+
+    // Gold Accent Material for Chamfer Bezel
+    const goldAccentMat = new THREE.MeshStandardMaterial({
+      color: 0xd4af37, // Gold #D4AF37
+      roughness: 0.28,
+      metalness: 0.85,
     });
 
     // 1. Bottom Chassis (Extends from y = -0.38 up to y = 0.08)
@@ -484,19 +492,19 @@ export default function Macropad3D({ onSelectSkill, activeSkill }) {
       bevelSize: 0.02,
       bevelThickness: 0.02,
     });
-    const bezelMesh = new THREE.Mesh(bezelGeom, caseMat);
+    const bezelMesh = new THREE.Mesh(bezelGeom, goldAccentMat);
     bezelMesh.rotation.x = -Math.PI / 2;
     bezelMesh.position.y = 0.08;
     bezelMesh.castShadow = true;
     bezelMesh.receiveShadow = true;
     boardGroup.add(bezelMesh);
 
-    // 3. Theme Navy Blue Switch Plate inside the cavity (matching theme --color-teal-800 #12344A)
+    // 3. Obsidian Switch Plate with subtle metallic gold luster
     const plateGeom = new THREE.BoxGeometry(innerW - 0.02, 0.04, innerD - 0.02);
     const plateMat = new THREE.MeshStandardMaterial({
-      color: 0x12344A, // Rich Navy Blue #12344A (authentic website theme)
-      roughness: 0.32,
-      metalness: 0.52,
+      color: 0x141824, // Obsidian 800
+      roughness: 0.28,
+      metalness: 0.60,
     });
     const plateMesh = new THREE.Mesh(plateGeom, plateMat);
     plateMesh.position.y = 0.07;
@@ -633,7 +641,6 @@ export default function Macropad3D({ onSelectSkill, activeSkill }) {
       if (hitKey) {
         hitKey.userData.isPressed = true;
         soundManager.playPress();
-
         if (onSelectSkill) {
           onSelectSkill(hitKey.userData.keyData);
         }
@@ -785,7 +792,7 @@ export default function Macropad3D({ onSelectSkill, activeSkill }) {
       {/* 3D Canvas Viewport - Responsive Height & Touch Scrolling Safe */}
       <div 
         ref={containerRef} 
-        className="w-full min-w-0 h-[340px] sm:h-[400px] md:h-[460px] lg:h-[520px] xl:h-[580px] 2xl:h-[620px] flex items-center justify-center relative touch-pan-y cursor-grab active:cursor-grabbing"
+        className="w-full min-w-0 h-[260px] sm:h-[320px] md:h-[420px] lg:h-[500px] xl:h-[560px] 2xl:h-[620px] flex items-center justify-center relative touch-pan-y cursor-grab active:cursor-grabbing"
         title="Click mechanical keycaps or press keys on your keyboard!"
       />
     </div>

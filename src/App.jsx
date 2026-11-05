@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
+import TopNotificationBanner from './components/TopNotificationBanner';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import SkillTool from './components/SkillTool';
 import About from './components/About';
 import Skills from './components/Skills';
 import Portfolio from './components/Portfolio';
@@ -10,13 +11,36 @@ import Footer from './components/Footer';
 import BackgroundShapes from './components/BackgroundShapes';
 
 export default function App() {
+  const isOpusPreview = typeof window !== 'undefined' && window.location.search.includes('opus');
+
+  useEffect(() => {
+    if (window.location.hash) {
+      setTimeout(() => {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+    }
+  }, []);
+
+  if (isOpusPreview) {
+    return (
+      <div className="relative min-h-screen bg-obsidian-950 overflow-x-hidden w-full ambient-glow-bg">
+        <Portfolio />
+      </div>
+    );
+  }
+
   return (
-    <div className="relative min-h-screen bg-teal-900">
+    <div className="relative min-h-screen bg-obsidian-950 text-slate-100 overflow-x-hidden w-full max-w-[100vw] ambient-glow-bg flex flex-col justify-between selection:bg-gold-500 selection:text-black">
       <BackgroundShapes />
+      <TopNotificationBanner />
       <Navbar />
-      <main className="relative z-10">
+      <main className="relative z-10 overflow-x-hidden w-full flex-grow">
         <Hero />
-        <SkillTool />
+        <About />
+        <Skills />
         <Portfolio />
         <Experience />
         <Contact />

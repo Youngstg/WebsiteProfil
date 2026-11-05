@@ -1,117 +1,137 @@
-import { motion } from 'framer-motion';
-import { FiBookOpen, FiUsers, FiBriefcase } from 'react-icons/fi';
-import portfolioData from '../data/portfolio.json';
+import { FiBookOpen, FiBriefcase, FiAward, FiCheckCircle } from 'react-icons/fi';
 
-const { experience } = portfolioData;
-
-const typeConfig = {
-  education: { icon: FiBookOpen, color: 'text-blue-400', bg: 'bg-blue-400' },
-  organization: { icon: FiUsers, color: 'text-purple-400', bg: 'bg-purple-400' },
-  work: { icon: FiBriefcase, color: 'text-gold-400', bg: 'bg-gold-400' },
-};
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: { type: 'spring', stiffness: 70, damping: 15 }
-  }
-};
-
-const lineVariants = {
-  hidden: { scaleY: 0 },
-  visible: { 
-    scaleY: 1,
-    transition: { duration: 0.8, ease: "easeInOut" }
-  }
-};
-
-function TimelineItem({ item, index }) {
-  const config = typeConfig[item.type] || typeConfig.work;
-  const Icon = config.icon;
-
-  return (
-    <motion.div
-      variants={itemVariants}
-      className="relative flex gap-3 sm:gap-6 group"
-    >
-      {/* Timeline dot */}
-      <div className="flex flex-col items-center">
-        <motion.div 
-          whileHover={{ scale: 1.15 }}
-          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full ${config.bg}/20 flex items-center justify-center ${config.color} shrink-0 transition-colors group-hover:${config.bg}/30 z-10`}
-        >
-          <Icon size={18} />
-        </motion.div>
-        {index < experience.length - 1 && (
-          <motion.div 
-            variants={lineVariants}
-            style={{ transformOrigin: "top" }}
-            className="w-[2px] flex-1 bg-gradient-to-b from-gold-400/50 to-transparent mt-2" 
-          />
-        )}
-      </div>
-
-      {/* Card */}
-      <motion.div 
-        whileHover={{ y: -5, boxShadow: "0px 10px 20px rgba(0,0,0,0.05)" }}
-        className="card-white p-5 sm:p-6 lg:p-7 mb-5 sm:mb-6 lg:mb-8 flex-1 min-w-0 transition-shadow"
-      >
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2 mb-2 lg:mb-3">
-          <div className="min-w-0">
-            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-text-dark group-hover:text-teal-800 transition-colors break-words">{item.title}</h3>
-            <p className="text-xs sm:text-sm lg:text-base font-semibold text-teal-800 break-words">{item.organization}</p>
-          </div>
-          <span className="text-[11px] sm:text-xs lg:text-sm font-mono text-text-dark-muted px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-teal-900/5 border border-teal-800/10 self-start sm:self-auto shrink-0 whitespace-nowrap">
-            {item.period}
-          </span>
-        </div>
-        <p className="text-text-dark-muted text-xs sm:text-sm lg:text-base leading-relaxed">{item.description}</p>
-      </motion.div>
-    </motion.div>
-  );
-}
+const certificates = [
+  { name: 'Cisco CCNA: Enterprise Networking & Routing', year: '2024' },
+  { name: 'Deep Learning with PyTorch & Vision Models', year: '2024' },
+  { name: 'Google Cloud Computing Foundations', year: '2023' },
+];
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-14 sm:py-18 lg:py-24">
-      <div className="section-container">
+    <section id="experience" className="py-14 sm:py-20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.8 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-10 sm:mb-14 lg:mb-18"
-        >
-          <h2 className="script-heading text-[clamp(2.5rem,5.5vw,4.5rem)] text-gold-400 mb-2 sm:mb-3">Experience</h2>
-          <div className="w-16 sm:w-24 h-0.5 bg-gold-400/40 mx-auto" />
-        </motion.div>
+        <div className="text-center mb-12 sm:mb-14">
+          <span className="text-xs uppercase tracking-widest text-gold-500 font-semibold">
+            CAREER TRAJECTORY
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-1">
+            Experience &amp; <span className="gold-gradient-text">Education</span> ✦
+          </h2>
+          <div className="w-16 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-3" />
+        </div>
 
-        {/* Timeline */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={containerVariants}
-          className="max-w-4xl lg:max-w-5xl mx-auto w-full"
-        >
-          {experience.map((item, index) => (
-            <TimelineItem key={item.id} item={item} index={index} />
-          ))}
-        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Column 1: Academic Journey (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            <h3 className="text-xl font-heading font-bold text-gold-300 flex items-center gap-2.5">
+              <FiBookOpen className="text-gold-400" />
+              <span>Academic Journey</span>
+            </h3>
+
+            {/* ITERA Card */}
+            <div className="gold-glass rounded-3xl p-6 sm:p-7 relative border-l-4 border-l-gold-500">
+              <div className="flex justify-between items-start mb-2.5 flex-wrap gap-2">
+                <h4 className="font-heading font-bold text-white text-base sm:text-lg">
+                  Institut Teknologi Sumatera (ITERA)
+                </h4>
+                <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-gold-500/10 text-gold-400 border border-gold-500/30">
+                  2022 — 2026
+                </span>
+              </div>
+
+              <p className="text-sm font-semibold text-gold-300 mb-3">
+                Bachelor of Informatics Engineering
+              </p>
+
+              <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 bg-obsidian-900 rounded-xl text-xs font-semibold text-slate-200 border border-gold-600/20">
+                <FiAward className="text-gold-400 text-sm" />
+                <span>GPA: <strong className="text-gold-300 font-bold">3.77</strong> / 4.00 (High Distinction)</span>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
+                Core coursework in Artificial Intelligence, Computer Vision, Database Systems, Computer Networks, and Object-Oriented Software Engineering. Actively involved in campus technology governance and laboratory leadership.
+              </p>
+            </div>
+
+            {/* Certificates & Training */}
+            <div className="gold-glass rounded-3xl p-6 space-y-4">
+              <h5 className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+                <FiCheckCircle className="text-gold-400" />
+                <span>Certificates &amp; Credentials</span>
+              </h5>
+              <div className="space-y-2.5 text-xs">
+                {certificates.map((cert) => (
+                  <div
+                    key={cert.name}
+                    className="flex items-center justify-between p-3 rounded-xl bg-obsidian-900/80 border border-gold-600/15"
+                  >
+                    <span className="text-slate-300 font-medium pr-2">{cert.name}</span>
+                    <span className="text-gold-400 font-mono font-semibold shrink-0">{cert.year}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Column 2: Professional Experience (7 Cols) */}
+          <div className="lg:col-span-7 space-y-6">
+            <h3 className="text-xl font-heading font-bold text-gold-300 flex items-center gap-2.5">
+              <FiBriefcase className="text-gold-400" />
+              <span>Professional Experience</span>
+            </h3>
+
+            <div className="space-y-5">
+              {/* Karla Bionic */}
+              <div className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
+                  <h4 className="font-heading font-bold text-white text-base sm:text-lg">
+                    Mobile Developer Intern
+                  </h4>
+                  <span className="text-xs text-gold-400 font-mono">Karla Bionic • 2025</span>
+                </div>
+                <div className="text-xs text-gold-300/90 font-medium mb-3">
+                  React Native • Firebase • AAC Assistive Technology
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                  Engineered assistive AAC mobile features for individuals with speech and motor difficulties. Optimized real-time data sync with Firebase Firestore, elevated component reusability, and enhanced app responsiveness.
+                </p>
+              </div>
+
+              {/* KM ITERA */}
+              <div className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
+                  <h4 className="font-heading font-bold text-white text-base sm:text-lg">
+                    Specialist Staff of Web &amp; IT
+                  </h4>
+                  <span className="text-xs text-gold-400 font-mono">KM ITERA • 2025 — 2026</span>
+                </div>
+                <div className="text-xs text-gold-300/90 font-medium mb-3">
+                  Web Architecture • Server Maintenance • Security
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                  Supervised and engineered campus student government web portals, maintaining uptime, user privacy protocols, and automated content publishing workflows for thousands of student users.
+                </p>
+              </div>
+
+              {/* Lab Assistant */}
+              <div className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
+                  <h4 className="font-heading font-bold text-white text-base sm:text-lg">
+                    Teaching &amp; Computer Network Lab Assistant
+                  </h4>
+                  <span className="text-xs text-gold-400 font-mono">ITERA Informatics Dept • 2024 — 2025</span>
+                </div>
+                <div className="text-xs text-gold-300/90 font-medium mb-3">
+                  Network Topology • Cisco Routing • Linux Labs
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                  Mentored over 100+ students across practical networking modules including subnetting, VLAN configuration, static/dynamic routing, and Linux server installations (DNS/Postfix).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

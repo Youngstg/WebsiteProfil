@@ -1,25 +1,23 @@
 export default function BackgroundShapes() {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-      {/* Tall wavy line (snake) flowing from top to bottom */}
-      <svg
-        className="absolute top-0 w-full h-full"
-        viewBox="0 0 1000 6000"
-        fill="none"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M 500 0 
-             C 1200 500, -200 1000, 500 1500
-             C 1200 2000, -200 2500, 500 3000
-             C 1200 3500, -200 4000, 500 4500
-             C 1200 5000, -200 5500, 500 6000"
-          stroke="rgba(30, 75, 100, 0.15)"
-          strokeWidth="40"
-          strokeLinecap="round"
-          vectorEffect="non-scaling-stroke"
-        />
-      </svg>
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 max-w-[100vw] ambient-glow-bg" aria-hidden="true">
+      {/* Top right gold subtle aura */}
+      <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-gold-600/8 blur-[120px]" />
+      
+      {/* Mid-screen warm gold aura */}
+      <div className="absolute top-[40%] -left-40 w-[500px] h-[500px] rounded-full bg-amber-600/6 blur-[140px]" />
+      
+      {/* Bottom screen gold aura */}
+      <div className="absolute bottom-0 right-[20%] w-[600px] h-[600px] rounded-full bg-gold-500/6 blur-[130px]" />
+
+      {/* Subtle fine dot matrix pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, #d4af37 1px, transparent 0)',
+          backgroundSize: '36px 36px',
+        }}
+      />
     </div>
   );
 }

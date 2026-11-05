@@ -1,139 +1,278 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { FiDownload, FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
+import { SiPython, SiReact, SiFirebase, SiLaravel, SiCisco } from 'react-icons/si';
 import portfolioData from '../data/portfolio.json';
 
 const { profile } = portfolioData;
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    }
-  }
-};
+function SparklesIcon(props) {
+  return (
+    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" {...props}>
+      <path d="M7.53 1.282a.5.5 0 0 1 .94 0l.485 1.455a7.5 7.5 0 0 0 4.793 4.793l1.455.485a.5.5 0 0 1 0 .94l-1.455.485a7.5 7.5 0 0 0-4.793 4.793l-.485 1.455a.5.5 0 0 1-.94 0l-.485-1.455a7.5 7.5 0 0 0-4.793-4.793L.505 8.95a.5.5 0 0 1 0-.94l1.455-.485A7.5 7.5 0 0 0 6.753 2.738L7.238 1.282z"/>
+    </svg>
+  );
+}
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { type: 'spring', stiffness: 80, damping: 20 }
-  }
-};
-
-const rightVariants = {
-  hidden: { opacity: 0, x: 40 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { type: 'spring', stiffness: 60, damping: 20, delay: 0.3 }
-  }
-};
+const typewriterRoles = [
+  'Software Developer',
+  'Mobile App Engineer',
+  'AI & Vision Enthusiast',
+  'ITERA Fresh Graduate',
+];
 
 export default function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentRole = typewriterRoles[roleIndex];
+    let timeout;
+
+    if (isDeleting) {
+      if (displayText.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentRole.substring(0, displayText.length - 1));
+        }, 40);
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(false);
+          setRoleIndex((prev) => (prev + 1) % typewriterRoles.length);
+        }, 300);
+      }
+    } else {
+      if (displayText.length < currentRole.length) {
+        timeout = setTimeout(() => {
+          setDisplayText(currentRole.substring(0, displayText.length + 1));
+        }, 75);
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2200);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, roleIndex]);
+
   return (
-    <section id="home" className="relative pt-16 sm:pt-20 pb-0 bg-teal-900 overflow-hidden flex flex-col justify-between min-h-[100svh] 2xl:min-h-[820px] 2xl:max-h-[860px]">
-      {/* Decorative background curves */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <motion.div 
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute w-[min(450px,90vw)] sm:w-[600px] lg:w-[800px] xl:w-[900px] h-[min(450px,90vw)] sm:h-[600px] lg:h-[800px] xl:h-[900px] border-[20px] sm:border-[35px] lg:border-[40px] border-teal-800/20 rounded-full -top-[180px] sm:-top-[300px] lg:-top-[400px] -left-[120px] sm:-left-[200px]" 
-        />
-        <motion.div 
-          animate={{ y: [0, 20, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute w-[min(350px,80vw)] sm:w-[480px] lg:w-[600px] xl:w-[700px] h-[min(350px,80vw)] sm:h-[480px] lg:h-[600px] xl:h-[700px] border-[20px] sm:border-[35px] lg:border-[40px] border-teal-800/20 rounded-full top-[150px] sm:top-[200px] -right-[120px] sm:-right-[200px]" 
-        />
-      </div>
+    <section id="hero" className="relative pt-8 pb-12 sm:pt-14 sm:pb-20 lg:pt-18 lg:pb-24 overflow-hidden">
+      {/* Ambient Golden Backlight Glows */}
+      <div 
+        className="absolute top-1/4 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-gold-600/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" 
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute bottom-1/3 left-10 w-72 sm:w-80 h-72 sm:h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" 
+        aria-hidden="true"
+      />
 
-      {/* Main Hero Content */}
-      <div className="section-container relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-end mt-auto mb-0 pb-0">
-        {/* Left Content */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="pb-8 sm:pb-12 md:pb-16 flex flex-col items-start"
-        >
-          <motion.h1
-            variants={itemVariants}
-            className="mb-4 sm:mb-6"
-          >
-            <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-serif tracking-wide block mb-1 sm:mb-2">Hello, I'm</span>
-            <span className="text-[clamp(2.5rem,7vw,5.75rem)] font-black text-white leading-[0.92] block uppercase tracking-tight">
-              LUCKY
-            </span>
-            <span className="text-[clamp(2.5rem,7vw,5.75rem)] font-black text-white leading-[0.92] block uppercase tracking-tight">
-              IMMANUEL
-            </span>
-          </motion.h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column: Introduction & CTA */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Top Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-600/10 border border-gold-600/30 text-gold-300 text-xs font-semibold tracking-wider">
+              <SparklesIcon className="text-gold-400 text-xs" />
+              <span>LUCKY IMMANUEL SITANGGANG</span>
+            </div>
 
-          <motion.div variants={itemVariants}>
-            <motion.a
-              href="#portfolio"
-              onClick={(e) => { e.preventDefault(); document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' }); }}
-              whileHover={{ scale: 1.05, boxShadow: "0px 10px 20px rgba(0,0,0,0.2)" }}
-              whileTap={{ scale: 0.95 }}
-              className="min-h-[44px] inline-flex items-center justify-center bg-[#FFCC80] text-teal-950 font-bold px-8 sm:px-10 py-3 rounded-full hover:bg-[#FFB74D] transition-colors text-base sm:text-lg shadow-lg shadow-black/15 touch-manipulation cursor-pointer"
-            >
-              My Opus
-            </motion.a>
-          </motion.div>
-        </motion.div>
+            {/* Headline & Typewriter */}
+            <div className="space-y-2">
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
+                Hi, I'm <span className="gold-gradient-text">LUCKY</span> ✦
+              </h1>
+              <div className="text-xl sm:text-2xl font-medium text-slate-300 flex items-center gap-2 flex-wrap">
+                <span>I'm a</span>
+                <span className="text-gold-300 font-semibold underline decoration-gold-500/50 underline-offset-4">
+                  {displayText || 'Software Developer'}
+                </span>
+                <span className="cursor-blink text-gold-400 font-bold text-2xl">|</span>
+              </div>
+            </div>
 
-        {/* Right Content - Photo */}
-        <motion.div
-          variants={rightVariants}
-          initial="hidden"
-          animate="visible"
-          className="relative flex justify-center md:justify-end items-end h-[220px] sm:h-[260px] md:h-[300px] lg:h-[340px] xl:h-[380px] w-full md:pr-10 lg:pr-16 xl:pr-24 pb-0"
-        >
-          <div className="relative w-full max-w-[190px] sm:max-w-[220px] md:max-w-[260px] lg:max-w-[290px] xl:max-w-[330px] h-full flex items-end justify-center md:justify-end">
-            <motion.img
-              initial={{ filter: 'grayscale(100%) brightness(110%) contrast(125%)' }}
-              animate={{ filter: 'grayscale(100%) brightness(110%) contrast(125%)' }}
-              transition={{ duration: 1.5, delay: 0.8 }}
-              src={profile.photo}
-              alt={profile.name}
-              loading="lazy"
-              className="relative max-h-[105%] w-auto max-w-full object-contain object-bottom z-20 pointer-events-none"
-            />
+            {/* Bio Description */}
+            <p className="text-slate-400 text-base sm:text-lg leading-relaxed max-w-xl font-sans">
+              Fresh graduate from <strong className="text-slate-200 font-semibold">Institut Teknologi Sumatera (ITERA)</strong> with a passion for Artificial Intelligence &amp; Full-Stack Mobile/Web Development. Dedicated to crafting inclusive, accessible, and high-impact technology solutions.
+            </p>
+
+            {/* Buttons & Social Links */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              {/* CV Download Button */}
+              <a
+                href="mailto:immanuelsgt@gmail.com?subject=Lucky%20CV%20Request"
+                className="gold-gradient-btn inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-obsidian-950 font-bold text-sm tracking-wide shadow-gold-glow min-h-[44px]"
+              >
+                <FiDownload className="text-base" />
+                <span>Download CV</span>
+              </a>
+
+              {/* Social Media Pill Group */}
+              <div className="flex items-center gap-1.5 p-1 bg-obsidian-850 rounded-full border border-gold-600/25">
+                <a
+                  href={profile.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-gold-300 hover:bg-gold-500/10 transition-colors"
+                  aria-label="GitHub Profile"
+                >
+                  <FiGithub size={18} />
+                </a>
+                <a
+                  href={profile.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-gold-300 hover:bg-gold-500/10 transition-colors"
+                  aria-label="LinkedIn Profile"
+                >
+                  <FiLinkedin size={18} />
+                </a>
+                <a
+                  href={`mailto:${profile.socials.email}`}
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-gold-300 hover:bg-gold-500/10 transition-colors"
+                  aria-label="Direct Email"
+                >
+                  <FiMail size={18} />
+                </a>
+              </div>
+            </div>
+
+            {/* Key Metric Micro-Counters */}
+            <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-lg">
+              <div className="bg-obsidian-900/60 p-3 rounded-xl border border-gold-600/15">
+                <span className="block text-2xl sm:text-3xl font-extrabold text-gold-300 font-heading">3.77</span>
+                <span className="text-xs text-slate-400 uppercase tracking-wide">ITERA GPA</span>
+              </div>
+              <div className="bg-obsidian-900/60 p-3 rounded-xl border border-gold-600/15">
+                <span className="block text-2xl sm:text-3xl font-extrabold text-gold-300 font-heading">8+</span>
+                <span className="text-xs text-slate-400 uppercase tracking-wide">Key Projects</span>
+              </div>
+              <div className="bg-obsidian-900/60 p-3 rounded-xl border border-gold-600/15">
+                <span className="block text-2xl sm:text-3xl font-extrabold text-gold-300 font-heading">15+</span>
+                <span className="text-xs text-slate-400 uppercase tracking-wide">Tech Skills</span>
+              </div>
+            </div>
           </div>
-        </motion.div>
+
+          {/* Right Column: Gold Cyber Holographic Dev Avatar / Orb Display */}
+          <div className="lg:col-span-5 flex justify-center w-full">
+            <div className="relative w-full max-w-md sm:max-w-sm">
+              {/* Ambient Halo */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-gold-500/25 via-amber-600/20 to-transparent rounded-3xl blur-2xl transform rotate-3" />
+
+              {/* Card Wrapper */}
+              <div className="relative rounded-3xl gold-glass p-5 sm:p-6 overflow-hidden border border-gold-600/30 shadow-2xl">
+                {/* Inner Decorative Visual */}
+                <div className="relative w-full aspect-square rounded-2xl bg-gradient-to-b from-obsidian-800 via-obsidian-900 to-obsidian-950 flex flex-col items-center justify-center border border-gold-600/25 overflow-hidden group">
+                  {/* Golden Geometric Gyro Background */}
+                  <div className="absolute inset-0 opacity-25 pointer-events-none flex items-center justify-center">
+                    <div
+                      className="w-56 sm:w-64 h-56 sm:h-64 border border-dashed border-gold-400 rounded-full animate-spin"
+                      style={{ animationDuration: '32s' }}
+                    />
+                    <div className="absolute w-40 sm:w-44 h-40 sm:h-44 border border-gold-400/40 rounded-full" />
+                  </div>
+
+                  {/* Central Avatar Halo & Photo */}
+                  <div className="relative z-10 w-32 h-32 sm:w-36 sm:h-36 rounded-full bg-gradient-to-tr from-amber-600 via-gold-400 to-yellow-200 p-[2.5px] shadow-gold-glow animate-float">
+                    <div className="w-full h-full rounded-full bg-obsidian-900 overflow-hidden relative border-2 border-obsidian-950">
+                      <img
+                        src="/images/Fotosaya.jpg"
+                        alt="Lucky Immanuel Sitanggang"
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Floating Status Badges */}
+                  <div className="mt-5 z-10 text-center px-2">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-300 text-xs font-semibold">
+                      <span className="w-2 h-2 rounded-full bg-gold-400" />
+                      <span>AI &amp; Mobile Specialist</span>
+                    </div>
+                    <p className="text-xs text-slate-400 mt-1.5 font-mono">Informatics Engineering '26</p>
+                  </div>
+
+                  {/* Floating Tech Mini Pills */}
+                  <div className="absolute top-3.5 left-3.5 bg-obsidian-900/90 border border-gold-500/30 px-2.5 py-1 rounded-lg text-[11px] text-gold-300 flex items-center gap-1.5 shadow-md">
+                    <SiPython className="text-gold-400" />
+                    <span>Python / DL</span>
+                  </div>
+                  <div className="absolute bottom-3.5 right-3.5 bg-obsidian-900/90 border border-gold-500/30 px-2.5 py-1 rounded-lg text-[11px] text-gold-300 flex items-center gap-1.5 shadow-md">
+                    <SiReact className="text-cyan-400" />
+                    <span>React Native</span>
+                  </div>
+                </div>
+
+                {/* Footer description inside hero showcase */}
+                <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                  <span className="flex items-center gap-1">
+                    <FiMapPin className="text-gold-500" />
+                    <span>Lampung / Sumatera, ID</span>
+                  </span>
+                  <span className="text-gold-400 font-mono font-semibold">GPA: 3.77 / 4.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Bottom Diagonal Bio Section */}
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-        className="relative w-full flex items-center justify-center pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8 z-20 mt-0"
+      {/* Tech Stack Ribbon Strip */}
+      <div
+        className="mt-14 w-full relative overflow-hidden backdrop-blur-md border-y border-gold-500/30 shadow-2xl"
+        style={{
+          background:
+            'linear-gradient(90deg, rgba(9, 11, 16, 0.98) 0%, rgba(35, 27, 10, 0.92) 20%, rgba(212, 175, 55, 0.22) 50%, rgba(35, 27, 10, 0.92) 80%, rgba(9, 11, 16, 0.98) 100%)',
+          boxShadow:
+            'rgba(212, 175, 55, 0.25) 0px 0px 35px -5px, rgba(254, 240, 138, 0.15) 0px 1px 0px inset, rgba(254, 240, 138, 0.1) 0px -1px 0px inset',
+        }}
       >
-        <div className="absolute inset-0 bg-white" style={{ clipPath: 'polygon(0 20%, 100% 0, 100% 100%, 0 100%)' }} />
-        
-        {/* "Portofolio" Script floating anchored directly to this diagonal banner */}
-        <div className="section-container absolute top-0 inset-x-0 pointer-events-none z-30">
-          <div className="relative w-full flex justify-center md:justify-end md:pr-8 lg:pr-14 xl:pr-20">
-            <motion.h2 
-              initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-              animate={{ opacity: 1, scale: 1, rotate: -6 }}
-              transition={{ type: 'spring', stiffness: 50, damping: 15, delay: 0.6 }}
-              className="absolute -top-15 sm:-top-18 md:-top-22 lg:-top-26 -left-1 sm:-left-3 md:-left-6 lg:left-auto script-heading text-[clamp(2.75rem,6.5vw,7rem)] text-white select-none pointer-events-none"
-            >
-              Portofolio
-            </motion.h2>
+        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-around gap-6 text-slate-300 text-sm font-medium">
+          <div className="flex items-center gap-2.5 hover:text-gold-300 transition-colors group cursor-default">
+            <SiPython className="text-gold-400 text-xl group-hover:scale-110 transition-transform" />
+            <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+              Python &amp; OpenCV
+            </span>
+          </div>
+
+          <div className="h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent hidden sm:block" />
+
+          <div className="flex items-center gap-2.5 hover:text-gold-300 transition-colors group cursor-default">
+            <SiReact className="text-cyan-400 text-xl group-hover:scale-110 transition-transform" />
+            <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+              React Native
+            </span>
+          </div>
+
+          <div className="h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent hidden sm:block" />
+
+          <div className="flex items-center gap-2.5 hover:text-gold-300 transition-colors group cursor-default">
+            <SiFirebase className="text-amber-500 text-xl group-hover:scale-110 transition-transform" />
+            <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+              Firebase &amp; PostGIS
+            </span>
+          </div>
+
+          <div className="h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent hidden sm:block" />
+
+          <div className="flex items-center gap-2.5 hover:text-gold-300 transition-colors group cursor-default">
+            <SiLaravel className="text-red-500 text-xl group-hover:scale-110 transition-transform" />
+            <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+              Laravel &amp; Next.js
+            </span>
+          </div>
+
+          <div className="h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent hidden sm:block" />
+
+          <div className="flex items-center gap-2.5 hover:text-gold-300 transition-colors group cursor-default">
+            <SiCisco className="text-gold-400 text-xl group-hover:scale-110 transition-transform" />
+            <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+              Cisco CCNA
+            </span>
           </div>
         </div>
-
-        <div className="relative z-20 max-w-4xl px-5 sm:px-8 text-center mt-3 sm:mt-4 md:mt-2">
-          <p className="text-teal-950 font-bold text-[clamp(0.875rem,2vw,1.15rem)] leading-relaxed">
-            {profile.bio}
-          </p>
-        </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
