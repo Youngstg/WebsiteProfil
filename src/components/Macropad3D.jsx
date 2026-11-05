@@ -89,14 +89,6 @@ function createKeycapTexture(key) {
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 512, 512);
 
-  // Subtle keycap top inset bevel border (gives crisp mechanical cap definition)
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
-  ctx.lineWidth = 6;
-  ctx.strokeRect(16, 16, 480, 480);
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.18)';
-  ctx.lineWidth = 4;
-  ctx.strokeRect(20, 20, 472, 472);
-
   // 3. Draw Official SVG Vector Icon from react-icons in key.textColor
   const iconData = getIconData(key.id);
   if (iconData && iconData.paths.length > 0) {

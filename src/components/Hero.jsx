@@ -1,17 +1,9 @@
 import { useState, useEffect } from 'react';
 import { FiDownload, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
-import { SiPython, SiReact, SiFirebase, SiLaravel, SiCisco } from 'react-icons/si';
+import { SiPython, SiReact, SiFirebase, SiLaravel, SiCisco, SiNextdotjs } from 'react-icons/si';
 import portfolioData from '../data/portfolio.json';
 
 const { profile } = portfolioData;
-
-function SparklesIcon(props) {
-  return (
-    <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" height="1em" width="1em" {...props}>
-      <path d="M7.53 1.282a.5.5 0 0 1 .94 0l.485 1.455a7.5 7.5 0 0 0 4.793 4.793l1.455.485a.5.5 0 0 1 0 .94l-1.455.485a7.5 7.5 0 0 0-4.793 4.793l-.485 1.455a.5.5 0 0 1-.94 0l-.485-1.455a7.5 7.5 0 0 0-4.793-4.793L.505 8.95a.5.5 0 0 1 0-.94l1.455-.485A7.5 7.5 0 0 0 6.753 2.738L7.238 1.282z"/>
-    </svg>
-  );
-}
 
 const typewriterRoles = [
   'Software Developer',
@@ -74,23 +66,19 @@ export default function Hero() {
             {/* Top Side-by-Side Lockup on Mobile: Greeting & Titles (Left) + Refined Luxury Portrait (Right) */}
             <div className="flex items-center justify-between gap-4 sm:gap-6">
               <div className="flex-1 space-y-3">
-                {/* Top Pill Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-600/10 border border-gold-600/30 text-gold-300 text-[11px] sm:text-xs font-semibold tracking-wider">
-                  <SparklesIcon className="text-gold-400 text-xs" />
-                  <span>LUCKY IMMANUEL SITANGGANG</span>
-                </div>
-
                 {/* Headline & Typewriter */}
                 <div className="space-y-1.5">
                   <h1 className="font-heading text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]">
                     Hi, I'm <span className="gold-gradient-text">LUCKY</span> ✦
                   </h1>
-                  <div className="text-base sm:text-xl lg:text-2xl font-medium text-slate-300 min-h-[1.75em] flex items-center gap-2 flex-wrap">
-                    <span>I'm a</span>
-                    <span className="text-gold-300 font-semibold underline decoration-gold-500/50 underline-offset-4 min-w-[2px] inline-block tracking-normal">
-                      {displayText}
+                  <div className="text-base sm:text-xl lg:text-2xl font-medium text-slate-300 min-h-[1.75em] flex items-center flex-wrap">
+                    <span className="mr-2">I'm a</span>
+                    <span className="inline-flex items-center">
+                      <span className="text-gold-300 font-semibold underline decoration-gold-500/50 underline-offset-4 tracking-normal">
+                        {displayText}
+                      </span>
+                      <span className="cursor-blink text-gold-400 font-bold text-xl sm:text-2xl select-none ml-0.5" aria-hidden="true">|</span>
                     </span>
-                    <span className="cursor-blink text-gold-400 font-bold text-xl sm:text-2xl select-none" aria-hidden="true">|</span>
                   </div>
                 </div>
               </div>
@@ -254,7 +242,10 @@ export default function Hero() {
             <div className="h-4 sm:h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent flex-shrink-0" />
 
             <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default">
-              <SiLaravel className="text-red-500 text-lg sm:text-xl group-hover:scale-110 transition-transform" />
+              <div className="flex items-center gap-1.5">
+                <SiLaravel className="text-red-500 text-lg sm:text-xl group-hover:scale-110 transition-transform" />
+                <SiNextdotjs className="text-white text-lg sm:text-xl group-hover:scale-110 transition-transform" />
+              </div>
               <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
                 Laravel &amp; Next.js
               </span>

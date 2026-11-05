@@ -3,15 +3,13 @@ import { FiBookOpen, FiBriefcase, FiAward, FiCheckCircle, FiArrowUpRight, FiDown
 const certificates = [
   {
     name: 'TOEFL (Test of English as a Foreign Language)',
-    issuer: 'English Language Proficiency Assessment',
-    status: 'Verified',
+    issuer: 'Institut Teknologi Sumatera Language Center (Score: 513)',
     image: '/images/certificates/toefl.png',
     pdfUrl: '/images/certificates/TOEFL_Lucky%20Immanuel%20Sitanggang.pdf',
   },
   {
     name: 'AWS Certified Cloud Practitioner (CCP)',
     issuer: 'Amazon Web Services (AWS)',
-    status: 'Verified',
     image: '/images/certificates/ccp.png',
     pdfUrl: '/images/certificates/AWS%20Certified%20Cloud%20Practitioner%20certificate.pdf',
   },
@@ -72,7 +70,7 @@ export default function Experience() {
                   <FiCheckCircle className="text-gold-400" />
                   <span>Certificates &amp; Credentials</span>
                 </span>
-                <span className="text-[11px] font-mono text-gold-400">2 Verified</span>
+                <span className="text-[11px] font-mono text-gold-400">Official</span>
               </h5>
               <div className="space-y-4">
                 {certificates.map((cert) => (
@@ -80,16 +78,11 @@ export default function Experience() {
                     key={cert.name}
                     className="p-4 rounded-2xl bg-obsidian-900/80 border border-gold-600/20 space-y-2 group hover:border-gold-500/40 transition-colors"
                   >
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <h6 className="font-heading font-bold text-sm text-white group-hover:text-gold-300 transition-colors">
-                          {cert.name}
-                        </h6>
-                        <p className="text-xs text-slate-400 mt-0.5">{cert.issuer}</p>
-                      </div>
-                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-gold-500/15 text-gold-300 border border-gold-500/30 shrink-0">
-                        {cert.status}
-                      </span>
+                    <div>
+                      <h6 className="font-heading font-bold text-sm text-white group-hover:text-gold-300 transition-colors">
+                        {cert.name}
+                      </h6>
+                      <p className="text-xs text-slate-400 mt-0.5">{cert.issuer}</p>
                     </div>
 
                     {/* Certificate Image Preview Area */}
@@ -166,13 +159,13 @@ export default function Experience() {
                   <h4 className="font-heading font-bold text-white text-base sm:text-lg">
                     Mobile Developer Intern
                   </h4>
-                  <span className="text-xs text-gold-400 font-mono">Karla Bionic • 2025</span>
+                  <span className="text-xs text-gold-400 font-mono">Karla Bionic • Jun 2025 — Aug 2025</span>
                 </div>
                 <div className="text-xs text-gold-300/90 font-medium mb-3">
-                  React Native • Firebase • AAC Assistive Technology
+                  React Native (Expo Router) • Firebase Firestore &amp; Auth • EAS
                 </div>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                  Engineered assistive AAC mobile features for individuals with speech and motor difficulties. Optimized real-time data sync with Firebase Firestore, elevated component reusability, and enhanced app responsiveness.
+                  Developed a cross-platform AAC (Augmentative and Alternative Communication) mobile app for children with Level 3 Cerebral Palsy. Designed an inclusive landscape interface with large-scale communication buttons, real-time parent monitoring with push notifications, and configured EAS builds for deployment.
                 </p>
               </div>
 
@@ -180,31 +173,79 @@ export default function Experience() {
               <div className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
                   <h4 className="font-heading font-bold text-white text-base sm:text-lg">
-                    Specialist Staff of Web &amp; IT
+                    Specialist Staff | Web &amp; IT Development
                   </h4>
-                  <span className="text-xs text-gold-400 font-mono">KM ITERA • 2025 — 2026</span>
+                  <span className="text-xs text-gold-400 font-mono">KM ITERA • Feb 2025 — Dec 2025</span>
                 </div>
                 <div className="text-xs text-gold-300/90 font-medium mb-3">
-                  Web Architecture • Server Maintenance • Security
+                  Web Architecture • Laravel &amp; MySQL • REST APIs • Git
                 </div>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                  Supervised and engineered campus student government web portals, maintaining uptime, user privacy protocols, and automated content publishing workflows for thousands of student users.
+                  Optimized university and KM ITERA websites to improve performance, user experience, and digital accessibility. Led digitalization of inter-organization campus activities by developing IT products with Laravel and REST APIs.
                 </p>
               </div>
 
-              {/* Lab Assistant */}
+              {/* Computer Network Lab Assistant */}
               <div className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
                   <h4 className="font-heading font-bold text-white text-base sm:text-lg">
-                    Teaching &amp; Computer Network Lab Assistant
+                    Computer Network Lab Assistant
                   </h4>
-                  <span className="text-xs text-gold-400 font-mono">ITERA Informatics Dept • 2024 — 2025</span>
+                  <span className="text-xs text-gold-400 font-mono">ITERA • Sep 2025 — Dec 2025</span>
                 </div>
                 <div className="text-xs text-gold-300/90 font-medium mb-3">
-                  Network Topology • Cisco Routing • Linux Labs
+                  Cisco Technologies • VLAN &amp; DHCP • Linux (SMTP/Postfix)
                 </div>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                  Mentored over 100+ students across practical networking modules including subnetting, VLAN configuration, static/dynamic routing, and Linux server installations (DNS/Postfix).
+                  Guided students in configuring VLANs, DHCP, and Wireless Access Points using Cisco technologies. Assisted students in implementing and configuring Linux mail servers using SMTP and Postfix in a networking lab environment.
+                </p>
+              </div>
+
+              {/* TBFO Teaching Assistant */}
+              <div className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
+                  <h4 className="font-heading font-bold text-white text-base sm:text-lg">
+                    Teaching Assistant | Formal Languages &amp; Automata Theory (TBFO)
+                  </h4>
+                  <span className="text-xs text-gold-400 font-mono">ITERA • Sep 2024 — Dec 2024</span>
+                </div>
+                <div className="text-xs text-gold-300/90 font-medium mb-3">
+                  Automata Theory • DFA/NFA • Theoretical Computation • Student Mentoring
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                  Acted as liaison between students and faculty lecturers, managing substitute class schedules and academic assessments. Conducted targeted tutoring sessions to help students master complex theoretical topics in automata, grammar, and formal computation models.
+                </p>
+              </div>
+
+              {/* PKS 1 & 2 Lab Assistant */}
+              <div className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
+                  <h4 className="font-heading font-bold text-white text-base sm:text-lg">
+                    Laboratory Assistant | PKS 1 &amp; 2 (Pengenalan Komputasi &amp; Software)
+                  </h4>
+                  <span className="text-xs text-gold-400 font-mono">ITERA • Aug 2023 — Dec 2024</span>
+                </div>
+                <div className="text-xs text-gold-300/90 font-medium mb-3">
+                  C++ &amp; Python • Computational Logic • Task Grading &amp; Quizzes
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                  Prepared foundational instructional materials and managed full responsibility for student task grading, laboratory practicums, and quizzes across multiple semesters. Designed evaluative programming assessments in collaboration with faculty.
+                </p>
+              </div>
+
+              {/* HMIF ITERA Staff PPK */}
+              <div className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1">
+                  <h4 className="font-heading font-bold text-white text-base sm:text-lg">
+                    Staff PPK | Himpunan Mahasiswa Informatika (HMIF)
+                  </h4>
+                  <span className="text-xs text-gold-400 font-mono">HMIF ITERA • Aug 2023 — Dec 2024</span>
+                </div>
+                <div className="text-xs text-gold-300/90 font-medium mb-3">
+                  Head of Event (Thesis Expo) • FTI Expo • Industry Tech Seminars
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                  Led the Thesis Expo as Head of Event, directing end-to-end event operations from planning through execution. Coordinated the FTI Expo and arranged seminars featuring expert speakers for the Informatics Engineering academic community.
                 </p>
               </div>
             </div>

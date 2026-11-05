@@ -89,16 +89,8 @@ export default function Contact() {
             </a>
           </div>
 
-          {/* Bottom Availability Status & Location Bar */}
-          <div className="pt-6 border-t border-gold-600/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-              </span>
-              <span className="text-emerald-300 font-semibold">Available for Full-time Roles &amp; Remote Contracts</span>
-            </div>
-
+          {/* Bottom Location Bar */}
+          <div className="pt-6 border-t border-gold-600/20 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-slate-300">
             <div className="flex items-center gap-2 text-slate-400">
               <FiMapPin className="text-gold-400" />
               <span>Sumatera / Lampung, Indonesia</span>
