@@ -22,25 +22,29 @@ export default function Contact() {
         </div>
 
         {/* Centered Luxury Contact Channels */}
-        <div className="gold-glass rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-gold-600/35 shadow-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="gold-glass rounded-2xl sm:rounded-3xl p-3 sm:p-8 md:p-12 relative overflow-hidden border border-gold-600/35 shadow-2xl">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
             {/* Email Card */}
             <a
               href={`mailto:${profile.socials.email}`}
-              className="p-6 rounded-2xl bg-obsidian-900/90 border border-gold-600/25 hover:border-gold-500/60 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1"
+              className="p-2.5 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-obsidian-900/90 border border-gold-600/25 hover:border-gold-500/60 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1 min-w-0"
             >
-              <div className="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-xl group-hover:bg-gold-500 group-hover:text-black transition-colors mb-4 shadow-gold-glow">
+              <div className="w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-xl sm:rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-base sm:text-lg md:text-xl group-hover:bg-gold-500 group-hover:text-black transition-colors mb-2 sm:mb-3 md:mb-4 shadow-gold-glow shrink-0">
                 <FiMail />
               </div>
-              <span className="text-[11px] uppercase tracking-wider text-slate-400 font-medium mb-1">
-                Direct Email
+              <span className="text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-wider text-slate-400 font-medium mb-0.5 sm:mb-1 truncate max-w-full">
+                <span className="hidden sm:inline">Direct </span>Email
               </span>
-              <span className="text-sm font-bold text-white group-hover:text-gold-300 transition-colors break-all">
-                {profile.socials.email}
+              <span 
+                className="text-[10px] sm:text-xs md:text-sm font-bold text-white group-hover:text-gold-300 transition-colors truncate max-w-full block"
+                title={profile.socials.email}
+              >
+                <span className="sm:hidden">Send Mail</span>
+                <span className="hidden sm:inline break-all">{profile.socials.email}</span>
               </span>
-              <span className="mt-4 text-xs font-semibold text-gold-400 inline-flex items-center gap-1">
-                <span>Send Email</span>
-                <FiArrowUpRight />
+              <span className="mt-2 sm:mt-3 md:mt-4 text-[9px] sm:text-xs font-semibold text-gold-400 inline-flex items-center gap-0.5 sm:gap-1">
+                <span className="hidden sm:inline">Send </span><span>Email</span>
+                <FiArrowUpRight className="text-[9px] sm:text-xs" />
               </span>
             </a>
 
@@ -49,20 +53,21 @@ export default function Contact() {
               href={profile.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 rounded-2xl bg-obsidian-900/90 border border-gold-600/25 hover:border-gold-500/60 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1"
+              className="p-2.5 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-obsidian-900/90 border border-gold-600/25 hover:border-gold-500/60 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1 min-w-0"
             >
-              <div className="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-xl group-hover:bg-gold-500 group-hover:text-black transition-colors mb-4 shadow-gold-glow">
+              <div className="w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-xl sm:rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-base sm:text-lg md:text-xl group-hover:bg-gold-500 group-hover:text-black transition-colors mb-2 sm:mb-3 md:mb-4 shadow-gold-glow shrink-0">
                 <FiLinkedin />
               </div>
-              <span className="text-[11px] uppercase tracking-wider text-slate-400 font-medium mb-1">
-                LinkedIn Profile
+              <span className="text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-wider text-slate-400 font-medium mb-0.5 sm:mb-1 truncate max-w-full">
+                LinkedIn
               </span>
-              <span className="text-sm font-bold text-white group-hover:text-gold-300 transition-colors">
-                Lucky Immanuel
+              <span className="text-[10px] sm:text-xs md:text-sm font-bold text-white group-hover:text-gold-300 transition-colors truncate max-w-full block">
+                <span className="sm:hidden">Lucky</span>
+                <span className="hidden sm:inline">Lucky Immanuel</span>
               </span>
-              <span className="mt-4 text-xs font-semibold text-gold-400 inline-flex items-center gap-1">
-                <span>Connect Online</span>
-                <FiArrowUpRight />
+              <span className="mt-2 sm:mt-3 md:mt-4 text-[9px] sm:text-xs font-semibold text-gold-400 inline-flex items-center gap-0.5 sm:gap-1">
+                <span className="hidden sm:inline">Connect </span><span>Online</span>
+                <FiArrowUpRight className="text-[9px] sm:text-xs" />
               </span>
             </a>
 
@@ -71,20 +76,20 @@ export default function Contact() {
               href={profile.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 rounded-2xl bg-obsidian-900/90 border border-gold-600/25 hover:border-gold-500/60 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1"
+              className="p-2.5 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl bg-obsidian-900/90 border border-gold-600/25 hover:border-gold-500/60 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1 min-w-0"
             >
-              <div className="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-xl group-hover:bg-gold-500 group-hover:text-black transition-colors mb-4 shadow-gold-glow">
+              <div className="w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-xl sm:rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-base sm:text-lg md:text-xl group-hover:bg-gold-500 group-hover:text-black transition-colors mb-2 sm:mb-3 md:mb-4 shadow-gold-glow shrink-0">
                 <FiGithub />
               </div>
-              <span className="text-[11px] uppercase tracking-wider text-slate-400 font-medium mb-1">
-                GitHub Repository
+              <span className="text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-wider text-slate-400 font-medium mb-0.5 sm:mb-1 truncate max-w-full">
+                GitHub
               </span>
-              <span className="text-sm font-bold text-white group-hover:text-gold-300 transition-colors">
+              <span className="text-[10px] sm:text-xs md:text-sm font-bold text-white group-hover:text-gold-300 transition-colors truncate max-w-full block">
                 @Youngstg
               </span>
-              <span className="mt-4 text-xs font-semibold text-gold-400 inline-flex items-center gap-1">
-                <span>View Repositories</span>
-                <FiArrowUpRight />
+              <span className="mt-2 sm:mt-3 md:mt-4 text-[9px] sm:text-xs font-semibold text-gold-400 inline-flex items-center gap-0.5 sm:gap-1">
+                <span className="hidden sm:inline">View </span><span>Profile</span>
+                <FiArrowUpRight className="text-[9px] sm:text-xs" />
               </span>
             </a>
           </div>

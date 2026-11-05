@@ -212,50 +212,65 @@ export default function Hero() {
           boxShadow: '0 0 35px rgba(212, 175, 55, 0.3)',
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 py-3.5 sm:py-4">
-          <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto w-full px-2 py-1 justify-start sm:justify-around text-slate-300 text-xs sm:text-sm font-medium">
-            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default">
-              <SiPython className="text-gold-400 text-lg sm:text-xl group-hover:scale-110 transition-transform" />
-              <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
+          <div className="flex items-center justify-around sm:justify-around w-full px-1 sm:px-2 py-1 text-slate-300 text-xs sm:text-sm font-medium overflow-hidden sm:overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div 
+              className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default"
+              title="Python & OpenCV"
+            >
+              <SiPython className="text-gold-400 text-xl sm:text-xl group-hover:scale-110 transition-transform" />
+              <span className="hidden sm:inline font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
                 Python &amp; OpenCV
               </span>
             </div>
 
             <div className="h-4 sm:h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent flex-shrink-0" />
 
-            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default">
-              <SiReact className="text-cyan-400 text-lg sm:text-xl group-hover:scale-110 transition-transform" />
-              <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+            <div 
+              className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default"
+              title="React Native"
+            >
+              <SiReact className="text-cyan-400 text-xl sm:text-xl group-hover:scale-110 transition-transform" />
+              <span className="hidden sm:inline font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
                 React Native
               </span>
             </div>
 
             <div className="h-4 sm:h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent flex-shrink-0" />
 
-            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default">
-              <SiFirebase className="text-amber-500 text-lg sm:text-xl group-hover:scale-110 transition-transform" />
-              <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+            <div 
+              className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default"
+              title="Firebase & PostGIS"
+            >
+              <SiFirebase className="text-amber-500 text-xl sm:text-xl group-hover:scale-110 transition-transform" />
+              <span className="hidden sm:inline font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
                 Firebase &amp; PostGIS
               </span>
             </div>
 
             <div className="h-4 sm:h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent flex-shrink-0" />
 
-            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default">
-              <div className="flex items-center gap-1.5">
-                <SiLaravel className="text-red-500 text-lg sm:text-xl group-hover:scale-110 transition-transform" />
-                <SiNextdotjs className="text-white text-lg sm:text-xl group-hover:scale-110 transition-transform" />
+            <div 
+              className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default"
+              title="Laravel & Next.js"
+            >
+              <div className="flex items-center gap-1 sm:gap-1.5">
+                <SiLaravel className="text-red-500 text-xl sm:text-xl group-hover:scale-110 transition-transform" />
+                <SiNextdotjs className="text-white text-xl sm:text-xl group-hover:scale-110 transition-transform" />
               </div>
-              <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+              <span className="hidden sm:inline font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
                 Laravel &amp; Next.js
               </span>
             </div>
 
             <div className="h-4 sm:h-5 w-px bg-gradient-to-b from-transparent via-gold-400/50 to-transparent flex-shrink-0" />
 
-            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default">
-              <SiCisco className="text-gold-400 text-lg sm:text-xl group-hover:scale-110 transition-transform" />
-              <span className="font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
+            <div 
+              className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 hover:text-gold-300 transition-colors group cursor-default"
+              title="Cisco CCNA"
+            >
+              <SiCisco className="text-gold-400 text-xl sm:text-xl group-hover:scale-110 transition-transform" />
+              <span className="hidden sm:inline font-medium tracking-wide text-slate-200 group-hover:text-gold-300">
                 Cisco CCNA
               </span>
             </div>

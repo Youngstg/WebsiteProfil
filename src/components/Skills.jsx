@@ -11,8 +11,8 @@ const skillCategories = [
     items: [
       { name: 'Python', level: 85 },
       { name: 'JavaScript / TypeScript', level: 80 },
-      { name: 'C / C++', level: 75 },
       { name: 'PHP', level: 70 },
+      { name: 'C / C++', level: 50 },
     ],
   },
   {
@@ -122,8 +122,17 @@ export default function Skills() {
         {showMacropad && (
           <div className="mt-14 sm:mt-16 flex flex-col items-center">
             {/* Active Skill Pill above 3D Macropad */}
-            <div className="mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-obsidian-900/90 border border-gold-600/30 shadow-gold-glow">
-              <span className="w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: activeSkill.color }} />
+            <div className="mb-4 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-obsidian-900/90 border border-gold-600/30 shadow-gold-glow">
+              <span className="relative flex h-2.5 w-2.5 shrink-0 items-center justify-center">
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                  style={{ backgroundColor: activeSkill.color }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2"
+                  style={{ backgroundColor: activeSkill.color }}
+                />
+              </span>
               <span className="text-xs font-bold text-white uppercase tracking-wider">{activeSkill.name}</span>
               <span className="text-slate-400 text-xs">•</span>
               <span className="text-xs font-mono" style={{ color: activeSkill.color }}>"{activeSkill.tagline}"</span>
