@@ -48,7 +48,7 @@ export default function Hero() {
   }, [displayText, isDeleting, roleIndex]);
 
   return (
-    <section id="hero" className="relative pt-8 pb-12 sm:pt-14 sm:pb-20 lg:pt-18 lg:pb-24 overflow-hidden">
+    <section id="hero" className="relative pt-3 sm:pt-5 lg:pt-6 pb-0 overflow-hidden">
       {/* Ambient Golden Backlight Glows */}
       <div 
         className="absolute top-1/4 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-gold-600/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" 
@@ -60,9 +60,9 @@ export default function Hero() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
           {/* Left Column: Introduction & CTA */}
-          <div className="lg:col-span-7 space-y-6 text-left">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left pb-4 lg:pb-8">
             {/* Top Side-by-Side Lockup on Mobile: Greeting & Titles (Left) + Refined Luxury Portrait (Right) */}
             <div className="flex items-center justify-between gap-4 sm:gap-6">
               <div className="flex-1 space-y-3">
@@ -88,7 +88,7 @@ export default function Hero() {
                 <div className="absolute -inset-1 bg-gradient-to-tr from-gold-500/30 via-amber-500/20 to-transparent rounded-3xl blur-lg pointer-events-none group-hover:scale-105 transition-transform duration-500" />
                 <div className="relative w-28 h-36 sm:w-36 sm:h-44 rounded-2xl overflow-hidden border border-amber-500/40 shadow-gold-glow bg-obsidian-900/90 p-1 flex flex-col justify-end">
                   <img
-                    src="/images/Fotosaya.jpg"
+                    src="/images/image.png"
                     alt="Lucky Immanuel Sitanggang"
                     className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 rounded-xl"
                   />
@@ -163,29 +163,22 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Desktop Hero Portrait Showcase (Full Image Box) */}
-          <div className="hidden lg:flex lg:col-span-5 justify-center w-full">
-            <div className="relative w-full max-w-sm">
+          {/* Right Column: Desktop Hero Portrait Showcase (Touching Gradient Line) */}
+          <div className="hidden lg:flex lg:col-span-5 justify-center lg:justify-end items-end w-full relative self-end">
+            <div className="relative w-full max-w-sm xl:max-w-md flex justify-center items-end">
               {/* Golden Ambient Halo */}
               <div 
-                className="absolute inset-0 bg-gradient-to-tr from-gold-500/25 via-amber-600/20 to-transparent rounded-3xl blur-2xl transform rotate-2 pointer-events-none" 
+                className="absolute inset-0 bg-gradient-to-t from-gold-500/25 via-amber-600/15 to-transparent rounded-full blur-3xl pointer-events-none" 
                 aria-hidden="true"
               />
 
-              {/* Card Container - Full Picture Showcase */}
-              <div className="relative rounded-3xl gold-glass p-2.5 sm:p-3 overflow-hidden border border-gold-600/35 shadow-2xl shadow-gold-950/50 group">
-                <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-obsidian-950 border border-gold-600/20">
-                  <img
-                    src="/images/Fotosaya.jpg"
-                    alt="Lucky Immanuel Sitanggang"
-                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  {/* Subtle Luxury Gradient Sheen */}
-                  <div 
-                    className="absolute inset-0 bg-gradient-to-t from-obsidian-950/40 via-transparent to-transparent pointer-events-none opacity-50 group-hover:opacity-20 transition-opacity duration-500" 
-                    aria-hidden="true"
-                  />
-                </div>
+              {/* Character Image touching bottom gradient line */}
+              <div className="relative z-10 w-full flex justify-center items-end group">
+                <img
+                  src="/images/image.png"
+                  alt="Lucky Immanuel Sitanggang"
+                  className="w-auto h-auto max-h-[460px] xl:max-h-[520px] object-contain object-bottom -mb-px drop-shadow-[0_15px_35px_rgba(212,175,55,0.22)] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
               </div>
             </div>
           </div>
@@ -194,7 +187,7 @@ export default function Hero() {
 
       {/* Tech Stack Ribbon Strip */}
       <div
-        className="mt-12 sm:mt-14 w-full relative overflow-hidden backdrop-blur-md border-y border-gold-500/30 shadow-2xl"
+        className="mt-4 sm:mt-6 lg:mt-0 w-full relative overflow-hidden backdrop-blur-md border-y border-gold-500/30 shadow-2xl"
         style={{
           background:
             'linear-gradient(90deg, #06070a 0%, #090B10 25%, #18140a 50%, rgba(184, 144, 32, 0.45) 75%, #d4af37 100%)',

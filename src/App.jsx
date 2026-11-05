@@ -35,7 +35,7 @@ export default function App() {
     <div className="relative min-h-screen bg-obsidian-950 text-slate-100 overflow-x-hidden w-full max-w-[100vw] ambient-glow-bg flex flex-col justify-between selection:bg-gold-500 selection:text-black">
       <BackgroundShapes />
       <Navbar />
-      <main className="relative z-10 overflow-x-hidden w-full flex-grow pt-20 sm:pt-24">
+      <main className="relative z-10 overflow-x-hidden w-full flex-grow pt-18 sm:pt-20">
         <Hero />
         <About />
         <Skills />
