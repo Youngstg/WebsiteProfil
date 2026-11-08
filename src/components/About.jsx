@@ -1,7 +1,5 @@
 import { FiCompass, FiTarget, FiUserCheck } from 'react-icons/fi';
-import portfolioData from '../data/portfolio.json';
-
-const { profile } = portfolioData;
+import { useLanguage } from '../context/LanguageContext';
 
 function LightbulbIcon(props) {
   return (
@@ -14,21 +12,24 @@ function LightbulbIcon(props) {
 }
 
 export default function About() {
+  const { lang, data } = useLanguage();
+  const { about, profile } = data;
+
   return (
     <section id="about" className="py-14 sm:py-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="text-xs uppercase tracking-widest text-gold-500 font-semibold">
-            GET TO KNOW ME
+            {about.badge}
           </span>
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-1">
-            About <span className="gold-gradient-text">Lucky</span> ✦
+            {about.heading} <span className="gold-gradient-text">{about.subheading}</span> ✦
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mt-3" />
         </div>
 
-        {/* 3 Column / Split Layout matching Stitch */}
+        {/* 3 Column / Split Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Card 1: Experience & Background Summary */}
           <div className="md:col-span-4 gold-glass rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
@@ -37,22 +38,46 @@ export default function About() {
                 <FiUserCheck className="text-2xl" />
               </div>
               <h3 className="font-heading text-xl font-bold text-white mb-2.5">
-                Engineering Mindset
+                {lang === 'id' ? 'Latar Belakang & Rekayasa' : 'Engineering Mindset'}
               </h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 font-sans">
-                Specialized in Informatics Engineering at ITERA with consistent academic excellence (3.77 GPA). Experienced across full-stack mobile applications, AI computer vision architectures, and network systems engineering.
+              <p className="text-slate-300 text-sm leading-relaxed mb-4 font-sans">
+                {about.intro}
               </p>
+              <div className="pt-2 border-t border-gold-600/15 text-xs text-slate-400 space-y-2">
+                <p>
+                  <strong className="text-gold-300 font-semibold">
+                    {lang === 'id' ? 'Yang saya bangun: ' : "What I've built: "}
+                  </strong>
+                  {about.built}
+                </p>
+                <p>
+                  <strong className="text-gold-300 font-semibold">
+                    {lang === 'id' ? 'Cara saya bekerja: ' : 'How I work: '}
+                  </strong>
+                  {about.howIWork}
+                </p>
+              </div>
             </div>
 
-            {/* Stats Mini Matrix */}
-            <div className="grid grid-cols-2 gap-3 pt-4 border-t border-gold-600/20">
-              <div className="bg-obsidian-900/80 p-3.5 rounded-2xl border border-gold-600/15">
-                <div className="text-2xl font-bold text-gold-300 font-heading">3.77</div>
-                <div className="text-[11px] text-slate-400 uppercase tracking-wide">Grad GPA</div>
+            {/* Stats Matrix: 3.77 GPA, 9 Projects, 6 Roles */}
+            <div className="grid grid-cols-3 gap-2.5 pt-5 mt-4 border-t border-gold-600/20">
+              <div className="bg-obsidian-900/80 p-2.5 sm:p-3 rounded-2xl border border-gold-600/15 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-gold-300 font-heading">3.77</div>
+                <div className="text-[10px] text-slate-400 uppercase tracking-wide">
+                  {lang === 'id' ? 'IPK' : 'GPA'}
+                </div>
               </div>
-              <div className="bg-obsidian-900/80 p-3.5 rounded-2xl border border-gold-600/15">
-                <div className="text-2xl font-bold text-gold-300 font-heading">4+</div>
-                <div className="text-[11px] text-slate-400 uppercase tracking-wide">Roles Held</div>
+              <div className="bg-obsidian-900/80 p-2.5 sm:p-3 rounded-2xl border border-gold-600/15 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-gold-300 font-heading">9</div>
+                <div className="text-[10px] text-slate-400 uppercase tracking-wide">
+                  {lang === 'id' ? 'Proyek' : 'Projects'}
+                </div>
+              </div>
+              <div className="bg-obsidian-900/80 p-2.5 sm:p-3 rounded-2xl border border-gold-600/15 text-center">
+                <div className="text-xl sm:text-2xl font-bold text-gold-300 font-heading">6</div>
+                <div className="text-[10px] text-slate-400 uppercase tracking-wide">
+                  {lang === 'id' ? 'Peran' : 'Roles'}
+                </div>
               </div>
             </div>
           </div>
@@ -75,36 +100,42 @@ export default function About() {
             <p className="text-xs text-gold-400 font-mono mb-4">
               {profile.university}
             </p>
-            <p className="text-slate-300 text-sm leading-relaxed max-w-xs font-sans italic">
-              "Building technology is not merely about writing lines of code; it is about bridging capability gaps and creating inclusive tools that empower every individual."
+            <p className="text-slate-200 text-sm leading-relaxed max-w-xs font-sans italic">
+              "{about.quote}"
             </p>
+            <div className="mt-5 pt-4 border-t border-gold-600/20 text-xs text-slate-400 max-w-xs">
+              <strong className="text-gold-300 block mb-1">
+                {lang === 'id' ? 'Yang saya cari:' : "What I'm looking for:"}
+              </strong>
+              <span>{about.lookingFor}</span>
+            </div>
           </div>
 
-          {/* Card 3: Philosophy & Mission */}
+          {/* Card 3: Philosophy & Mission (Cards from A2 / B2) */}
           <div className="md:col-span-4 space-y-5 flex flex-col justify-between">
-            {/* Philosophy Card */}
+            {/* Card: How I build */}
             <div className="gold-glass rounded-3xl p-6 border border-gold-600/25 flex-1 flex flex-col justify-center">
               <div className="flex items-center gap-2.5 mb-2.5 text-gold-300">
                 <LightbulbIcon className="text-lg text-gold-400" />
                 <h4 className="font-heading font-bold text-base text-white">
-                  My Philosophy
+                  {about.cards[0].title}
                 </h4>
               </div>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
-                Combining rigorous theoretical computer science with agile development paradigms to build intuitive, fault-tolerant, and performant user applications.
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                {about.cards[0].description}
               </p>
             </div>
 
-            {/* Mission Card */}
+            {/* Card: What drives me */}
             <div className="gold-glass rounded-3xl p-6 border border-gold-600/25 flex-1 flex flex-col justify-center">
               <div className="flex items-center gap-2.5 mb-2.5 text-gold-400">
                 <FiTarget className="text-lg text-gold-400" />
                 <h4 className="font-heading font-bold text-base text-white">
-                  The Mission
+                  {about.cards[1].title}
                 </h4>
               </div>
-              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-sans">
-                Empowering communities through inclusive assistive systems, intelligent automation, and rock-solid software infrastructure that addresses tangible real-world problems.
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                {about.cards[1].description}
               </p>
             </div>
           </div>

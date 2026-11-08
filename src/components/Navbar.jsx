@@ -2,17 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { FiArrowRight } from 'react-icons/fi';
-
-const navLinks = [
-  { name: 'HOME', href: '#hero', id: 'hero' },
-  { name: 'ABOUT', href: '#about', id: 'about' },
-  { name: 'SKILLS', href: '#skills', id: 'skills' },
-  { name: 'PROJECTS', href: '#projects', id: 'projects' },
-  { name: 'EXPERIENCE', href: '#experience', id: 'experience' },
-  { name: 'CONTACT', href: '#contact', id: 'contact' },
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar() {
+  const { lang, data } = useLanguage();
+  const navLinks = data.nav;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -24,10 +18,8 @@ export default function Navbar() {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 20);
 
-      // If user clicked a nav link, allow smooth scroll to complete without intermediate jitter
       if (isNavigatingRef.current) return;
 
-      // 1. Bottom of page threshold (activate 'contact' when near footer)
       const windowHeight = window.innerHeight;
       const docHeight = document.documentElement.scrollHeight;
       if (windowHeight + scrollY >= docHeight - 70) {
@@ -35,14 +27,11 @@ export default function Navbar() {
         return;
       }
 
-      // 2. Top of page threshold (activate 'hero' when at top)
       if (scrollY < 80) {
         setActiveSection('hero');
         return;
       }
 
-      // 3. Viewport-relative threshold detection using getBoundingClientRect()
-      // Scanning line at 160px from top of viewport (just below the fixed navbar)
       const threshold = 160;
       const sectionIds = ['hero', 'about', 'skills', 'projects', 'experience', 'contact'];
 
@@ -71,7 +60,6 @@ export default function Navbar() {
     setIsMobileOpen(false);
     setActiveSection(id);
 
-    // Lock scroll spy while smoothly animating to destination
     isNavigatingRef.current = true;
     if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
 
@@ -93,20 +81,65 @@ export default function Navbar() {
     }
   };
 
+  const handleLanguageSwitch = (targetLang) => {
+    if (targetLang === lang) return;
+    const hash = window.location.hash || '';
+    if (targetLang === 'id') {
+      window.location.href = `/id/${hash}`;
+    } else {
+      window.location.href = `/${hash}`;
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || isMobileOpen
-          ? 'bg-obsidian-950/60 backdrop-blur-xl border-b border-gold-600/20 shadow-lg shadow-black/30'
-          : 'bg-obsidian-950/35 backdrop-blur-md border-b border-gold-600/10'
+          ? 'bg-obsidian-950/75 backdrop-blur-xl border-b border-gold-600/20 shadow-lg shadow-black/30'
+          : 'bg-obsidian-950/40 backdrop-blur-md border-b border-gold-600/10'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
-        {/* Left balance spacer for centered desktop capsule */}
-        <div className="hidden md:block w-24 lg:w-28" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-3">
+        {/* Left: Language Switcher Capsule on Desktop */}
+        <div className="flex items-center gap-2">
+          <div 
+            className="flex items-center bg-obsidian-900/90 border border-gold-600/30 rounded-full p-1 shadow-sm backdrop-blur-md"
+            role="group"
+            aria-label="Language selection"
+          >
+            <button
+              onClick={() => handleLanguageSwitch('en')}
+              className={`px-3 py-1 text-xs font-bold rounded-full transition-all min-h-[30px] ${
+                lang === 'en'
+                  ? 'bg-gold-500 text-obsidian-950 shadow-gold-glow'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+              aria-label="Switch to English version"
+              aria-current={lang === 'en' ? 'true' : undefined}
+            >
+              EN
+            </button>
+            <span className="text-slate-600 px-0.5 select-none" aria-hidden="true">|</span>
+            <button
+              onClick={() => handleLanguageSwitch('id')}
+              className={`px-3 py-1 text-xs font-bold rounded-full transition-all min-h-[30px] ${
+                lang === 'id'
+                  ? 'bg-gold-500 text-obsidian-950 shadow-gold-glow'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+              aria-label="Beralih ke versi Bahasa Indonesia"
+              aria-current={lang === 'id' ? 'true' : undefined}
+            >
+              ID
+            </button>
+          </div>
+        </div>
 
-        {/* Desktop Nav Menu (Centered Capsule Pill with solid color jelly sliding indicator) */}
-        <nav className="hidden md:flex items-center gap-1 bg-obsidian-900/60 backdrop-blur-md p-1.5 rounded-full border border-gold-600/25 shadow-inner mx-auto">
+        {/* Center: Desktop Nav Menu (Centered Capsule Pill with sliding indicator) */}
+        <nav 
+          className="hidden md:flex items-center gap-1 bg-obsidian-900/60 backdrop-blur-md p-1.5 rounded-full border border-gold-600/25 shadow-inner mx-auto"
+          aria-label="Main Navigation"
+        >
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -138,14 +171,14 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center gap-3 ml-auto md:ml-0">
+        {/* Right: Contact CTA & Mobile Hamburger */}
+        <div className="flex items-center gap-2.5">
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact', 'contact')}
-            className="gold-gradient-btn px-5 sm:px-6 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-gold-glow flex items-center gap-2 min-h-[44px]"
+            className="gold-gradient-btn px-4 sm:px-6 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase shadow-gold-glow flex items-center gap-2 min-h-[44px]"
           >
-            <span>Hire Me</span>
+            <span>{lang === 'id' ? 'Kontak' : 'Contact'}</span>
             <FiArrowRight className="text-xs" />
           </a>
 
@@ -154,6 +187,7 @@ export default function Navbar() {
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-slate-300 hover:text-gold-400 bg-obsidian-850 rounded-xl border border-gold-600/20 transition-colors outline-none focus:outline-none"
             aria-label="Toggle Navigation Menu"
+            aria-expanded={isMobileOpen}
           >
             {isMobileOpen ? <HiX size={24} /> : <HiMenu size={24} />}
           </button>
@@ -168,9 +202,40 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden bg-obsidian-950/90 backdrop-blur-2xl border-t border-gold-600/20 overflow-hidden shadow-2xl"
+            className="md:hidden bg-obsidian-950/95 backdrop-blur-2xl border-t border-gold-600/20 overflow-hidden shadow-2xl"
           >
             <div className="px-4 py-4 flex flex-col gap-2">
+              {/* Language Switcher inside Mobile Drawer */}
+              <div className="flex items-center justify-between pb-3 mb-2 border-b border-gold-600/20 px-2">
+                <span className="text-xs text-slate-400 font-medium">
+                  {lang === 'id' ? 'Pilih Bahasa:' : 'Select Language:'}
+                </span>
+                <div className="flex items-center gap-1.5 bg-obsidian-900 border border-gold-600/30 rounded-full p-1">
+                  <button
+                    onClick={() => {
+                      setIsMobileOpen(false);
+                      handleLanguageSwitch('en');
+                    }}
+                    className={`px-3 py-1 text-xs font-bold rounded-full ${
+                      lang === 'en' ? 'bg-gold-500 text-obsidian-950' : 'text-slate-400'
+                    }`}
+                  >
+                    English (EN)
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsMobileOpen(false);
+                      handleLanguageSwitch('id');
+                    }}
+                    className={`px-3 py-1 text-xs font-bold rounded-full ${
+                      lang === 'id' ? 'bg-gold-500 text-obsidian-950' : 'text-slate-400'
+                    }`}
+                  >
+                    Indonesia (ID)
+                  </button>
+                </div>
+              </div>
+
               {navLinks.map((link) => {
                 const isActive = activeSection === link.id;
                 return (

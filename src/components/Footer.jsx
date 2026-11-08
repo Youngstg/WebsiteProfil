@@ -1,9 +1,10 @@
 import { FiArrowUp } from 'react-icons/fi';
-import portfolioData from '../data/portfolio.json';
-
-const { profile } = portfolioData;
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { data } = useLanguage();
+  const { profile, footer } = data;
+
   const scrollToTop = (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -14,10 +15,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
         <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
           <span className="font-heading font-bold text-gold-300 tracking-wider">
-            LUCKY IMMANUEL SITANGGANG
+            {profile.name.toUpperCase()}
           </span>
           <span>•</span>
-          <span>&copy; {new Date().getFullYear()} All Rights Reserved</span>
+          <span>{footer.copyright}</span>
         </div>
 
         <div className="flex items-center gap-6">
@@ -27,7 +28,7 @@ export default function Footer() {
             className="hover:text-gold-300 transition-colors flex items-center gap-1 min-h-[44px]"
           >
             <FiArrowUp className="text-xs" />
-            <span>Back to Top</span>
+            <span>{footer.backToTop}</span>
           </a>
           <a
             href={profile.socials.github}
