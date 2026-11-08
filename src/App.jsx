@@ -23,7 +23,7 @@ export default function App({ lang = 'en' }) {
   }, []);
 
   return (
-    <LanguageProvider lang={lang}>
+    <LanguageProvider defaultLang={lang}>
       <div className="relative min-h-screen bg-obsidian-950 text-slate-100 overflow-x-hidden w-full max-w-[100vw] ambient-glow-bg flex flex-col justify-between selection:bg-gold-500 selection:text-black">
         <BackgroundShapes />
         <Navbar />

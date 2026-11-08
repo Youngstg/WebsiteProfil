@@ -104,9 +104,9 @@ export const portfolioDataId = {
         stack: ['React Native (Expo Router)', 'Firebase Firestore & Auth', 'EAS'],
         impact: 'Dikustomisasi khusus untuk 1 anak dengan cerebral palsy level 3 dan orang tuanya, mempermudah komunikasi sehari-hari serta membantu orang tua memantau aktivitas anak secara real-time.',
         challenge: 'Merancang antarmuka yang ramah kenyamanan visual dan motorik anak serta mengimplementasikan notifikasi push yang andal; diselesaikan melalui pengujian berulang bersama anak dan walinya, serta mengacu pada literatur penelitian teknologi asistif.',
-        image: '/images/preview/image.webp',
+        image: '/images/preview/karla-bionic.webp',
         liveUrl: '',
-        repoUrl: '',
+        repoUrl: 'https://github.com/Youngstg/AplikasiAAC',
         embedPreview: false
       },
       {

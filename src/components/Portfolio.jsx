@@ -111,6 +111,17 @@ export default function Portfolio() {
                     </div>
 
                     <div className="flex items-center gap-2">
+                      {aacProject.repoUrl && (
+                        <a
+                          href={aacProject.repoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-9 h-9 rounded-full bg-obsidian-900/90 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-colors shadow-md backdrop-blur-md"
+                          title="GitHub Repository"
+                        >
+                          <FiGithub size={15} />
+                        </a>
+                      )}
                       <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-obsidian-900/90 text-slate-300 border border-slate-700">
                         {aacProject.role}
                       </span>

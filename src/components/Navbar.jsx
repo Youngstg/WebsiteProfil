@@ -5,7 +5,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar() {
-  const { lang, data } = useLanguage();
+  const { lang, setLang, data } = useLanguage();
   const navLinks = data.nav;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -81,16 +81,6 @@ export default function Navbar() {
     }
   };
 
-  const handleLanguageSwitch = (targetLang) => {
-    if (targetLang === lang) return;
-    const hash = window.location.hash || '';
-    if (targetLang === 'id') {
-      window.location.href = `/id/${hash}`;
-    } else {
-      window.location.href = `/${hash}`;
-    }
-  };
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -100,37 +90,61 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between gap-3">
-        {/* Left: Language Switcher Capsule on Desktop */}
+        {/* Left: Interactive Animated Slide Switcher (EN / ID) */}
         <div className="flex items-center gap-2">
           <div 
-            className="flex items-center bg-obsidian-900/90 border border-gold-600/30 rounded-full p-1 shadow-sm backdrop-blur-md"
+            className="relative flex items-center bg-obsidian-900/90 border border-gold-600/30 rounded-full p-1 shadow-inner backdrop-blur-md"
             role="group"
             aria-label="Language selection"
           >
             <button
-              onClick={() => handleLanguageSwitch('en')}
-              className={`px-3 py-1 text-xs font-bold rounded-full transition-all min-h-[30px] ${
+              type="button"
+              onClick={() => setLang('en')}
+              className={`relative z-10 px-3.5 py-1 text-xs font-bold rounded-full transition-colors duration-200 min-h-[30px] flex items-center justify-center outline-none select-none ${
                 lang === 'en'
-                  ? 'bg-gold-500 text-obsidian-950 shadow-gold-glow'
+                  ? 'text-obsidian-950 font-extrabold'
                   : 'text-slate-400 hover:text-white'
               }`}
-              aria-label="Switch to English version"
-              aria-current={lang === 'en' ? 'true' : undefined}
+              aria-label="Switch to English"
             >
-              EN
+              {lang === 'en' && (
+                <motion.div
+                  layoutId="activeLangSliderDesktop"
+                  className="absolute inset-0 bg-gold-400 rounded-full shadow-gold-glow pointer-events-none"
+                  transition={{
+                    type: 'spring',
+                    stiffness: 500,
+                    damping: 30,
+                    mass: 0.6,
+                  }}
+                />
+              )}
+              <span className="relative z-10">EN</span>
             </button>
-            <span className="text-slate-600 px-0.5 select-none" aria-hidden="true">|</span>
+
             <button
-              onClick={() => handleLanguageSwitch('id')}
-              className={`px-3 py-1 text-xs font-bold rounded-full transition-all min-h-[30px] ${
+              type="button"
+              onClick={() => setLang('id')}
+              className={`relative z-10 px-3.5 py-1 text-xs font-bold rounded-full transition-colors duration-200 min-h-[30px] flex items-center justify-center outline-none select-none ${
                 lang === 'id'
-                  ? 'bg-gold-500 text-obsidian-950 shadow-gold-glow'
+                  ? 'text-obsidian-950 font-extrabold'
                   : 'text-slate-400 hover:text-white'
               }`}
-              aria-label="Beralih ke versi Bahasa Indonesia"
-              aria-current={lang === 'id' ? 'true' : undefined}
+              aria-label="Beralih ke Bahasa Indonesia"
             >
-              ID
+              {lang === 'id' && (
+                <motion.div
+                  layoutId="activeLangSliderDesktop"
+                  className="absolute inset-0 bg-gold-400 rounded-full shadow-gold-glow pointer-events-none"
+                  transition={{
+                    type: 'spring',
+                    stiffness: 500,
+                    damping: 30,
+                    mass: 0.6,
+                  }}
+                />
+              )}
+              <span className="relative z-10">ID</span>
             </button>
           </div>
         </div>
@@ -205,33 +219,53 @@ export default function Navbar() {
             className="md:hidden bg-obsidian-950/95 backdrop-blur-2xl border-t border-gold-600/20 overflow-hidden shadow-2xl"
           >
             <div className="px-4 py-4 flex flex-col gap-2">
-              {/* Language Switcher inside Mobile Drawer */}
+              {/* Language Slide Switcher inside Mobile Drawer */}
               <div className="flex items-center justify-between pb-3 mb-2 border-b border-gold-600/20 px-2">
                 <span className="text-xs text-slate-400 font-medium">
                   {lang === 'id' ? 'Pilih Bahasa:' : 'Select Language:'}
                 </span>
-                <div className="flex items-center gap-1.5 bg-obsidian-900 border border-gold-600/30 rounded-full p-1">
+                <div 
+                  className="relative flex items-center bg-obsidian-900 border border-gold-600/30 rounded-full p-1"
+                  role="group"
+                  aria-label="Mobile language selection"
+                >
                   <button
+                    type="button"
                     onClick={() => {
+                      setLang('en');
                       setIsMobileOpen(false);
-                      handleLanguageSwitch('en');
                     }}
-                    className={`px-3 py-1 text-xs font-bold rounded-full ${
-                      lang === 'en' ? 'bg-gold-500 text-obsidian-950' : 'text-slate-400'
+                    className={`relative z-10 px-3 py-1 text-xs font-bold rounded-full transition-colors duration-200 min-h-[30px] outline-none select-none ${
+                      lang === 'en' ? 'text-obsidian-950 font-extrabold' : 'text-slate-400'
                     }`}
                   >
-                    English (EN)
+                    {lang === 'en' && (
+                      <motion.div
+                        layoutId="activeLangSliderMobile"
+                        className="absolute inset-0 bg-gold-400 rounded-full shadow-gold-glow pointer-events-none"
+                        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">EN</span>
                   </button>
                   <button
+                    type="button"
                     onClick={() => {
+                      setLang('id');
                       setIsMobileOpen(false);
-                      handleLanguageSwitch('id');
                     }}
-                    className={`px-3 py-1 text-xs font-bold rounded-full ${
-                      lang === 'id' ? 'bg-gold-500 text-obsidian-950' : 'text-slate-400'
+                    className={`relative z-10 px-3 py-1 text-xs font-bold rounded-full transition-colors duration-200 min-h-[30px] outline-none select-none ${
+                      lang === 'id' ? 'text-obsidian-950 font-extrabold' : 'text-slate-400'
                     }`}
                   >
-                    Indonesia (ID)
+                    {lang === 'id' && (
+                      <motion.div
+                        layoutId="activeLangSliderMobile"
+                        className="absolute inset-0 bg-gold-400 rounded-full shadow-gold-glow pointer-events-none"
+                        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">ID</span>
                   </button>
                 </div>
               </div>

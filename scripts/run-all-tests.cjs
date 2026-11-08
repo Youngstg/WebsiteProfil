@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
-const { execSync, spawn } = require('child_process');
+const { execSync } = require('child_process');
 
 console.log('====================================================');
 console.log('   PORTFOLIO AUTOMATED COMPREHENSIVE TEST SUITE     ');
@@ -39,11 +39,9 @@ try {
 // -------------------------------------------------------------
 console.log('\n2. Running Vite Production Build Verification...');
 try {
-  const buildOutput = execSync('npm run build', { stdio: 'pipe', encoding: 'utf-8' });
-  const enDistHtml = fs.existsSync(path.join(__dirname, '../dist/index.html'));
-  const idDistHtml = fs.existsSync(path.join(__dirname, '../dist/id/index.html'));
-  assert(enDistHtml, 'dist/index.html successfully generated');
-  assert(idDistHtml, 'dist/id/index.html successfully generated');
+  execSync('npm run build', { stdio: 'pipe', encoding: 'utf-8' });
+  const distHtml = fs.existsSync(path.join(__dirname, '../dist/index.html'));
+  assert(distHtml, 'dist/index.html successfully generated for unified SPA');
 } catch (err) {
   assert(false, 'Build failed', err.stdout || err.message);
 }
@@ -70,30 +68,19 @@ for (const claim of staleClaims) {
   assert(!idContent.includes(claim), `Indonesian data is clean of unverified claim "${claim}"`);
 }
 
+// Check AAC Flagship Project properties
+assert(enContent.includes('karla-bionic.webp') && idContent.includes('karla-bionic.webp'), 'AAC Project uses real karla-bionic.webp screenshot');
+assert(enContent.includes('https://github.com/Youngstg/AplikasiAAC') && idContent.includes('https://github.com/Youngstg/AplikasiAAC'), 'AAC Project links to https://github.com/Youngstg/AplikasiAAC');
+
 // -------------------------------------------------------------
 // TEST SUITE 4: HTML & SEO Metadata Verification
 // -------------------------------------------------------------
 console.log('\n4. Checking HTML Metadata, SEO & OpenGraph...');
-const enHtml = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf8');
-const idHtml = fs.readFileSync(path.join(__dirname, '../dist/id/index.html'), 'utf8');
+const distHtml = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf8');
 
-assert(enHtml.includes('lang="en"'), 'EN index.html has lang="en"');
-assert(idHtml.includes('lang="id"'), 'ID index.html has lang="id"');
-
-assert(enHtml.includes('rel="canonical" href="https://luckystg.vercel.app/"'), 'EN index.html has correct canonical URL');
-assert(idHtml.includes('rel="canonical" href="https://luckystg.vercel.app/id/"'), 'ID index.html has correct canonical URL');
-
-assert(enHtml.includes('hreflang="en"') && enHtml.includes('hreflang="id"') && enHtml.includes('hreflang="x-default"'), 'EN index.html has complete hreflang triad');
-assert(idHtml.includes('hreflang="en"') && idHtml.includes('hreflang="id"') && idHtml.includes('hreflang="x-default"'), 'ID index.html has complete hreflang triad');
-
-assert(enHtml.includes('property="og:locale" content="en_US"'), 'EN index.html has og:locale en_US');
-assert(idHtml.includes('property="og:locale" content="id_ID"'), 'ID index.html has og:locale id_ID');
-
-assert(enHtml.includes('property="og:image" content="https://luckystg.vercel.app/images/og-image.webp"'), 'EN index.html has og:image 1200x630 URL');
-assert(idHtml.includes('property="og:image" content="https://luckystg.vercel.app/images/og-image.webp"'), 'ID index.html has og:image 1200x630 URL');
-
-assert(enHtml.includes('<noscript>') && enHtml.includes('Lucky Immanuel Sitanggang'), 'EN index.html contains semantic noscript fallback');
-assert(idHtml.includes('<noscript>') && idHtml.includes('Lucky Immanuel Sitanggang'), 'ID index.html contains semantic noscript fallback');
+assert(distHtml.includes('rel="canonical" href="https://luckystg.vercel.app/"'), 'index.html has canonical URL https://luckystg.vercel.app/');
+assert(distHtml.includes('property="og:image" content="https://luckystg.vercel.app/images/og-image.webp"'), 'index.html has og:image 1200x630 URL');
+assert(distHtml.includes('<noscript>') && distHtml.includes('Lucky Immanuel Sitanggang'), 'index.html contains semantic noscript fallback');
 
 // -------------------------------------------------------------
 // TEST SUITE 5: Static Asset Existence
@@ -126,7 +113,6 @@ assert(fs.existsSync(vercelConfigPath), 'vercel.json exists');
 if (fs.existsSync(vercelConfigPath)) {
   const vercelJson = JSON.parse(fs.readFileSync(vercelConfigPath, 'utf8'));
   assert(vercelJson.cleanUrls === true, 'vercel.json specifies cleanUrls: true');
-  assert(Array.isArray(vercelJson.rewrites) && vercelJson.rewrites.length > 0, 'vercel.json defines bilingual rewrites (/id -> /id/index.html)');
 }
 
 // -------------------------------------------------------------
@@ -138,8 +124,7 @@ function runHttpServerTest() {
   return new Promise((resolve) => {
     const server = http.createServer((req, res) => {
       let reqPath = req.url.split('?')[0];
-      if (reqPath === '/') reqPath = '/index.html';
-      if (reqPath === '/id' || reqPath === '/id/') reqPath = '/id/index.html';
+      if (reqPath === '/' || reqPath === '/id' || reqPath === '/id/') reqPath = '/index.html';
 
       const filePath = path.join(__dirname, '../dist', decodeURIComponent(reqPath.replace(/^\//, '')));
       if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
@@ -173,13 +158,13 @@ function runHttpServerTest() {
       };
 
       try {
-        const enRes = await fetchPath('/');
-        assert(enRes.statusCode === 200, 'HTTP GET / returns 200 OK');
-        assert(enRes.data.includes('lang="en"'), 'HTTP GET / serves English document');
+        const rootRes = await fetchPath('/');
+        assert(rootRes.statusCode === 200, 'HTTP GET / returns 200 OK');
+        assert(rootRes.data.includes('Lucky Immanuel Sitanggang'), 'HTTP GET / serves portfolio document');
 
-        const idRes = await fetchPath('/id/');
-        assert(idRes.statusCode === 200, 'HTTP GET /id/ returns 200 OK');
-        assert(idRes.data.includes('lang="id"'), 'HTTP GET /id/ serves Indonesian document');
+        const aacImgRes = await fetchPath('/images/preview/karla-bionic.webp');
+        assert(aacImgRes.statusCode === 200, 'HTTP GET /images/preview/karla-bionic.webp returns 200 OK');
+        assert(aacImgRes.headers['content-type'] === 'image/webp', 'karla-bionic.webp has image/webp content-type');
 
         const ogRes = await fetchPath('/images/og-image.webp');
         assert(ogRes.statusCode === 200, 'HTTP GET /images/og-image.webp returns 200 OK');
