@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FiCode, FiSmartphone, FiCpu, FiServer, FiTerminal, FiLayers } from 'react-icons/fi';
+import { FiCode, FiSmartphone, FiCpu, FiServer, FiTerminal, FiLayers, FiArrowUpRight } from 'react-icons/fi';
 import Macropad3D from './Macropad3D';
 import { MACROPAD_KEYS } from '../data/macropadKeys';
 import { useLanguage } from '../context/LanguageContext';
@@ -13,11 +13,101 @@ const categoryIcons = {
   Infrastruktur: FiServer
 };
 
+const projectTargetMap = {
+  // SIBI
+  'sibi': 'project-sibi-recognition',
+  'pengenalan sibi': 'project-sibi-recognition',
+  'sibi recognition': 'project-sibi-recognition',
+
+  // CuteSnaps
+  'cutesnaps': 'project-cutesnaps',
+
+  // KosMatch
+  'kosmatch': 'project-kosmatch',
+
+  // CareCircle
+  'carecircle': 'project-carecircle',
+
+  // KM ITERA
+  'km itera': 'project-km-itera',
+
+  // AAC Karla Bionic
+  'aplikasi aac': 'project-aac-karla-bionic',
+  'aac app': 'project-aac-karla-bionic',
+  'karla bionic': 'project-aac-karla-bionic',
+
+  // DIGO
+  'digo': 'project-digo',
+
+  // AllAround
+  'allaround': 'project-allaround',
+
+  // Unfolia
+  'unfolia': 'project-unfolia',
+
+  // Breast Cancer EDA
+  'eda breast cancer': 'project-eda-breast-cancer',
+  'breast cancer': 'project-eda-breast-cancer',
+
+  // Labs & Infrastructure
+  'lab pks': 'experience-pks',
+  'pks': 'experience-pks',
+  'lab jaringan': 'experience-jarkom',
+  'network lab': 'experience-jarkom',
+
+  // Tencent Cloud VPS
+  'tencent cloud vps': 'project-carecircle',
+  'vps tencent cloud': 'project-carecircle',
+  'vps': 'project-carecircle',
+};
+
 export default function Skills() {
   const { lang, data } = useLanguage();
   const { skills } = data;
   const [activeSkill, setActiveSkill] = useState(MACROPAD_KEYS[0]);
   const [showMacropad, setShowMacropad] = useState(false);
+
+  const handleProjectBadgeClick = (projectName) => {
+    const raw = projectName.toLowerCase().trim();
+    let targetId = projectTargetMap[raw];
+
+    if (!targetId) {
+      if (raw.includes('sibi')) targetId = 'project-sibi-recognition';
+      else if (raw.includes('aac')) targetId = 'project-aac-karla-bionic';
+      else if (raw.includes('kosmatch')) targetId = 'project-kosmatch';
+      else if (raw.includes('carecircle')) targetId = 'project-carecircle';
+      else if (raw.includes('cutesnaps')) targetId = 'project-cutesnaps';
+      else if (raw.includes('km itera')) targetId = 'project-km-itera';
+      else if (raw.includes('digo')) targetId = 'project-digo';
+      else if (raw.includes('allaround')) targetId = 'project-allaround';
+      else if (raw.includes('unfolia')) targetId = 'project-unfolia';
+      else if (raw.includes('cancer') || raw.includes('eda')) targetId = 'project-eda-breast-cancer';
+      else if (raw.includes('jarkom') || raw.includes('jaringan') || raw.includes('network')) targetId = 'experience-jarkom';
+      else if (raw.includes('pks')) targetId = 'experience-pks';
+      else if (raw.includes('vps') || raw.includes('tencent')) targetId = 'project-carecircle';
+      else targetId = 'projects';
+    }
+
+    const element = document.getElementById(targetId) || document.getElementById('projects');
+    if (element) {
+      const navOffset = 84;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      element.classList.remove('highlight-pulse');
+      void element.offsetWidth;
+      element.classList.add('highlight-pulse');
+
+      setTimeout(() => {
+        element.classList.remove('highlight-pulse');
+      }, 2700);
+    }
+  };
 
   return (
     <section id="skills" className="py-14 sm:py-20 relative overflow-hidden">
@@ -88,12 +178,16 @@ export default function Skills() {
                       <td className="py-4 px-4 sm:px-6 align-top">
                         <div className="flex flex-wrap gap-1.5">
                           {usedInItems.map((projectItem) => (
-                            <span
+                            <button
                               key={projectItem}
-                              className="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-mono font-medium bg-obsidian-900/90 text-gold-300 border border-gold-600/25 shadow-sm"
+                              type="button"
+                              onClick={() => handleProjectBadgeClick(projectItem)}
+                              title={lang === 'id' ? `Klik untuk melihat ${projectItem}` : `Click to jump to ${projectItem}`}
+                              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] sm:text-xs font-mono font-medium bg-obsidian-900/90 text-gold-300 border border-gold-600/30 hover:border-gold-400 hover:bg-gold-500/15 hover:text-white shadow-sm transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 group/pill text-left"
                             >
-                              {projectItem}
-                            </span>
+                              <span>{projectItem}</span>
+                              <FiArrowUpRight className="text-[10px] text-gold-400/60 group-hover/pill:text-gold-300 transition-colors shrink-0" />
+                            </button>
                           ))}
                         </div>
                       </td>

@@ -150,30 +150,44 @@ export default function Experience() {
             </h3>
 
             <div className="space-y-5">
-              {experience.items.map((item) => (
-                <div 
-                  key={item.title + item.organization}
-                  className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-1">
-                    <h4 className="font-heading font-bold text-white text-base sm:text-lg">
-                      {item.title}
-                    </h4>
-                    <span className="text-xs text-gold-400 font-mono">
-                      {item.organization} • {item.period}
-                    </span>
-                  </div>
+              {experience.items.map((item) => {
+                const itemKey = item.title.toLowerCase();
+                const expId = itemKey.includes('network') || itemKey.includes('jaringan')
+                  ? 'experience-jarkom'
+                  : itemKey.includes('computing') || itemKey.includes('pks')
+                  ? 'experience-pks'
+                  : itemKey.includes('karla') || itemKey.includes('aac')
+                  ? 'experience-karla'
+                  : itemKey.includes('km itera')
+                  ? 'experience-km-itera'
+                  : undefined;
 
-                  <ul className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                    {item.bullets.map((bullet, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span className="text-gold-400 select-none mt-1">✦</span>
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                return (
+                  <div 
+                    key={item.title + item.organization}
+                    id={expId}
+                    className="gold-glass rounded-3xl p-6 sm:p-7 relative group border border-gold-600/25 hover:border-gold-500/45 transition-colors scroll-mt-24"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 gap-1">
+                      <h4 className="font-heading font-bold text-white text-base sm:text-lg">
+                        {item.title}
+                      </h4>
+                      <span className="text-xs text-gold-400 font-mono">
+                        {item.organization} • {item.period}
+                      </span>
+                    </div>
+
+                    <ul className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                      {item.bullets.map((bullet, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="text-gold-400 select-none mt-1">✦</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

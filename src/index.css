@@ -325,3 +325,32 @@
     padding-right: 5rem;
   }
 }
+
+/* Dynamic project card highlight animation on click from skills */
+@keyframes highlight-project {
+  0% {
+    box-shadow: 0 0 0 0 rgba(230, 194, 0, 0.9);
+    border-color: rgba(230, 194, 0, 1);
+    transform: scale(1);
+  }
+  25% {
+    box-shadow: 0 0 45px 8px rgba(230, 194, 0, 0.55);
+    border-color: #ffd700;
+    transform: scale(1.02);
+  }
+  50% {
+    box-shadow: 0 0 35px 5px rgba(230, 194, 0, 0.4);
+    border-color: #ffd700;
+    transform: scale(1.015);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(230, 194, 0, 0);
+    transform: scale(1);
+  }
+}
+
+.highlight-pulse {
+  animation: highlight-project 2.6s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  z-index: 30 !important;
+  position: relative;
+}

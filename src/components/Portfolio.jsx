@@ -81,7 +81,10 @@ export default function Portfolio() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
           {/* Flagship #1: AAC App for Children with Cerebral Palsy (Karla Bionic) */}
           {aacProject && (
-            <div className="lg:col-span-7 bg-obsidian-950/90 rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between group border border-gold-600/35 hover:border-gold-400/60 shadow-2xl transition-all duration-300">
+            <div 
+              id="project-aac-karla-bionic"
+              className="lg:col-span-7 bg-obsidian-950/90 rounded-3xl p-6 sm:p-8 relative overflow-hidden flex flex-col justify-between group border border-gold-600/35 hover:border-gold-400/60 shadow-2xl transition-all duration-300 scroll-mt-24"
+            >
               {/* Screenshot preview background */}
               {aacProject.image && (
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-3xl">
@@ -184,7 +187,10 @@ export default function Portfolio() {
 
           {/* Flagship #2: SIBI Sign Language Recognition */}
           {sibiProject && (
-            <div className="lg:col-span-5 bg-obsidian-950/90 rounded-3xl p-6 sm:p-7 flex flex-col justify-between group border border-gold-600/30 hover:border-gold-400/50 shadow-2xl transition-all duration-300 relative overflow-hidden">
+            <div 
+              id="project-sibi-recognition"
+              className="lg:col-span-5 bg-obsidian-950/90 rounded-3xl p-6 sm:p-7 flex flex-col justify-between group border border-gold-600/30 hover:border-gold-400/50 shadow-2xl transition-all duration-300 relative overflow-hidden scroll-mt-24"
+            >
               {sibiProject.image && (
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-3xl">
                   <img
@@ -292,7 +298,8 @@ export default function Portfolio() {
             return (
               <div
                 key={project.id}
-                className="bg-obsidian-950/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between group border border-gold-600/25 hover:border-gold-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+                id={`project-${project.id}`}
+                className="bg-obsidian-950/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between group border border-gold-600/25 hover:border-gold-400/50 shadow-xl transition-all duration-300 hover:-translate-y-1 relative overflow-hidden scroll-mt-24"
               >
                 {project.image && (
                   <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none rounded-2xl">
@@ -402,11 +409,21 @@ export default function Portfolio() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {projects.more.map((project) => (
-              <div
-                key={project.title}
-                className="p-5 rounded-2xl bg-obsidian-900/85 border border-gold-600/20 hover:border-gold-500/40 transition-all flex flex-col justify-between group"
-              >
+            {projects.more.map((project) => {
+              const projectSlug = project.title.toLowerCase().includes('digo')
+                ? 'digo'
+                : project.title.toLowerCase().includes('allaround')
+                ? 'allaround'
+                : project.title.toLowerCase().includes('unfolia')
+                ? 'unfolia'
+                : 'eda-breast-cancer';
+
+              return (
+                <div
+                  key={project.title}
+                  id={`project-${projectSlug}`}
+                  className="p-5 rounded-2xl bg-obsidian-900/85 border border-gold-600/20 hover:border-gold-500/40 transition-all flex flex-col justify-between group scroll-mt-24"
+                >
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <h5 className="font-heading font-bold text-base text-white group-hover:text-gold-300 transition-colors">
@@ -465,7 +482,8 @@ export default function Portfolio() {
                   ))}
                 </div>
               </div>
-            ))}
+            );
+          })}
           </div>
         </div>
       </div>

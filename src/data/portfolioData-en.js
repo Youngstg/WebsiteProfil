@@ -83,8 +83,8 @@ export const portfolioDataEn = {
       },
       {
         area: 'Infrastructure',
-        skills: 'Linux (Ubuntu) & Postfix, VPS deployment, Git & GitHub Actions, Cisco Packet Tracer (CCNA coursework and lab practice)',
-        usedIn: 'Network Lab, KM ITERA'
+        skills: 'Linux (Ubuntu) & Postfix, Tencent Cloud VPS deployment (Docker, Nginx, MinIO, PM2), Git & GitHub Actions, Cisco Packet Tracer (CCNA coursework and lab practice)',
+        usedIn: 'Tencent Cloud VPS, KosMatch, CareCircle, CuteSnaps, Network Lab, KM ITERA'
       }
     ]
   },
@@ -146,8 +146,8 @@ export const portfolioDataEn = {
         flag: 'Geospatial Decision Support',
         description: 'A decision-support web app for choosing a boarding house (kos) near campus. It compares the real monthly cost, travel time, required facilities, and house rules, using PostGIS for geospatial queries.',
         role: 'Solo Full-Stack Developer',
-        stack: ['Next.js', 'PostGIS', 'External Map APIs'],
-        challenge: 'Accurately mapping dynamic address coordinate points from external APIs and customizing the interactive map interface for intuitive boarding house comparisons.',
+        stack: ['Next.js', 'PostGIS', 'Tencent Cloud VPS', 'External Map APIs'],
+        challenge: 'Accurately mapping dynamic address coordinate points from external APIs and customizing the interactive map interface for intuitive boarding house comparisons, deployed on a personal Tencent Cloud VPS.',
         image: '/images/preview/kosmatch.webp',
         liveUrl: 'https://kosmatch.us.ci',
         repoUrl: 'https://github.com/Youngstg/KosMatch',
@@ -160,8 +160,8 @@ export const portfolioDataEn = {
         flag: 'Family Healthcare Coordination',
         description: 'A private coordination space for families caring for elderly relatives: shared tasks, medication schedules, health logs, and a vault for important medical documents, with role-based access.',
         role: 'Solo Full-Stack Developer',
-        stack: ['Next.js', 'MySQL', 'Prisma', 'MinIO (self-hosted VPS)'],
-        challenge: 'Configuring and integrating self-hosted MinIO object storage on a personal VPS to securely store and serve confidential family medical records within a Next.js environment.',
+        stack: ['Next.js', 'MySQL', 'Prisma', 'MinIO (Tencent Cloud VPS)'],
+        challenge: 'Configuring and integrating self-hosted MinIO object storage on a personal Tencent Cloud VPS to securely store and serve confidential family medical records within a Next.js environment.',
         image: '/images/preview/carecircle.webp',
         liveUrl: 'https://carecircle.us.ci',
         repoUrl: 'https://github.com/Youngstg/CareCircle',
@@ -174,8 +174,8 @@ export const portfolioDataEn = {
         flag: 'Real-Time WebRTC App',
         description: 'A Y2K-style photobooth in the browser. Two people can take photos together in real time over WebRTC, with face-tracked AR props (MediaPipe) and aesthetic photo frames.',
         role: 'Solo Developer',
-        stack: ['WebRTC', 'MediaPipe Face Mesh', 'Canvas API', 'Python (Flask)', 'OpenCV'],
-        challenge: 'Accurately compositing photos into aesthetic frame templates without distorting template aspect ratios, while enforcing room security for private real-time duo WebRTC sessions.',
+        stack: ['WebRTC', 'MediaPipe Face Mesh', 'Canvas API', 'Flask & OpenCV', 'Tencent Cloud VPS'],
+        challenge: 'Accurately compositing photos into aesthetic frame templates without distorting aspect ratios, while enforcing room security for real-time duo WebRTC sessions deployed on a personal Tencent Cloud VPS.',
         image: '/images/preview/cutesnaps.webp',
         liveUrl: 'https://cutesnaps.us.ci',
         repoUrl: 'https://github.com/Youngstg/Photobooth',

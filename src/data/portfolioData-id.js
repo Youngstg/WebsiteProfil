@@ -83,8 +83,8 @@ export const portfolioDataId = {
       },
       {
         area: 'Infrastruktur',
-        skills: 'Linux (Ubuntu) & Postfix, deployment VPS, Git & GitHub Actions, Cisco Packet Tracer (materi dan praktik lab CCNA)',
-        usedIn: 'Lab Jaringan, KM ITERA'
+        skills: 'Linux (Ubuntu) & Postfix, deployment VPS Tencent Cloud (Docker, Nginx, MinIO, PM2), Git & GitHub Actions, Cisco Packet Tracer (materi dan praktik lab CCNA)',
+        usedIn: 'VPS Tencent Cloud, KosMatch, CareCircle, CuteSnaps, Lab Jaringan, KM ITERA'
       }
     ]
   },
@@ -146,8 +146,8 @@ export const portfolioDataId = {
         flag: 'Pendukung Keputusan Geospasial',
         description: 'Aplikasi web pendukung keputusan untuk memilih kos di sekitar kampus. Membandingkan biaya bulanan sebenarnya, waktu perjalanan, fasilitas wajib, dan aturan kos, dengan PostGIS untuk kueri geospasial.',
         role: 'Solo Full-Stack Developer',
-        stack: ['Next.js', 'PostGIS', 'External Map API'],
-        challenge: 'Mengintegrasikan koordinat titik alamat secara presisi dari API eksternal serta mengkustomisasi peta interaktif agar navigasi dan perbandingan kos berjalan intuitif.',
+        stack: ['Next.js', 'PostGIS', 'VPS Tencent Cloud', 'External Map API'],
+        challenge: 'Mengintegrasikan koordinat titik alamat secara presisi dari API eksternal serta mengkustomisasi peta interaktif, di-deploy langsung pada VPS Tencent Cloud pribadi.',
         image: '/images/preview/kosmatch.webp',
         liveUrl: 'https://kosmatch.us.ci',
         repoUrl: 'https://github.com/Youngstg/KosMatch',
@@ -160,8 +160,8 @@ export const portfolioDataId = {
         flag: 'Platform Perawatan Lansia',
         description: 'Ruang koordinasi privat bagi keluarga yang merawat lansia: berbagi tugas, jadwal obat, catatan kesehatan, dan brankas dokumen medis, dengan akses berbasis peran.',
         role: 'Solo Full-Stack Developer',
-        stack: ['Next.js', 'MySQL', 'Prisma', 'MinIO (VPS pribadi)'],
-        challenge: 'Mengonfigurasi dan mengintegrasikan object storage MinIO self-hosted pada VPS pribadi untuk mengelola penyimpanan dokumen rekam medis keluarga secara aman dan terisolasi.',
+        stack: ['Next.js', 'MySQL', 'Prisma', 'MinIO (VPS Tencent Cloud)'],
+        challenge: 'Mengonfigurasi dan mengintegrasikan object storage MinIO self-hosted pada VPS Tencent Cloud pribadi untuk mengelola penyimpanan dokumen rekam medis keluarga secara aman dan terisolasi.',
         image: '/images/preview/carecircle.webp',
         liveUrl: 'https://carecircle.us.ci',
         repoUrl: 'https://github.com/Youngstg/CareCircle',
@@ -174,8 +174,8 @@ export const portfolioDataId = {
         flag: 'Aplikasi WebRTC Real-Time',
         description: 'Photobooth bergaya Y2K di browser. Dua orang bisa berfoto bersama secara real-time lewat WebRTC, dengan properti AR yang mengikuti wajah (MediaPipe) dan beragam frame estetik.',
         role: 'Solo Developer',
-        stack: ['WebRTC', 'MediaPipe Face Mesh', 'Canvas API', 'Python (Flask)', 'OpenCV'],
-        challenge: 'Mengomposisikan foto pengguna ke dalam template bingkai secara presisi tanpa merusak rasio template, serta mengamankan room sesi foto duo WebRTC agar terisolasi dan privat.',
+        stack: ['WebRTC', 'MediaPipe Face Mesh', 'Canvas API', 'Flask & OpenCV', 'VPS Tencent Cloud'],
+        challenge: 'Mengomposisikan foto pengguna ke dalam template bingkai secara presisi tanpa merusak rasio template, serta mengamankan room sesi foto duo WebRTC yang di-deploy pada VPS Tencent Cloud pribadi.',
         image: '/images/preview/cutesnaps.webp',
         liveUrl: 'https://cutesnaps.us.ci',
         repoUrl: 'https://github.com/Youngstg/Photobooth',
